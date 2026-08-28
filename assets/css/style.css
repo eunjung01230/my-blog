@@ -1,0 +1,34 @@
+---
+---
+
+/* 전체 페이지 배경색 */
+body {
+  background-color: #eef5ff;
+}
+
+/* 본문 전체 너비와 위치 */
+.wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* 제목 크기 */
+h1 {
+  font-size: 60px;
+}
+
+/* 일반 글씨 크기 */
+body {
+  font-size: 18px;
+}
+
+/* 글 사이 간격 */
+p {
+  line-height: 1.8;
+}
+
+/* 목록 글씨 */
+li {
+  font-size: 18px;
+  line-height: 1.8;
+}
