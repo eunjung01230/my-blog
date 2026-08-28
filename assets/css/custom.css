@@ -1,0 +1,20 @@
+body {
+  background-color: #eaf3ff;
+}
+
+main,
+.page-heading,
+.post-preview,
+.intro-header {
+  text-align: left;
+}
+
+.intro-header .page-heading h1,
+.page-heading h1 {
+  font-size: 42px !important;
+}
+
+.navbar,
+footer {
+  background-color: #dcecff !important;
+}
