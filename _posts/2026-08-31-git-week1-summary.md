@@ -11,7 +11,7 @@ date: 2026-08-31
 
 Git으로 작업할 때 파일이 어떤 순서로 이동하는지 먼저 큰 그림부터 볼까요?
 
-```mermaid
+```mermaids
 flowchart LR
     A["Working Directory<br/>(작업 폴더)"] -->|git add| B["Staging Area<br/>(스테이징 영역)"]
     B -->|git commit| C["Local Repository<br/>(로컬 저장소)"]
