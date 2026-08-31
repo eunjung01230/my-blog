@@ -1,0 +1,110 @@
+---
+layout: default
+---
+
+<section class="hero">
+
+  <div class="hero-line"></div>
+
+  <div class="hero-content">
+
+    <div class="hero-text">
+
+      <h1>
+        LEARNING<br>
+        NOTES
+      </h1>
+
+      <p>
+        기록하며 배우는 개발 블로그
+      </p>
+
+      <span>
+        Java · Spring · MySQL · React · Git
+      </span>
+
+    </div>
+
+    <div class="hero-symbol">
+
+      <div class="mountain">
+        ▲
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="blog-sections">
+
+  <div class="blog-card">
+
+    <div class="card-icon">
+      ★
+    </div>
+
+    <h2>BACKEND</h2>
+
+    <p>
+      Java · Spring Boot
+    </p>
+
+  </div>
+
+
+  <div class="blog-card">
+
+    <div class="card-icon">
+      ●
+    </div>
+
+    <h2>DATABASE</h2>
+
+    <p>
+      MySQL · SQL
+    </p>
+
+  </div>
+
+
+  <div class="blog-card">
+
+    <div class="card-icon">
+      ▣
+    </div>
+
+    <h2>FRONTEND</h2>
+
+    <p>
+      React · HTML · CSS
+    </p>
+
+  </div>
+
+</section>
+
+
+<section class="latest-posts">
+
+  <h2>RECENT POSTS</h2>
+
+  {% for post in site.posts limit:5 %}
+
+  <article class="post-item">
+
+    <a href="{{ post.url | relative_url }}">
+      {{ post.title }}
+    </a>
+
+    <span>
+      {{ post.date | date: "%Y.%m.%d" }}
+    </span>
+
+  </article>
+
+  {% endfor %}
+
+</section>
