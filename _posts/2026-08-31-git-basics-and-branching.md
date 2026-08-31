@@ -1,12 +1,10 @@
 ---
 layout: post
 title: "Git 기초부터 브랜치까지, 버전 관리의 큰 그림 잡기"
-date: 2026-08-31 22:00:00 +0900
-categories: [Git]
-tags: [git, git-basics, branch, version-control]
-mermaid: true
+date: 2026-08-31
+categories: git
 ---
-
+Git 기초부터 브랜치까지, 버전 관리의 큰 그림 잡기
 ## 들어가며 (Situation)
 
 지금까지 `git add`, `git commit`, `git push` 같은 명령어는 하나씩 따로 배웠지만, 이게 전체적으로 어떤 그림 안에서 움직이는 건지 정리한 적은 없었다. 특히 브랜치(branch)는 명령어는 써봤어도 "왜 나누는지", "언제 합치는지"에 대한 개념이 명확하지 않았다. 그래서 오늘은 Git의 기초 개념과 시작 방법, 기본 명령어, 브랜치 용어와 과정을 한 번에 묶어서 정리해보기로 했다.
