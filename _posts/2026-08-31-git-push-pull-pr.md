@@ -1,10 +1,8 @@
 ---
 layout: post
-title: "Git 학습 노트: Push, Pull, PR 정리"
-date: 2026-08-31 15:00:00 +0900
-categories: [Git]
-tags: [git, github, push, pull, pull-request]
-mermaid: true
+title: "Git push-pull"
+date: 2026-08-31
+categories: git
 ---
 
 ## 들어가며

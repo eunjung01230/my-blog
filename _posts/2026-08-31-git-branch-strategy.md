@@ -1,10 +1,8 @@
 ---
 layout: post
-title: "언제 브랜치를 나누고 합쳐야 할지 몰라서, Git 브랜치 전략 3가지를 비교했다"
-date: 2026-08-31 21:00:00 +0900
-categories: [Git]
-tags: [git, branch-strategy, git-flow, github-flow, trunk-based-development]
-mermaid: true
+title: "Git 기초와 Branch"
+date: 2026-08-31
+categories: git
 ---
 
 ## 들어가며 (Situation)
