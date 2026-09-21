@@ -338,9 +338,11 @@ PostgreSQL
 
 였다.
 
-개발 과정에서는 로컬에서 PostgreSQL을 사용하고,
+개발 과정에서는 로컬에서 Docker로 띄운 PostgreSQL 17을 사용하고,
 
-통합이나 배포 환경에서는 Neon 같은 외부 PostgreSQL 환경을 사용하는 구조가 있었다.
+통합 환경과 배포 환경에서는 Neon PostgreSQL을 사용하는 구조였다.
+
+그리고 통합과 배포는 같은 Neon 안에서 서로 다른 프로젝트로 나눠져 있었다.
 
 처음에는
 
@@ -355,12 +357,17 @@ PostgreSQL
 내가 이해한 방식은 이랬다.
 
 ```text
-로컬 PostgreSQL
+로컬 개발 (Docker PostgreSQL 17)
 = 개발하면서 마음껏 테스트하는 공간
 
-통합 / 배포용 PostgreSQL
-= 실제 배포 환경에서 사용하는 데이터베이스
+통합 (Neon PostgreSQL)
+= develop 을 합쳐 Preview 에서 확인하는 데이터베이스
+
+배포 (Neon PostgreSQL)
+= main 이 Production 에서 사용하는 데이터베이스
 ```
+
+배포 기준으로 보면 `develop`이 Preview, `main`이 Production으로 연결되고, 각 환경이 바라보는 데이터베이스도 이렇게 나뉘어 있었다.
 
 이 부분은 이후 Vercel 환경을 이해할 때도 연결됐다.
 
@@ -517,7 +524,19 @@ DB에 직접 접근하는 코드는 브라우저에서 실행되면 안 된다.
 
 Drizzle은 Migration 같은 작업을 위해 CLI에서도 Schema 파일을 읽어야 했다.
 
-그런데 Schema 파일 자체가 특정 서버 실행 환경에 너무 강하게 묶여 있으면 Drizzle CLI가 그 파일을 읽는 과정에서 문제가 생길 수 있었다.
+그런데 우리 프로젝트에서는 서버 전용 폴더에 있는 파일이 전부 `server-only`를 import 하도록 정해 두었고, Schema 파일도 그 폴더 안에 있었다.
+
+문제는 Drizzle CLI가 Next 밖에서 따로 실행되는 도구라는 점이었다.
+
+Next 안에서 실행될 때는 `server-only`가 정상적으로 처리되지만, Drizzle CLI는 Next의 처리 방식을 모른다.
+
+그래서 CLI가 Schema 파일을 읽다가 `server-only` 모듈을 찾지 못하고 그대로 실패했다.
+
+해결은 Drizzle 설정 파일 안에서만 `server-only`를 Next가 이미 가지고 있는 빈 모듈로 연결해 주는 방식이었다.
+
+설정 파일에서만 처리했기 때문에 실제 앱 동작은 그대로다.
+
+Next에서의 `server-only` 보호도 그대로 남아서, 클라이언트 코드가 서버 파일을 import 하면 여전히 빌드가 실패한다.
 
 즉 같은 DB 관련 파일이어도 역할이 달랐다.
 
