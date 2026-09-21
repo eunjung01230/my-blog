@@ -1,0 +1,7 @@
+# 프로젝트 목록의 단일 출처(source of truth).
+# slug  : _project_posts/<slug>/ 폴더명이자 글의 project 값, URL에 사용
+# title : 원어 표기
+# label : 화면에 표시되는 이름
+- slug: tanchunrun
+  title: TanchunRun
+  label: 탄천런

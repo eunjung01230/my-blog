@@ -6,7 +6,12 @@
 {%- endcomment -%}
 
 {%- assign card_post = include.post -%}
-{%- assign card_slug = card_post.categories | first -%}
+{%- comment -%} 일반 글은 categories, 프로젝트 글은 category 를 사용한다 {%- endcomment -%}
+{%- if card_post.categories and card_post.categories.size > 0 -%}
+  {%- assign card_slug = card_post.categories | first -%}
+{%- else -%}
+  {%- assign card_slug = card_post.category -%}
+{%- endif -%}
 {%- assign card_category = site.data.categories | where: "slug", card_slug | first -%}
 
 {%- if card_post.description and card_post.description != empty -%}

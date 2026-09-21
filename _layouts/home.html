@@ -2,6 +2,11 @@
 layout: default
 ---
 
+{%- comment -%}
+  최근 기록은 일반 글(_posts)과 프로젝트 글(_project_posts)을 합쳐 최신순으로 보여준다.
+{%- endcomment -%}
+{%- assign all_entries = site.posts | concat: site.project_posts | sort: "date" | reverse -%}
+
 <section class="intro">
 
   <p class="intro-label">Learning Log</p>
@@ -26,12 +31,12 @@ layout: default
   <h2 class="section-title">최근 기록</h2>
 
   <div class="post-list">
-    {%- for post in site.posts limit: 5 -%}
+    {%- for post in all_entries limit: 5 -%}
       {% include post-card.html post=post %}
     {%- endfor -%}
   </div>
 
-  {%- if site.posts.size > 5 -%}
+  {%- if all_entries.size > 5 -%}
   <p class="section-more">
     <a href="{{ '/posts/' | relative_url }}">전체 글 보기 &rarr;</a>
   </p>

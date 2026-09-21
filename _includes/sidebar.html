@@ -1,9 +1,11 @@
 {%- comment -%}
   카테고리 사이드바.
-  _data/categories.yml 의 순서/표시명을 사용하고,
-  글이 0개인 카테고리는 노출하지 않는다.
+  집계 대상은 일반 글(_posts) + 프로젝트 글(_project_posts) 전체다.
+  _data/categories.yml 의 순서/표시명을 사용하고, 글이 0개인 카테고리는 노출하지 않는다.
   모바일에서는 체크박스 토글로 접고 펼친다. (JS 없음)
 {%- endcomment -%}
+
+{%- assign all_entries = site.posts | concat: site.project_posts -%}
 
 <aside class="sidebar">
 
@@ -24,18 +26,19 @@
         <a href="{{ '/posts/' | relative_url }}"
            class="category-link{% if page.url == '/posts/' %} is-active{% endif %}">
           <span class="category-label">All Posts</span>
-          <span class="category-count">{{ site.posts | size }}</span>
+          <span class="category-count">{{ all_entries | size }}</span>
         </a>
       </li>
 
       {%- for category in site.data.categories -%}
-        {%- assign posts_in_category = site.categories[category.slug] -%}
-        {%- if posts_in_category and posts_in_category.size > 0 -%}
+        {%- assign cat_slug = category.slug -%}
+        {%- assign matched = all_entries | where_exp: "entry", "entry.categories contains cat_slug" -%}
+        {%- if matched.size > 0 -%}
       <li>
-        <a href="{{ '/categories/' | append: category.slug | append: '/' | relative_url }}"
-           class="category-link{% if page.category == category.slug %} is-active{% endif %}">
+        <a href="{{ '/categories/' | append: cat_slug | append: '/' | relative_url }}"
+           class="category-link{% if page.category == cat_slug %} is-active{% endif %}">
           <span class="category-label">{{ category.label }}</span>
-          <span class="category-count">{{ posts_in_category.size }}</span>
+          <span class="category-count">{{ matched | size }}</span>
         </a>
       </li>
         {%- endif -%}

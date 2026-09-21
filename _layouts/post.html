@@ -2,7 +2,12 @@
 layout: default
 ---
 
-{%- assign post_slug = page.categories | first -%}
+{%- comment -%} 일반 글은 categories, 프로젝트 글은 category 를 사용한다 {%- endcomment -%}
+{%- if page.categories and page.categories.size > 0 -%}
+  {%- assign post_slug = page.categories | first -%}
+{%- else -%}
+  {%- assign post_slug = page.category -%}
+{%- endif -%}
 {%- assign post_category = site.data.categories | where: "slug", post_slug | first -%}
 
 <article class="post">

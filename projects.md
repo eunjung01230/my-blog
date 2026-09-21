@@ -4,46 +4,31 @@ title: Projects
 permalink: /projects/
 ---
 
+{%- comment -%}
+  프로젝트 목록은 _data/projects.yml 하나만 보고 만든다.
+  프로젝트를 추가할 때는 projects.yml 에 항목을 넣고
+  projects/<slug>.md 를 하나 만들면 된다.
+{%- endcomment -%}
+
 <section class="page-head">
 
   <h1 class="page-title">Projects</h1>
 
-  <p class="page-meta">
-    진행한 프로젝트와 개발 과정 기록을 모아두는 공간입니다.
-  </p>
+  <p class="page-meta">진행한 프로젝트와 개발 과정 기록을 모아둡니다.</p>
 
 </section>
 
-
-{%- comment -%}
-  프로젝트 데이터는 아직 없다.
-  _data/projects.yml 을 만들면 아래 목록이 자동으로 채워진다.
-{%- endcomment -%}
 
 {%- if site.data.projects and site.data.projects.size > 0 -%}
 <div class="project-list">
   {%- for project in site.data.projects -%}
   <article class="project-card">
     <h2 class="project-card-title">
-      {%- if project.url -%}
-      <a href="{{ project.url }}">{{ project.name }}</a>
-      {%- else -%}
-      {{ project.name }}
-      {%- endif -%}
+      <a href="{{ '/projects/' | append: project.slug | append: '/' | relative_url }}">{{ project.label }}</a>
     </h2>
-    {%- if project.period -%}
-    <p class="project-card-period">{{ project.period }}</p>
-    {%- endif -%}
-    {%- if project.summary -%}
-    <p class="project-card-summary">{{ project.summary }}</p>
-    {%- endif -%}
-    {%- if project.stack and project.stack.size > 0 -%}
-    <ul class="project-card-stack">
-      {%- for item in project.stack -%}
-      <li>{{ item }}</li>
-      {%- endfor -%}
-    </ul>
-    {%- endif -%}
+    <p class="project-card-summary">
+      <a href="{{ '/projects/' | append: project.slug | append: '/' | relative_url }}">프로젝트 기록 보기 &rarr;</a>
+    </p>
   </article>
   {%- endfor -%}
 </div>

@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+{%- comment -%}
+  프로젝트별 글 모아보기.
+  페이지 front matter의 project 값으로 _project_posts 문서를 걸러낸다.
+  프로젝트가 늘어나면 projects/<slug>.md 를 하나 추가하기만 하면 된다.
+{%- endcomment -%}
+
+{%- assign project_slug = page.project -%}
+{%- assign project_meta = site.data.projects | where: "slug", project_slug | first -%}
+{%- if project_meta -%}
+  {%- assign project_label = project_meta.label -%}
+{%- else -%}
+  {%- assign project_label = project_slug -%}
+{%- endif -%}
+{%- assign project_entries = site.project_posts | where: "project", project_slug | sort: "date" | reverse -%}
+
+<section class="page-head">
+
+  <h1 class="page-title">{{ project_label }}</h1>
+
+  <p class="page-meta">프로젝트 기록 · 총 {{ project_entries | size }}개의 기록</p>
+
+</section>
+
+
+<div class="post-list">
+  {%- if project_entries.size > 0 -%}
+    {%- for post in project_entries -%}
+      {% include post-card.html post=post %}
+    {%- endfor -%}
+  {%- else -%}
+  <p class="empty-message">아직 작성된 프로젝트 기록이 없습니다.</p>
+  {%- endif -%}
+</div>

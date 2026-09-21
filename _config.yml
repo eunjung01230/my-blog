@@ -3,3 +3,22 @@ remote_theme: daattali/beautiful-jekyll@6.0.1
 baseurl: "/my-blog"
 site-css:
   - "/assets/css/custom.css"
+
+# 프로젝트 글 전용 저장소.
+# 일반 학습 글(_posts)과 파일 위치를 분리하되, 블로그에서는 함께 다룬다.
+collections:
+  project_posts:
+    output: true
+    permalink: /projects/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: project_posts
+    values:
+      layout: post
+      # category 는 사이드바의 Project 카테고리와 연결되는 값이다.
+      # categories 는 일반 글과 같은 키로 걸러내기 위해 함께 채워 둔다.
+      category: project
+      categories:
+        - project

@@ -2,30 +2,32 @@
 layout: default
 ---
 
-{%- assign category_posts = site.categories[page.category] -%}
-{%- assign category_meta = site.data.categories | where: "slug", page.category | first -%}
-{%- if category_posts -%}
-  {%- assign category_count = category_posts.size -%}
-{%- else -%}
-  {%- assign category_count = 0 -%}
-{%- endif -%}
+{%- comment -%}
+  카테고리별 글 목록.
+  일반 글과 프로젝트 글 모두 categories 로 걸러낸다.
+  (프로젝트 글의 categories 는 _config.yml defaults 에서 채워진다)
+{%- endcomment -%}
+{%- assign all_entries = site.posts | concat: site.project_posts | sort: "date" | reverse -%}
+{%- assign cat_slug = page.category -%}
+{%- assign category_posts = all_entries | where_exp: "entry", "entry.categories contains cat_slug" -%}
+{%- assign category_meta = site.data.categories | where: "slug", cat_slug | first -%}
 {%- if category_meta -%}
   {%- assign category_label = category_meta.label -%}
 {%- else -%}
-  {%- assign category_label = page.category -%}
+  {%- assign category_label = cat_slug -%}
 {%- endif -%}
 
 <section class="page-head">
 
   <h1 class="page-title">{{ category_label }}</h1>
 
-  <p class="page-meta">{{ category_count }} posts</p>
+  <p class="page-meta">{{ category_posts | size }} posts</p>
 
 </section>
 
 
 <div class="post-list">
-  {%- if category_count > 0 -%}
+  {%- if category_posts.size > 0 -%}
     {%- for post in category_posts -%}
       {% include post-card.html post=post %}
     {%- endfor -%}
