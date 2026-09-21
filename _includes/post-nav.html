@@ -1,28 +1,23 @@
-<nav class="post-navigation">
+{%- if page.previous or page.next -%}
+<nav class="post-nav" aria-label="이전 다음 글">
 
-  <div class="prev-post">
+  {%- if page.previous -%}
+  <a class="post-nav-item post-nav-prev" href="{{ page.previous.url | relative_url }}">
+    <span class="post-nav-label">이전 글</span>
+    <span class="post-nav-title">{{ page.previous.title }}</span>
+  </a>
+  {%- else -%}
+  <span class="post-nav-item is-empty"></span>
+  {%- endif -%}
 
-    {% if page.previous %}
-
-    <a href="{{ page.previous.url | relative_url }}">
-      ← {{ page.previous.title }}
-    </a>
-
-    {% endif %}
-
-  </div>
-
-
-  <div class="next-post">
-
-    {% if page.next %}
-
-    <a href="{{ page.next.url | relative_url }}">
-      {{ page.next.title }} →
-    </a>
-
-    {% endif %}
-
-  </div>
+  {%- if page.next -%}
+  <a class="post-nav-item post-nav-next" href="{{ page.next.url | relative_url }}">
+    <span class="post-nav-label">다음 글</span>
+    <span class="post-nav-title">{{ page.next.title }}</span>
+  </a>
+  {%- else -%}
+  <span class="post-nav-item is-empty"></span>
+  {%- endif -%}
 
 </nav>
+{%- endif -%}

@@ -1,16 +1,54 @@
-/* =========================
-   기본 설정
-========================= */
+/* =========================================================
+   1. CSS Variables
+   ========================================================= */
 
-* {
+:root {
+  --bg: #ffffff;
+  --surface: #fafafa;
+  --text: #1f2328;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --border-strong: #d4d7dd;
+  --accent: #3b6ea5;
+  --accent-soft: #eef3f9;
+
+  --sidebar-width: 230px;
+  --content-width: 760px;
+  --layout-width: 1120px;
+
+  --radius: 6px;
+  --gap: 48px;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Pretendard",
+               "Apple SD Gothic Neo", "Malgun Gothic", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas,
+               "Liberation Mono", Menlo, monospace;
+}
+
+
+/* =========================================================
+   2. Reset / Base
+   ========================================================= */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  background: #ffffff;
-  color: #424153;
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 a {
@@ -18,312 +56,747 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: var(--accent);
+}
 
-/* =========================
-   HEADER
-========================= */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.35;
+  font-weight: 650;
+}
+
+
+/* =========================================================
+   3. Header
+   ========================================================= */
 
 .site-header {
-  padding: 40px 30px 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
 }
 
-.top-bar {
-  height: 50px;
-  background: #424153;
-
-  border-radius: 28px 28px 0 0;
+.site-header-inner {
+  max-width: var(--layout-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 62px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: 0 12%;
+  gap: 16px;
 }
 
-.window-dots {
+.site-title {
+  font-size: 22px;
+  font-weight: 680;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.site-nav {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 22px;
 }
 
-.window-dots span {
-  width: 8px;
-  height: 8px;
-
-  background: white;
-
-  border-radius: 50%;
-}
-
-.menu-icon {
-  color: white;
-  font-size: 24px;
-}
-
-
-/* 메뉴 */
-
-.main-nav {
-  display: flex;
-  justify-content: center;
-
-  gap: 80px;
-
-  padding: 45px 20px;
-}
-
-.main-nav a {
+.site-nav a {
   font-size: 14px;
-  font-weight: 700;
+  color: var(--muted);
 }
 
-.main-nav a:hover {
-  color: #4e7dbe;
+.site-nav a:hover,
+.site-nav a.is-active {
+  color: var(--text);
 }
 
 
-/* =========================
-   HERO
-========================= */
+/* =========================================================
+   4. Layout
+   ========================================================= */
 
-.hero {
-  max-width: 900px;
+.layout {
+  max-width: var(--layout-width);
+  margin: 0 auto;
+  padding: 40px 24px 80px;
 
-  margin: 50px auto 100px;
-
-  padding: 0 30px;
-}
-
-.hero-line {
-  width: 240px;
-  height: 20px;
-
-  background: #424153;
-
-  border-radius: 20px;
-
-  margin-bottom: 70px;
-}
-
-.hero-content {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: var(--gap);
 }
 
-.hero-text h1 {
+.main {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: var(--content-width);
+}
+
+
+/* =========================================================
+   5. Sidebar
+   ========================================================= */
+
+.sidebar {
+  flex: 0 0 var(--sidebar-width);
+  width: var(--sidebar-width);
+  position: sticky;
+  top: 40px;
+}
+
+.sidebar-toggle-input,
+.sidebar-toggle {
+  display: none;
+}
+
+.sidebar-heading {
+  margin: 0 0 12px;
+  padding: 0 10px;
+
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.category-list {
+  list-style: none;
   margin: 0;
-
-  font-size: 90px;
-  line-height: 0.9;
-
-  letter-spacing: -5px;
+  padding: 0;
 }
 
-.hero-text p {
-  margin-top: 40px;
-
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.hero-text span {
-  font-size: 14px;
-}
-
-
-/* 오른쪽 심볼 */
-
-.hero-symbol {
-  font-size: 100px;
-}
-
-.mountain {
-  color: #4e7dbe;
-}
-
-
-/* =========================
-   BLOG CARDS
-========================= */
-
-.blog-sections {
-  max-width: 900px;
-
-  margin: 0 auto 120px;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 80px;
-
-  padding: 0 30px;
-}
-
-.blog-card {
-  text-align: center;
-}
-
-.card-icon {
-  font-size: 28px;
-
-  margin-bottom: 25px;
-}
-
-.blog-card h2 {
-  font-size: 16px;
-}
-
-.blog-card p {
-  border-top: 2px solid #424153;
-  border-bottom: 2px solid #424153;
-
-  padding: 15px 0;
-}
-
-
-/* =========================
-   POSTS
-========================= */
-
-.latest-posts {
-  max-width: 800px;
-
-  margin: 0 auto 120px;
-
-  padding: 0 30px;
-}
-
-.latest-posts h2 {
-  margin-bottom: 40px;
-}
-
-.post-item {
-  border-bottom: 1px solid #ddd;
-
-  padding: 20px 0;
-
+.category-link {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 10px;
+
+  padding: 7px 10px;
+  border-radius: var(--radius);
+
+  font-size: 14px;
+  color: var(--muted);
 }
 
-.post-item a {
-  font-weight: bold;
+.category-link:hover {
+  background: var(--surface);
+  color: var(--text);
 }
 
-.post-item a:hover {
-  color: #4e7dbe;
+.category-link.is-active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
 }
 
-.post-item span {
-  color: #999;
+.category-count {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   6. Home
+   ========================================================= */
+
+.intro {
+  padding-bottom: 32px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.intro-label {
+  margin: 0 0 12px;
+
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.intro-headline {
+  margin: 0 0 16px;
+  max-width: 520px;
+
+  font-size: 32px;
+  font-weight: 680;
+  line-height: 1.45;
+  letter-spacing: -0.025em;
+}
+
+.intro-sub {
+  margin: 0 0 20px;
+  max-width: 440px;
+
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.intro-link {
+  font-size: 14px;
+  color: var(--accent);
+}
+
+.intro-link:hover {
+  text-decoration: underline;
+}
+
+.section-title {
+  margin: 0 0 4px;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+.section-more {
+  margin: 28px 0 0;
   font-size: 14px;
 }
 
+.section-more a {
+  color: var(--accent);
+}
 
-/* =========================
-   POST PAGE
-========================= */
+.section-more a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   7. Post List / Cards
+   ========================================================= */
+
+.page-head {
+  padding-bottom: 20px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-title {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+
+.page-meta {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 7px;
+
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.post-card-category {
+  color: var(--accent);
+}
+
+.post-card-category:hover {
+  text-decoration: underline;
+}
+
+.post-card-date {
+  font-variant-numeric: tabular-nums;
+}
+
+.post-card-title {
+  margin: 0 0 6px;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+}
+
+.post-card-excerpt {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.post-card-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 0;
+  padding: 0;
+}
+
+.post-card-tags li {
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.empty-message {
+  margin: 28px 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   8. Post Content
+   ========================================================= */
 
 .post {
-  max-width: 800px;
-
-  margin: 80px auto 120px;
-
-  padding: 0 30px;
+  max-width: var(--content-width);
 }
 
 .post-header {
-  margin-bottom: 60px;
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--border);
 }
 
-.post-header h1 {
-  font-size: 48px;
-
+.post-category {
+  display: inline-block;
   margin-bottom: 10px;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.post-category:hover {
+  text-decoration: underline;
+}
+
+.post-title {
+  margin: 0 0 10px;
+  font-size: 28px;
+  letter-spacing: -0.02em;
 }
 
 .post-date {
-  color: #999;
+  font-size: 13px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
 }
 
 .post-content {
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.8;
 }
 
+.post-content h2 {
+  margin: 44px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  font-size: 20px;
+}
 
-/* =========================
-   POST NAV
-========================= */
+.post-content h3 {
+  margin: 32px 0 10px;
+  font-size: 17px;
+}
 
-.post-navigation {
-  margin-top: 80px;
+.post-content h4 {
+  margin: 24px 0 8px;
+  font-size: 15px;
+}
 
-  padding-top: 30px;
+.post-content p {
+  margin: 0 0 18px;
+}
 
-  border-top: 1px solid #ddd;
+.post-content a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 
+.post-content ul,
+.post-content ol {
+  margin: 0 0 18px;
+  padding-left: 22px;
+}
+
+.post-content li {
+  margin-bottom: 6px;
+}
+
+.post-content li > ul,
+.post-content li > ol {
+  margin: 6px 0 0;
+}
+
+.post-content blockquote {
+  margin: 0 0 18px;
+  padding: 2px 16px;
+  border-left: 3px solid var(--border-strong);
+  color: var(--muted);
+}
+
+.post-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.post-content code {
+  padding: 2px 5px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+.post-content pre {
+  margin: 0 0 18px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.post-content pre code {
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre;
+}
+
+.post-content .highlight {
+  margin: 0 0 18px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.post-content .highlight pre {
+  margin: 0;
+}
+
+.post-content table {
+  width: 100%;
+  margin: 0 0 18px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.post-content th,
+.post-content td {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.post-content th {
+  background: var(--surface);
+  font-weight: 650;
+}
+
+.post-content hr {
+  margin: 36px 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+.post-content img {
+  border-radius: var(--radius);
+}
+
+/* Post navigation */
+
+.post-nav {
   display: flex;
-  justify-content: space-between;
+  gap: 16px;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.post-nav-item {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.post-nav-item.is-empty {
+  visibility: hidden;
+}
+
+.post-nav-next {
+  text-align: right;
+}
+
+.post-nav-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.post-nav-title {
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 
-/* =========================
-   FOOTER
-========================= */
+/* =========================================================
+   9. Page / Project
+   ========================================================= */
+
+.page-body {
+  margin-top: 28px;
+  font-size: 16px;
+}
+
+.page-body p {
+  margin: 0 0 16px;
+}
+
+.page-note {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.project-card-title {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+.project-card-period {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.project-card-summary {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.project-card-stack {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 0;
+  padding: 0;
+}
+
+.project-card-stack li {
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   10. Footer
+   ========================================================= */
 
 .site-footer {
-  margin: 0 30px 30px;
-
-  background: #424153;
-
-  border-radius: 0 0 28px 28px;
-
-  color: white;
+  border-top: 1px solid var(--border);
 }
 
-.footer-inner {
-  max-width: 900px;
-
-  margin: auto;
-
-  padding: 25px 30px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.site-footer-inner {
+  max-width: var(--layout-width);
+  margin: 0 auto;
+  padding: 24px;
 }
 
-.footer-text p {
-  margin: 3px 0;
-}
-
-.footer-icon {
-  font-size: 26px;
+.site-footer-inner p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
 }
 
 
-/* =========================
-   MOBILE
-========================= */
+/* =========================================================
+   11. Responsive
+   ========================================================= */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
 
-  .main-nav {
-    gap: 25px;
+  .layout {
+    display: block;
+    padding: 24px 20px 64px;
   }
 
-  .hero-text h1 {
-    font-size: 55px;
+  .main {
+    max-width: none;
   }
 
-  .hero-symbol {
+  /* 사이드바를 접이식 토글로 전환 (JS 없이 체크박스로 제어) */
+
+  .sidebar {
+    position: static;
+    width: auto;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    font-size: 14px;
+    color: var(--text);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .sidebar-toggle-icon {
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid var(--muted);
+    border-bottom: 1.5px solid var(--muted);
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition: transform 0.15s ease;
+  }
+
+  .sidebar-toggle-input:checked ~ .sidebar-toggle .sidebar-toggle-icon {
+    transform: rotate(225deg) translate(-2px, -2px);
+  }
+
+  .sidebar-nav {
+    display: none;
+    margin-top: 10px;
+  }
+
+  .sidebar-toggle-input:checked ~ .sidebar-nav {
+    display: block;
+  }
+
+  .sidebar-heading {
     display: none;
   }
 
-  .blog-sections {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  .site-header-inner {
+    height: auto;
+    padding: 12px 20px;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+
+  .site-title {
+    font-size: 20px;
+  }
+
+  .site-nav {
+    gap: 18px;
+  }
+
+  .intro-headline {
+    font-size: 26px;
+  }
+
+  .post-title {
+    font-size: 23px;
+  }
+
+  .post-content h2 {
+    font-size: 18px;
+  }
+
+  /* 좁은 화면에서 표가 화면 밖으로 넘치지 않도록 가로 스크롤로 전환 */
+  .post-content table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .post-nav {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .post-nav-next {
+    text-align: left;
+  }
+
+  .post-nav-item.is-empty {
+    display: none;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  body {
+    font-size: 15px;
+  }
+
+  .layout {
+    padding: 20px 16px 56px;
+  }
+
+  .site-header-inner {
+    padding: 12px 16px;
+  }
+
+  .site-title {
+    font-size: 19px;
+  }
+
+  .site-footer-inner {
+    padding: 20px 16px;
+  }
+
+  .intro-headline {
+    font-size: 24px;
+  }
+
+  .intro-sub {
+    font-size: 14px;
+  }
+
+  .page-title {
+    font-size: 21px;
+  }
+
+  .post-title {
+    font-size: 21px;
   }
 
 }

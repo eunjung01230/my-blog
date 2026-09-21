@@ -2,109 +2,39 @@
 layout: default
 ---
 
-<section class="hero">
+<section class="intro">
 
-  <div class="hero-line"></div>
+  <p class="intro-label">Learning Log</p>
 
-  <div class="hero-content">
+  <h1 class="intro-headline">
+    배우고, 막히고,<br>
+    해결한 과정을 남깁니다.
+  </h1>
 
-    <div class="hero-text">
+  <p class="intro-sub">
+    헷갈렸던 개념과 직접 해결한 문제를<br>
+    다시 찾기 쉽게 정리합니다.
+  </p>
 
-      <h1>
-        LEARNING<br>
-        NOTES
-      </h1>
-
-      <p>
-        기록하며 배우는 개발 블로그
-      </p>
-
-      <span>
-        Java · Spring · MySQL · React · Git
-      </span>
-
-    </div>
-
-    <div class="hero-symbol">
-
-      <div class="mountain">
-        ▲
-      </div>
-
-    </div>
-
-  </div>
+  <a class="intro-link" href="{{ '/posts/' | relative_url }}">전체 글 보기 &rarr;</a>
 
 </section>
 
 
-<section class="blog-sections">
+<section class="post-list-section">
 
-  <div class="blog-card">
+  <h2 class="section-title">최근 기록</h2>
 
-    <div class="card-icon">
-      ★
-    </div>
-
-    <h2>BACKEND</h2>
-
-    <p>
-      Java · Spring Boot
-    </p>
-
+  <div class="post-list">
+    {%- for post in site.posts limit: 5 -%}
+      {% include post-card.html post=post %}
+    {%- endfor -%}
   </div>
 
-
-  <div class="blog-card">
-
-    <div class="card-icon">
-      ●
-    </div>
-
-    <h2>DATABASE</h2>
-
-    <p>
-      MySQL · SQL
-    </p>
-
-  </div>
-
-
-  <div class="blog-card">
-
-    <div class="card-icon">
-      ▣
-    </div>
-
-    <h2>FRONTEND</h2>
-
-    <p>
-      React · HTML · CSS
-    </p>
-
-  </div>
-
-</section>
-
-
-<section class="latest-posts">
-
-  <h2>RECENT POSTS</h2>
-
-  {% for post in site.posts limit:5 %}
-
-  <article class="post-item">
-
-    <a href="{{ post.url | relative_url }}">
-      {{ post.title }}
-    </a>
-
-    <span>
-      {{ post.date | date: "%Y.%m.%d" }}
-    </span>
-
-  </article>
-
-  {% endfor %}
+  {%- if site.posts.size > 5 -%}
+  <p class="section-more">
+    <a href="{{ '/posts/' | relative_url }}">전체 글 보기 &rarr;</a>
+  </p>
+  {%- endif -%}
 
 </section>

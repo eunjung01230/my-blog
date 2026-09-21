@@ -2,27 +2,33 @@
 layout: default
 ---
 
+{%- assign post_slug = page.categories | first -%}
+{%- assign post_category = site.data.categories | where: "slug", post_slug | first -%}
+
 <article class="post">
 
   <header class="post-header">
 
-    <h1>
-      {{ page.title }}
-    </h1>
+    {%- if post_category -%}
+    <a class="post-category"
+       href="{{ '/categories/' | append: post_category.slug | append: '/' | relative_url }}">
+      {{ post_category.label }}
+    </a>
+    {%- elsif post_slug -%}
+    <span class="post-category">{{ post_slug }}</span>
+    {%- endif -%}
 
-    <p class="post-date">
+    <h1 class="post-title">{{ page.title }}</h1>
+
+    <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
       {{ page.date | date: "%Y.%m.%d" }}
-    </p>
+    </time>
 
   </header>
 
-
   <div class="post-content">
-
     {{ content }}
-
   </div>
-
 
   {% include post-nav.html %}
 
