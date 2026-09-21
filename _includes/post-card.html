@@ -1,0 +1,53 @@
+{%- comment -%}
+  글 목록 카드. include 시 post 변수를 넘긴다.
+    {% include post-card.html post=post %}
+  기존 글에는 description / tags 가 없으므로 값이 있을 때만 출력한다.
+  excerpt 가 소제목 한 줄뿐이라 요약 구실을 못하는 경우에는 본문 앞부분을 사용한다.
+{%- endcomment -%}
+
+{%- assign card_post = include.post -%}
+{%- assign card_slug = card_post.categories | first -%}
+{%- assign card_category = site.data.categories | where: "slug", card_slug | first -%}
+
+{%- if card_post.description and card_post.description != empty -%}
+  {%- assign card_summary = card_post.description | strip_html | normalize_whitespace | strip -%}
+{%- else -%}
+  {%- assign card_summary = card_post.excerpt | strip_html | normalize_whitespace | strip -%}
+  {%- if card_summary.size < 40 -%}
+    {%- assign card_summary = card_post.content | strip_html | normalize_whitespace | strip -%}
+  {%- endif -%}
+{%- endif -%}
+
+<article class="post-card">
+
+  <div class="post-card-meta">
+    {%- if card_category -%}
+    <a class="post-card-category"
+       href="{{ '/categories/' | append: card_category.slug | append: '/' | relative_url }}">
+      {{ card_category.label }}
+    </a>
+    {%- elsif card_slug -%}
+    <span class="post-card-category">{{ card_slug }}</span>
+    {%- endif -%}
+    <time class="post-card-date" datetime="{{ card_post.date | date_to_xmlschema }}">
+      {{ card_post.date | date: "%Y.%m.%d" }}
+    </time>
+  </div>
+
+  <h3 class="post-card-title">
+    <a href="{{ card_post.url | relative_url }}">{{ card_post.title }}</a>
+  </h3>
+
+  {%- if card_summary != empty -%}
+  <p class="post-card-excerpt">{{ card_summary | truncate: 140 }}</p>
+  {%- endif -%}
+
+  {%- if card_post.tags and card_post.tags.size > 0 -%}
+  <ul class="post-card-tags">
+    {%- for tag in card_post.tags -%}
+    <li>{{ tag }}</li>
+    {%- endfor -%}
+  </ul>
+  {%- endif -%}
+
+</article>

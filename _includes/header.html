@@ -1,22 +1,15 @@
 <header class="site-header">
 
-  <div class="top-bar">
-    <div class="window-dots">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+  <div class="site-header-inner">
 
-    <div class="menu-icon">
-      ☰
-    </div>
+    <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+
+    <nav class="site-nav" aria-label="주요 메뉴">
+      <a href="{{ '/posts/' | relative_url }}"{% if page.url == '/posts/' %} class="is-active"{% endif %}>Posts</a>
+      <a href="{{ '/projects/' | relative_url }}"{% if page.url == '/projects/' %} class="is-active"{% endif %}>Projects</a>
+      <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} class="is-active"{% endif %}>About</a>
+    </nav>
+
   </div>
-
-  <nav class="main-nav">
-    <a href="{{ '/' | relative_url }}">HOME</a>
-    <a href="{{ '/about/' | relative_url }}">ABOUT</a>
-    <a href="{{ '/posts/' | relative_url }}">POSTS</a>
-    <a href="{{ '/projects/' | relative_url }}">PROJECTS</a>
-  </nav>
 
 </header>

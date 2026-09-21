@@ -1,0 +1,35 @@
+---
+layout: default
+---
+
+{%- assign category_posts = site.categories[page.category] -%}
+{%- assign category_meta = site.data.categories | where: "slug", page.category | first -%}
+{%- if category_posts -%}
+  {%- assign category_count = category_posts.size -%}
+{%- else -%}
+  {%- assign category_count = 0 -%}
+{%- endif -%}
+{%- if category_meta -%}
+  {%- assign category_label = category_meta.label -%}
+{%- else -%}
+  {%- assign category_label = page.category -%}
+{%- endif -%}
+
+<section class="page-head">
+
+  <h1 class="page-title">{{ category_label }}</h1>
+
+  <p class="page-meta">{{ category_count }} posts</p>
+
+</section>
+
+
+<div class="post-list">
+  {%- if category_count > 0 -%}
+    {%- for post in category_posts -%}
+      {% include post-card.html post=post %}
+    {%- endfor -%}
+  {%- else -%}
+  <p class="empty-message">아직 이 카테고리에 작성된 글이 없습니다.</p>
+  {%- endif -%}
+</div>

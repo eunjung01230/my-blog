@@ -1,0 +1,48 @@
+{%- comment -%}
+  카테고리 사이드바.
+  _data/categories.yml 의 순서/표시명을 사용하고,
+  글이 0개인 카테고리는 노출하지 않는다.
+  모바일에서는 체크박스 토글로 접고 펼친다. (JS 없음)
+{%- endcomment -%}
+
+<aside class="sidebar">
+
+  <input type="checkbox" id="category-toggle" class="sidebar-toggle-input">
+
+  <label for="category-toggle" class="sidebar-toggle">
+    <span>Categories</span>
+    <span class="sidebar-toggle-icon" aria-hidden="true"></span>
+  </label>
+
+  <nav class="sidebar-nav" aria-label="카테고리">
+
+    <p class="sidebar-heading">Categories</p>
+
+    <ul class="category-list">
+
+      <li>
+        <a href="{{ '/posts/' | relative_url }}"
+           class="category-link{% if page.url == '/posts/' %} is-active{% endif %}">
+          <span class="category-label">All Posts</span>
+          <span class="category-count">{{ site.posts | size }}</span>
+        </a>
+      </li>
+
+      {%- for category in site.data.categories -%}
+        {%- assign posts_in_category = site.categories[category.slug] -%}
+        {%- if posts_in_category and posts_in_category.size > 0 -%}
+      <li>
+        <a href="{{ '/categories/' | append: category.slug | append: '/' | relative_url }}"
+           class="category-link{% if page.category == category.slug %} is-active{% endif %}">
+          <span class="category-label">{{ category.label }}</span>
+          <span class="category-count">{{ posts_in_category.size }}</span>
+        </a>
+      </li>
+        {%- endif -%}
+      {%- endfor -%}
+
+    </ul>
+
+  </nav>
+
+</aside>
