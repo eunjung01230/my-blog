@@ -84,7 +84,7 @@ h1, h2, h3, h4 {
   max-width: var(--layout-width);
   margin: 0 auto;
   padding: 0 24px;
-  height: 56px;
+  height: 62px;
 
   display: flex;
   align-items: center;
@@ -93,9 +93,9 @@ h1, h2, h3, h4 {
 }
 
 .site-title {
-  font-size: 15px;
-  font-weight: 650;
-  letter-spacing: -0.01em;
+  font-size: 22px;
+  font-weight: 680;
+  letter-spacing: -0.02em;
   white-space: nowrap;
 }
 
@@ -207,15 +207,37 @@ h1, h2, h3, h4 {
 
 .intro {
   padding-bottom: 32px;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   border-bottom: 1px solid var(--border);
 }
 
-.intro-text {
+.intro-label {
+  margin: 0 0 12px;
+
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.intro-headline {
   margin: 0 0 16px;
-  font-size: 17px;
-  line-height: 1.75;
-  color: var(--text);
+  max-width: 520px;
+
+  font-size: 32px;
+  font-weight: 680;
+  line-height: 1.45;
+  letter-spacing: -0.025em;
+}
+
+.intro-sub {
+  margin: 0 0 20px;
+  max-width: 440px;
+
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted);
 }
 
 .intro-link {
@@ -696,8 +718,16 @@ h1, h2, h3, h4 {
     gap: 8px 16px;
   }
 
+  .site-title {
+    font-size: 20px;
+  }
+
   .site-nav {
     gap: 18px;
+  }
+
+  .intro-headline {
+    font-size: 26px;
   }
 
   .post-title {
@@ -745,8 +775,20 @@ h1, h2, h3, h4 {
     padding: 12px 16px;
   }
 
+  .site-title {
+    font-size: 19px;
+  }
+
   .site-footer-inner {
     padding: 20px 16px;
+  }
+
+  .intro-headline {
+    font-size: 24px;
+  }
+
+  .intro-sub {
+    font-size: 14px;
   }
 
   .page-title {
