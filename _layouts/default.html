@@ -59,6 +59,16 @@
   <script src="{{ '/assets/js/profile.js' | relative_url }}?v={{ asset_version }}" defer></script>
   <script src="{{ '/assets/js/quick-menu.js' | relative_url }}?v={{ asset_version }}" defer></script>
 
+  {%- comment -%}
+    Mermaid 는 front matter 에 mermaid: true 가 있는 글/페이지에서만 불러온다.
+    버전은 고정한다. (latest 를 쓰면 새 메이저 버전이 나올 때 다이어그램이 깨질 수 있다)
+    defer 스크립트는 순서대로 실행되므로 mermaid-init.js 는 mermaid 로드 후에 돈다.
+  {%- endcomment -%}
+  {%- if page.mermaid %}
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/mermaid.min.js" defer></script>
+  <script src="{{ '/assets/js/mermaid-init.js' | relative_url }}?v={{ asset_version }}" defer></script>
+  {%- endif %}
+
 </body>
 
 </html>
