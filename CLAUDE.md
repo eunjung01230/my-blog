@@ -205,7 +205,7 @@ tags: [react, react-query, caching]
 
 #### 5.2.1 categories 규칙 (canonical slug)
 
-`categories`에는 **화면 표시명이 아니라 slug**를 쓴다. 사용할 수 있는 값은 아래 8개뿐이다.
+`categories`에는 **화면 표시명이 아니라 slug**를 쓴다. 사용할 수 있는 값은 `_data/categories.yml`에 등록된 slug뿐이다. (2026-09-23 기준 아래 8개)
 이 목록의 단일 출처(source of truth)는 `_data/categories.yml`이다.
 
 | slug (front matter에 쓰는 값) | 화면 표시명 (label) |
@@ -225,7 +225,7 @@ tags: [react, react-query, caching]
   - :x: `categories: [Frontend]`, `categories: Git & GitHub`, `categories: [git, terminal]`, `categories: react`
 - `Git & GitHub`, `AI & Tools` 같은 **표시명은 `_data/categories.yml`의 `label`에서만** 쓴다. front matter에 넣지 않는다.
 - `project`는 `_project_posts/`의 프로젝트 글 전용이다. 이 폴더의 글은 `_config.yml` defaults가 자동으로 채우므로 직접 적지 않는다. `_posts/`의 학습 글은 나머지 7개 중에서 고른다.
-- 새 slug가 필요하면 글에 먼저 쓰지 말고, `_data/categories.yml`과 `categories/<slug>.md` 페이지를 함께 추가한 뒤 사용한다.
+- 새 slug가 필요하면 글에 먼저 쓰지 말고, `_data/categories.yml`과 `categories/<slug>.md` 페이지를 함께 추가한 뒤 사용한다. 블로그 `/write/` 페이지의 "+ 새 카테고리 추가"가 이 두 파일을 만드는 단계를 안내한다.
 
 아래가 모두 같은 slug를 기준으로 동작하므로, 값이 어긋나면 글이 사이드바·카테고리 페이지에서 빠진다.
 

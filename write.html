@@ -65,6 +65,7 @@ sitemap: false
 
   <script type="application/json" data-write-existing>{{ existing_paths | jsonify }}</script>
   <script type="application/json" data-write-projects>{{ site.data.projects | map: "slug" | jsonify }}</script>
+  <script type="application/json" data-write-categories>{{ site.data.categories | map: "slug" | jsonify }}</script>
 
   <div class="write-field">
     <label for="write-title">제목</label>
@@ -104,6 +105,7 @@ sitemap: false
         <option value="{{ category.slug }}">{{ category.label }}</option>
           {%- endif -%}
         {%- endfor %}
+        <option value="__new__">+ 새 카테고리 추가</option>
       </select>
     </div>
 
@@ -126,6 +128,45 @@ sitemap: false
     </div>
 
   </div>
+
+  {%- comment -%}
+    새 카테고리: 기존 구조대로 파일 2개가 필요하다. (CLAUDE.md 5.2.1)
+      _data/categories.yml 항목 · categories/<slug>.md 페이지
+    그다음 이 글을 저장하면 새 slug 가 categories 에 들어간다.
+  {%- endcomment %}
+  <fieldset class="write-newproject" data-write-newcategory hidden>
+
+    <legend>새 카테고리 정보</legend>
+
+    <div class="write-row">
+      <div class="write-field write-field-grow">
+        <label for="write-category-label">표시 이름</label>
+        <input id="write-category-label" name="category_label" type="text" placeholder="예) Java & Spring">
+      </div>
+      <div class="write-field write-field-grow">
+        <label for="write-category-slug">slug (영문)</label>
+        <input id="write-category-slug" name="category_slug" type="text" placeholder="예) java"
+               autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+    <p class="write-hint">표시 이름은 사이드바에 보이는 이름이고, slug 는 글 머리말의 <code>categories</code> 값과 주소(<code>/categories/slug/</code>)에 쓰입니다. 영문 소문자·숫자·하이픈(-)만 씁니다.</p>
+
+    <ol class="write-steps">
+      <li>
+        <button type="button" class="write-button" data-write-step="category-list">1. 카테고리 목록에 등록 &rarr;</button>
+        <span class="write-step-desc"><code>_data/categories.yml</code> 편집 화면이 열립니다. 복사된 내용을 <strong>맨 아래</strong>에 붙여넣고 Commit 하세요.</span>
+      </li>
+      <li>
+        <button type="button" class="write-button" data-write-step="category-page">2. 카테고리 페이지 만들기 &rarr;</button>
+        <span class="write-step-desc"><code data-write-category-page-path>categories/slug.md</code> 가 채워진 화면이 열립니다. 바로 Commit 하세요.</span>
+      </li>
+      <li>
+        <span class="write-step-label">3. 글 저장</span>
+        <span class="write-step-desc">아래 본문을 쓰고 <strong>GitHub에서 저장</strong>을 누르세요.</span>
+      </li>
+    </ol>
+
+  </fieldset>
 
   {%- comment -%}
     새 프로젝트: 기존 구조대로 파일 3개가 필요하다.
@@ -155,11 +196,11 @@ sitemap: false
 
     <ol class="write-steps">
       <li>
-        <button type="button" class="write-button" data-write-step="list">1. 프로젝트 목록에 등록 &rarr;</button>
+        <button type="button" class="write-button" data-write-step="project-list">1. 프로젝트 목록에 등록 &rarr;</button>
         <span class="write-step-desc"><code>_data/projects.yml</code> 편집 화면이 열립니다. 복사된 내용을 <strong>맨 아래</strong>에 붙여넣고 Commit 하세요.</span>
       </li>
       <li>
-        <button type="button" class="write-button" data-write-step="page">2. 프로젝트 페이지 만들기 &rarr;</button>
+        <button type="button" class="write-button" data-write-step="project-page">2. 프로젝트 페이지 만들기 &rarr;</button>
         <span class="write-step-desc"><code data-write-project-page-path>projects/폴더명.md</code> 가 채워진 화면이 열립니다. 바로 Commit 하세요.</span>
       </li>
       <li>
