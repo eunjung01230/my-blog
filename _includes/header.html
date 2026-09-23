@@ -46,7 +46,8 @@
 
           <div class="profile-head">
             {%- if profile.image and profile.image != empty -%}
-            <img class="profile-avatar" src="{{ profile.image | relative_url }}" alt="">
+            {%- comment -%} 사진을 같은 이름(profile.jpg)으로 바꿔 올려도 새 사진이 보이도록 빌드 시각을 붙인다 {%- endcomment -%}
+            <img class="profile-avatar" src="{{ profile.image | relative_url }}?v={{ site.time | date: '%s' }}" alt="">
             {%- else -%}
             <span class="profile-avatar is-placeholder" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -74,11 +75,20 @@
             {%- endif -%}
             {%- if profile.email and profile.email != empty -%}
             <div class="profile-row">
-              <dt>Email</dt>
+              <dt>메일</dt>
               <dd><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></dd>
             </div>
             {%- endif -%}
+            {%- if profile.kakao_id and profile.kakao_id != empty -%}
+            <div class="profile-row">
+              <dt>카카오ID</dt>
+              <dd>{{ profile.kakao_id }}</dd>
+            </div>
+            {%- endif -%}
           </dl>
+
+          {%- comment -%} 누구나 들어가 체험할 수 있고, 저장은 저장 코드가 필요하다 (profile-edit.html) {%- endcomment %}
+          <a class="profile-edit-link" href="{{ '/profile/edit/' | relative_url }}">사진 편집</a>
 
         </div>
 

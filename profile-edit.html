@@ -1,0 +1,108 @@
+---
+layout: default
+title: 프로필 사진 편집
+permalink: /profile/edit/
+noindex: true
+sitemap: false
+---
+
+{%- comment -%}
+  프로필 사진 편집. 헤더 프로필 카드의 "사진 편집"으로 들어온다.
+  누구나 사진을 골라 미리 볼 수 있고, 저장은 저장 코드가 맞아야 한다. (_includes/save-gate.html)
+  저장 흐름 (이미지는 텍스트가 아니라서 GitHub 새 파일 화면에 내용을 채울 수 없다):
+    1. 잘라낸 사진을 profile.jpg 로 내려받고, GitHub 의 assets/images 업로드 화면을 연다 → 끌어다 놓고 Commit
+    2. (처음 한 번만) _data/profile.yml 의 image 를 /assets/images/profile.jpg 로 바꾼다
+  동작은 assets/js/profile-edit.js 에 있다.
+{%- endcomment -%}
+{%- assign profile = site.data.profile -%}
+{%- assign write = site.write -%}
+{%- assign photo_path = "/assets/images/profile.jpg" -%}
+
+<div class="page-center">
+
+<section class="page-head">
+
+  <h1 class="page-title">프로필 사진 편집</h1>
+
+  <p class="page-meta">누구나 사진을 올려 미리 볼 수 있어요. 블로그에 저장하는 것은 저장 코드를 아는 블로그 주인만 할 수 있습니다.</p>
+
+</section>
+
+<div class="photo-edit" data-photo-edit
+     data-repo="{{ write.repo | escape }}"
+     data-branch="{{ write.branch | default: 'main' | escape }}"
+     data-photo-path="{{ photo_path }}"
+     data-current-image="{{ profile.image | escape }}">
+
+  <div class="photo-edit-row">
+
+    <div class="photo-edit-stage">
+      <canvas class="photo-edit-canvas" width="560" height="560" data-photo-canvas
+              aria-label="사진 위치 조정 영역. 끌어서 위치를 옮길 수 있습니다."></canvas>
+      <div class="photo-edit-empty" data-photo-empty>
+        <p>사진을 선택하세요</p>
+        <p class="write-hint">JPG · PNG · WebP</p>
+      </div>
+    </div>
+
+    <div class="photo-edit-side">
+
+      <div class="write-field">
+        <span class="photo-edit-label">지금 사진</span>
+        {%- if profile.image and profile.image != empty %}
+        <img class="profile-avatar photo-edit-current" src="{{ profile.image | relative_url }}?v={{ site.time | date: '%s' }}" alt="현재 프로필 사진">
+        {%- else %}
+        <span class="profile-avatar is-placeholder photo-edit-current" aria-label="기본 아이콘">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/>
+          </svg>
+        </span>
+        {%- endif %}
+      </div>
+
+      <div class="write-field">
+        <span class="photo-edit-label">미리보기</span>
+        <canvas class="profile-avatar photo-edit-preview" width="88" height="88" data-photo-preview aria-label="새 프로필 사진 미리보기"></canvas>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="write-field">
+    <input class="photo-edit-file" id="photo-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif" data-photo-file>
+    <label class="write-button photo-edit-pick" for="photo-file">사진 선택</label>
+  </div>
+
+  <div class="write-field">
+    <label for="photo-zoom">확대</label>
+    <input id="photo-zoom" type="range" min="1" max="4" step="0.01" value="1" data-photo-zoom disabled>
+    <p class="write-hint">사진을 끌어서 위치를 옮길 수 있어요. 원 안에 보이는 부분이 프로필 사진이 됩니다.</p>
+  </div>
+
+  <div class="write-actions">
+    <button type="button" class="write-button write-button-primary" data-photo-save disabled>GitHub에 저장 &rarr;</button>
+    <button type="button" class="write-button" data-photo-download disabled>사진 받기</button>
+  </div>
+
+  {%- unless profile.image == photo_path %}
+  <div class="photo-edit-connect">
+    <p class="write-hint">
+      <strong>처음 한 번만:</strong> 사진을 올린 다음, 프로필 설정(<code>_data/profile.yml</code>)의 <code>image</code> 가
+      <code>{{ photo_path }}</code> 를 가리키도록 연결해야 합니다.
+    </p>
+    <button type="button" class="write-button" data-photo-connect>프로필 설정 연결 &rarr;</button>
+  </div>
+  {%- endunless %}
+
+  <p class="write-status" data-photo-status role="status" aria-live="polite"></p>
+
+</div>
+
+</div>
+
+{% include save-gate.html %}
+
+<script src="{{ '/assets/js/profile-edit.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
