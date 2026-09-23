@@ -8,6 +8,7 @@
     GitHub 는 약 7,000자가 넘는 주소를 거절(414)하므로, 내용이 짧으면 주소에 담아 채우고
     길면 클립보드에 복사한 뒤 파일명만 채운 화면을 연다. (거기서 Ctrl+V 로 붙여넣는다)
   - 작성 중인 내용은 이 브라우저의 localStorage 에만 임시 저장한다.
+  - 저장(GitHub 화면 열기)은 저장 코드를 맞혀야 한다. 틀리면 체험 모드로 남는다. (아래 '저장 코드' 참고)
 */
 (function () {
   var form = document.querySelector('[data-write-form]');
@@ -354,6 +355,128 @@
     refresh();
   }
 
+  /* ---------- 저장 코드 ----------
+     누구나 폼을 써 볼 수 있지만, GitHub 저장 화면은 저장 코드를 맞힌 경우에만 연다.
+     _config.yml 의 write.code_hash 에는 코드 원문이 아니라 SHA-256 해시만 둔다.
+     정적 사이트라 이 검사는 브라우저에서만 이뤄지므로 우회할 수 있다. 실제로 글을 막는 것은
+     GitHub 저장소 쓰기 권한이며(주인만 Commit 가능), 이 코드는 방문자에게 '체험'과 '저장'을 나누는 입구다. */
+
+  var CODE_SALT = 'my-blog-write:';
+  var UNLOCK_KEY = 'write-unlock';
+  var codeHash = (form.getAttribute('data-code-hash') || '').trim().toLowerCase();
+  var unlocked = false;
+  var pendingAction = null;
+
+  var gate = {
+    dialog: document.querySelector('[data-write-gate]'),
+    form: document.querySelector('[data-write-gate-form]'),
+    input: document.querySelector('[data-write-gate-input]'),
+    remember: document.querySelector('[data-write-gate-remember]'),
+    error: document.querySelector('[data-write-gate-error]'),
+    cancel: document.querySelector('[data-write-gate-cancel]')
+  };
+
+  try {
+    if (codeHash && localStorage.getItem(UNLOCK_KEY) === codeHash) unlocked = true;
+  } catch (e) {}
+
+  function hashCode(code) {
+    var bytes = new TextEncoder().encode(CODE_SALT + code);
+    return crypto.subtle.digest('SHA-256', bytes).then(function (buffer) {
+      return Array.prototype.map.call(new Uint8Array(buffer), function (b) {
+        return ('0' + b.toString(16)).slice(-2);
+      }).join('');
+    });
+  }
+
+  function requireCode(action) {
+    if (unlocked) return action();
+    if (!codeHash) {
+      setStatus('저장 코드가 아직 설정되지 않아 저장할 수 없습니다. 지금은 체험 모드입니다.');
+      return;
+    }
+    if (!window.crypto || !crypto.subtle || !gate.dialog || !gate.dialog.showModal) {
+      setStatus('이 브라우저에서는 저장 코드를 확인할 수 없습니다. (https 주소에서 열어 주세요)');
+      return;
+    }
+    pendingAction = action;
+    gate.input.value = '';
+    gate.error.hidden = true;
+    gate.dialog.showModal();
+    gate.input.focus();
+  }
+
+  if (gate.form) {
+    gate.form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var code = gate.input.value;
+      if (!code) return;
+      hashCode(code).then(function (hash) {
+        if (hash !== codeHash) {
+          gate.error.hidden = false;
+          gate.input.select();
+          return;
+        }
+        unlocked = true;
+        try {
+          if (gate.remember.checked) localStorage.setItem(UNLOCK_KEY, codeHash);
+        } catch (e) {}
+        var action = pendingAction;
+        pendingAction = null;
+        gate.dialog.close();
+        if (action) action();
+      });
+    });
+
+    gate.cancel.addEventListener('click', function () {
+      gate.dialog.close();
+    });
+
+    gate.dialog.addEventListener('close', function () {
+      if (!pendingAction) return;
+      pendingAction = null;
+      setStatus('체험 모드입니다. 작성한 글은 저장되지 않았습니다. (내용 복사·다운로드는 할 수 있어요)');
+    });
+  }
+
+  // 코드 설정 도우미: /write/?setup=1 에서 코드를 입력하면 _config.yml 에 넣을 해시를 만들어 준다.
+  (function setupHelper() {
+    var panel = document.querySelector('[data-write-setup]');
+    if (!panel) return;
+    var show = false;
+    try { show = new URLSearchParams(location.search).has('setup'); } catch (e) {}
+    if (!show) return;
+    panel.hidden = false;
+
+    var code1 = panel.querySelector('[data-write-setup-code]');
+    var code2 = panel.querySelector('[data-write-setup-confirm]');
+    var result = panel.querySelector('[data-write-setup-result]');
+    var output = panel.querySelector('[data-write-setup-output]');
+    var message = panel.querySelector('[data-write-setup-message]');
+    panel.querySelector('[data-write-setup-state]').textContent = codeHash ? '설정됨' : '아직 설정되지 않음';
+
+    panel.querySelector('[data-write-setup-make]').addEventListener('click', function () {
+      result.hidden = true;
+      if (code1.value.length < 4) { message.textContent = '코드는 4자 이상으로 정하세요.'; return; }
+      if (code1.value !== code2.value) { message.textContent = '두 칸의 코드가 다릅니다.'; return; }
+      message.textContent = '';
+      hashCode(code1.value).then(function (hash) {
+        output.textContent = '  code_hash: "' + hash + '"';
+        result.hidden = false;
+        code1.value = code2.value = '';
+      });
+    });
+
+    panel.querySelector('[data-write-setup-copy]').addEventListener('click', function () {
+      copyText(output.textContent.trim()).then(function () {
+        message.textContent = '복사했습니다. 열린 _config.yml 에서 write: 아래 code_hash 줄을 이 값으로 바꾸고 Commit 하세요.';
+      }, function () {
+        message.textContent = '복사에 실패했습니다. 위 값을 직접 선택해 복사하세요.';
+      });
+      window.open(githubUrl('edit', '_config.yml'), '_blank', 'noopener');
+    });
+  })();
+
   /* ---------- 이벤트 ---------- */
 
   form.addEventListener('input', function () {
@@ -383,21 +506,23 @@
         setStatus('');
         return;
       }
-      var info = newProjectInfo();
+      requireCode(function () {
+        var info = newProjectInfo();
 
-      if (button.getAttribute('data-write-step') === 'list') {
-        copyText(projectListSnippet(info)).then(function () {
-          setStatus('프로젝트 항목을 복사했습니다. 열린 projects.yml 편집 화면의 맨 아래에 Ctrl+V 로 붙여넣고 Commit 하세요.');
-        }, function () {
-          setStatus('자동 복사에 실패했습니다. 아래 내용을 projects.yml 맨 아래에 붙여넣으세요:' + projectListSnippet(info));
-        });
-        window.open(githubUrl('edit', '_data/projects.yml'), '_blank', 'noopener');
-      } else {
-        var path = 'projects/' + info.slug + '.md';
-        window.open(githubUrl('new', path) + '&value=' + encodeURIComponent(projectPageContent(info)), '_blank', 'noopener');
-        setStatus(path + ' 화면이 열렸습니다. 내용 확인 후 Commit 하세요. 그다음 아래에서 첫 기록을 저장합니다.');
-      }
-      button.classList.add('is-done');
+        if (button.getAttribute('data-write-step') === 'list') {
+          copyText(projectListSnippet(info)).then(function () {
+            setStatus('프로젝트 항목을 복사했습니다. 열린 projects.yml 편집 화면의 맨 아래에 Ctrl+V 로 붙여넣고 Commit 하세요.');
+          }, function () {
+            setStatus('자동 복사에 실패했습니다. 아래 내용을 projects.yml 맨 아래에 붙여넣으세요:' + projectListSnippet(info));
+          });
+          window.open(githubUrl('edit', '_data/projects.yml'), '_blank', 'noopener');
+        } else {
+          var path = 'projects/' + info.slug + '.md';
+          window.open(githubUrl('new', path) + '&value=' + encodeURIComponent(projectPageContent(info)), '_blank', 'noopener');
+          setStatus(path + ' 화면이 열렸습니다. 내용 확인 후 Commit 하세요. 그다음 아래에서 첫 기록을 저장합니다.');
+        }
+        button.classList.add('is-done');
+      });
     });
   });
 
@@ -413,6 +538,10 @@
       return;
     }
 
+    requireCode(function () { openSave(post); });
+  });
+
+  function openSave(post) {
     var base = 'https://github.com/' + repo + '/new/' + encodeURIComponent(branch) +
                '?filename=' + encodeURIComponent(post.path);
     var full = base + '&value=' + encodeURIComponent(post.content);
@@ -430,7 +559,7 @@
       setStatus('자동 복사에 실패했습니다. "내용 복사" 버튼으로 복사한 뒤, 열린 GitHub 화면에 붙여넣으세요.');
     });
     window.open(base, '_blank', 'noopener');
-  });
+  }
 
   form.querySelector('[data-write-copy]').addEventListener('click', function () {
     copyText(refresh().content).then(function () {

@@ -49,8 +49,11 @@ exclude:
   - node_modules
   - vendor
 
-# 새 글 쓰기 페이지(/write/). 메뉴에는 없고 주소로만 들어간다.
+# 새 글 쓰기 페이지(/write/). 헤더 메뉴에는 없고 Posts·Projects 상단 버튼으로 들어간다.
 # 저장 버튼은 이 저장소·브랜치의 GitHub 새 파일 화면을 연다. (커밋은 저장소 쓰기 권한이 있어야 가능)
 write:
   repo: "eunjung01230/my-blog"
   branch: main
+  # 저장 코드의 SHA-256 해시. 코드 원문은 적지 않는다. /write/?setup=1 에서 코드를 입력하면 이 값을 만들어 준다.
+  # 비어 있으면 아무도 저장할 수 없다. (폼은 체험 모드로만 동작)
+  code_hash: "915c824f13563063c7b57a8dc10a6966d433935084447a5b5070af942a938604"

@@ -1305,6 +1305,101 @@ h1, h2, h3, h4 {
   color: var(--muted);
 }
 
+/* 저장 코드 설정 도우미 (/write/?setup=1) */
+.write-setup {
+  margin-top: 28px;
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.write-setup[hidden],
+.write-setup-result[hidden] {
+  display: none;
+}
+
+.write-setup-title {
+  margin: 0;
+  font-size: 15px;
+}
+
+.write-setup-result {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.write-setup-result pre {
+  margin: 0;
+  padding: 10px 12px;
+  max-width: 100%;
+  overflow-x: auto;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+/* 저장 코드 입력 창 */
+.write-gate {
+  width: min(360px, calc(100vw - 32px));
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--text);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+
+.write-gate::backdrop {
+  background: rgba(15, 23, 42, 0.35);
+}
+
+.write-gate form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.write-gate-title {
+  margin: 0;
+  font-size: 16px;
+}
+
+.write-gate input[type="password"] {
+  width: 100%;
+  padding: 9px 11px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: 14px;
+}
+
+.write-gate input[type="password"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.write-gate-error {
+  margin: -4px 0 0;
+  font-size: 13px;
+  color: #9b1c1c;
+}
+
+.write-gate-remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
 /* 새 프로젝트 정보 + 3단계 저장 안내 */
 .write-newproject {
   margin: 0;
