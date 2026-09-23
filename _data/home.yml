@@ -1,0 +1,21 @@
+# 홈 화면 설정.
+
+# Hero 배너 이미지.
+# image 를 비워 두면 이미지 자리에 기본 placeholder 가 표시된다.
+# 이미지를 넣을 때는 assets/images/ 에 파일을 두고 사이트 루트 기준 경로를 적는다.
+#   예) image: /assets/images/home-hero.png
+hero:
+  image: /assets/images/pingu.jpg
+  image_alt: "빙산 앞에서 왼쪽을 바라보는 펭귄 캐릭터 핑구"
+
+# 사이드바를 접었을 때 Hero 아래에 보이는 카테고리 바로가기.
+# slug 는 _data/categories.yml 의 slug 와 같아야 한다. (표시명은 그쪽 label 을 사용)
+quick_menu:
+  - slug: backend
+    description: 요청부터 응답까지, 서버가 하는 일
+  - slug: database
+    description: Schema · Migration · ORM 기초
+  - slug: frontend
+    description: 화면이 실제 기능이 되기까지
+  - slug: project
+    description: 탄천런 프로젝트 개발 기록

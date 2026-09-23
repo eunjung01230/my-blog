@@ -4,39 +4,74 @@ layout: default
 
 {%- comment -%}
   최근 기록은 일반 글(_posts)과 프로젝트 글(_project_posts)을 합쳐 최신순으로 보여준다.
+  Hero 이미지와 카테고리 바로가기는 _data/home.yml 에서 관리한다.
 {%- endcomment -%}
 {%- assign all_entries = site.posts | concat: site.project_posts | sort: "date" | reverse -%}
+{%- assign home = site.data.home -%}
 
-<section class="intro">
+<section class="hero">
 
-  <p class="intro-label">Learning Log</p>
+  <div class="hero-body">
 
-  <h1 class="intro-headline">
-    배우고, 막히고,<br>
-    해결한 과정을 남깁니다.
-  </h1>
+    <p class="hero-label">Learning Log</p>
 
-  <p class="intro-sub">
-    헷갈렸던 개념과 직접 해결한 문제를<br>
-    다시 찾기 쉽게 정리합니다.
-  </p>
+    <h1 class="hero-headline">
+      배우고, 막히고,<br>
+      해결한 과정을 남깁니다.
+    </h1>
 
-  <a class="intro-link" href="{{ '/posts/' | relative_url }}">전체 글 보기 &rarr;</a>
+    <p class="hero-sub">
+      헷갈렸던 개념과 직접 해결한 문제를<br>
+      다시 찾기 쉽게 정리합니다.
+    </p>
+
+    <a class="hero-link" href="{{ '/posts/' | relative_url }}">전체 글 보기 &rarr;</a>
+
+  </div>
+
+  {%- if home.hero.image and home.hero.image != empty -%}
+  <div class="hero-media">
+    <img src="{{ home.hero.image | relative_url }}" alt="{{ home.hero.image_alt }}">
+  </div>
+  {%- else -%}
+  <div class="hero-media is-placeholder" aria-hidden="true"></div>
+  {%- endif -%}
 
 </section>
+
+
+{%- if home.quick_menu and home.quick_menu.size > 0 -%}
+<section class="quick-menu" aria-label="주요 카테고리 바로가기">
+  {%- for item in home.quick_menu -%}
+    {%- assign quick_category = site.data.categories | where: "slug", item.slug | first -%}
+    {%- if quick_category -%}
+  <a class="quick-card" href="{{ '/categories/' | append: quick_category.slug | append: '/' | relative_url }}">
+    <span class="quick-card-head">
+      {% include category-icon.html slug=quick_category.slug %}
+      <span class="quick-card-title">{{ quick_category.label }}</span>
+      <span class="quick-card-arrow" aria-hidden="true">&rarr;</span>
+    </span>
+    {%- if item.description -%}
+    <span class="quick-card-desc">{{ item.description }}</span>
+    {%- endif -%}
+  </a>
+    {%- endif -%}
+  {%- endfor -%}
+</section>
+{%- endif -%}
 
 
 <section class="post-list-section">
 
   <h2 class="section-title">최근 기록</h2>
 
-  <div class="post-list">
-    {%- for post in all_entries limit: 5 -%}
+  <div class="post-grid">
+    {%- for post in all_entries limit: 6 -%}
       {% include post-card.html post=post %}
     {%- endfor -%}
   </div>
 
-  {%- if all_entries.size > 5 -%}
+  {%- if all_entries.size > 6 -%}
   <p class="section-more">
     <a href="{{ '/posts/' | relative_url }}">전체 글 보기 &rarr;</a>
   </p>
