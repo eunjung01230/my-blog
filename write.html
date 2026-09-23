@@ -7,7 +7,7 @@ sitemap: false
 ---
 
 {%- comment -%}
-  새 글 작성 폼. 메뉴에는 노출하지 않고 /write/ 주소로만 들어온다.
+  새 글 작성 폼. 헤더 메뉴에는 없고 Posts·Projects 상단 버튼으로 들어온다. 누구나 써 볼 수 있고, 저장은 저장 코드가 맞아야 한다.
   "GitHub에서 저장"을 누르면 파일명과 내용이 채워진 GitHub 새 파일 화면이 열리고,
   거기서 Commit 하면 글이 추가된다. (?type=post → _posts, ?type=project → _project_posts) 저장소 쓰기 권한이 있는 사람만 커밋할 수 있다.
   카테고리 목록은 _data/categories.yml 을 그대로 쓴다. (project 는 _project_posts 전용이라 제외)
@@ -27,11 +27,39 @@ sitemap: false
 
   <h1 class="page-title" data-write-heading>새 글 쓰기</h1>
 
-  <p class="page-meta">작성한 뒤 GitHub에서 Commit 하면 몇 분 뒤 블로그에 게시됩니다.</p>
+  <p class="page-meta">누구나 자유롭게 써 볼 수 있어요. 블로그에 저장하는 것은 저장 코드를 아는 블로그 주인만 할 수 있습니다.</p>
 
 </section>
 
+{%- comment -%}
+  저장 코드 설정 도우미. /write/?setup=1 에서만 보인다.
+  코드를 입력하면 해시만 만들어 주고, 코드 원문은 어디에도 저장하지 않는다.
+{%- endcomment %}
+<section class="write-setup" data-write-setup hidden>
+  <h2 class="write-setup-title">저장 코드 설정 <span class="write-label-note">(현재: <span data-write-setup-state></span>)</span></h2>
+  <div class="write-row">
+    <div class="write-field write-field-grow">
+      <label for="write-setup-code">새 저장 코드</label>
+      <input id="write-setup-code" type="password" autocomplete="new-password" data-write-setup-code>
+    </div>
+    <div class="write-field write-field-grow">
+      <label for="write-setup-confirm">한 번 더 입력</label>
+      <input id="write-setup-confirm" type="password" autocomplete="new-password" data-write-setup-confirm>
+    </div>
+  </div>
+  <div class="write-actions">
+    <button type="button" class="write-button" data-write-setup-make>해시 만들기</button>
+  </div>
+  <div class="write-setup-result" data-write-setup-result hidden>
+    <p class="write-hint">아래 줄을 <code>_config.yml</code> 의 <code>write:</code> 아래 <code>code_hash</code> 줄과 바꾸고 Commit 하세요.</p>
+    <pre><code data-write-setup-output></code></pre>
+    <button type="button" class="write-button write-button-primary" data-write-setup-copy>복사하고 _config.yml 편집 열기 &rarr;</button>
+  </div>
+  <p class="write-status" data-write-setup-message role="status" aria-live="polite"></p>
+</section>
+
 <form class="write-form" data-write-form data-write-type="post" novalidate
+      data-code-hash="{{ write.code_hash | escape }}"
       data-repo="{{ write.repo | escape }}"
       data-branch="{{ write.branch | default: 'main' | escape }}">
 
@@ -171,6 +199,22 @@ sitemap: false
   <p class="write-status" data-write-status role="status" aria-live="polite"></p>
 
 </form>
+
+<dialog class="write-gate" data-write-gate aria-labelledby="write-gate-title">
+  <form method="dialog" data-write-gate-form>
+    <h2 class="write-gate-title" id="write-gate-title">저장 코드 입력</h2>
+    <p class="write-hint">블로그 주인만 저장할 수 있어요. 코드를 모르면 취소를 누르세요. 작성한 내용은 그대로 남습니다.</p>
+    <input type="password" autocomplete="current-password" aria-label="저장 코드" data-write-gate-input>
+    <p class="write-gate-error" data-write-gate-error hidden>코드가 맞지 않습니다.</p>
+    <label class="write-gate-remember">
+      <input type="checkbox" data-write-gate-remember> 이 브라우저에서 기억하기
+    </label>
+    <div class="write-actions">
+      <button type="submit" class="write-button write-button-primary">확인</button>
+      <button type="button" class="write-button" data-write-gate-cancel>취소</button>
+    </div>
+  </form>
+</dialog>
 
 </div>
 
