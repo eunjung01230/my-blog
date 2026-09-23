@@ -41,7 +41,30 @@ layout: default
 
 
 {%- if home.quick_menu and home.quick_menu.size > 0 -%}
-<section class="quick-menu" aria-label="주요 카테고리 바로가기">
+{%- comment -%}
+  카드가 한 화면에 다 들어가지 않으면 ← → 버튼이 나타난다. (assets/js/quick-menu.js)
+  JS 가 없어도 가로 스크롤로 넘겨 볼 수 있다.
+{%- endcomment -%}
+<section class="quick-menu" aria-label="주요 카테고리 바로가기" data-quick-menu>
+
+  <div class="quick-menu-nav" data-quick-nav hidden>
+    <button type="button" class="icon-button quick-menu-button" data-quick-prev
+            aria-controls="quick-track" aria-label="이전 카테고리">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6"/>
+      </svg>
+    </button>
+    <button type="button" class="icon-button quick-menu-button" data-quick-next
+            aria-controls="quick-track" aria-label="다음 카테고리">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 6l6 6-6 6"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="quick-track" id="quick-track" data-quick-track>
   {%- for item in home.quick_menu -%}
     {%- assign quick_category = site.data.categories | where: "slug", item.slug | first -%}
     {%- if quick_category -%}
@@ -57,6 +80,8 @@ layout: default
   </a>
     {%- endif -%}
   {%- endfor -%}
+  </div>
+
 </section>
 {%- endif -%}
 
