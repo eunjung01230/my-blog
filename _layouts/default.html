@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="no-js">
 
 <head>
 
@@ -8,25 +8,49 @@
 
   <title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
 
+  {%- comment -%}
+    첫 페인트 전에 사이드바 접힘 상태를 복원해 깜빡임을 막는다.
+    (데스크톱에서만 의미가 있고, 좁은 화면은 CSS에서 drawer로 처리한다)
+  {%- endcomment -%}
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.remove('no-js');
+      try {
+        if (localStorage.getItem('sidebar') === 'collapsed') {
+          root.classList.add('sidebar-collapsed');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 
 </head>
 
 <body>
 
-  {% include header.html %}
-
-  <div class="layout">
+  <div class="shell">
 
     {% include sidebar.html %}
 
-    <main class="main" id="content">
-      {{ content }}
-    </main>
+    <div class="sidebar-backdrop" data-sidebar-close hidden></div>
+
+    <div class="page">
+
+      {% include header.html %}
+
+      <main class="main" id="content">
+        {{ content }}
+      </main>
+
+      {% include footer.html %}
+
+    </div>
 
   </div>
 
-  {% include footer.html %}
+  <script src="{{ '/assets/js/sidebar.js' | relative_url }}" defer></script>
 
 </body>
 
