@@ -1,4 +1,5 @@
 {%- assign brand = site.brand | default: site.title -%}
+{%- assign profile = site.data.profile -%}
 <header class="site-header">
 
   <div class="site-header-inner">
@@ -18,11 +19,73 @@
 
     </div>
 
-    <nav class="site-nav" aria-label="주요 메뉴">
-      <a href="{{ '/posts/' | relative_url }}"{% if page.url == '/posts/' %} class="is-active"{% endif %}>Posts</a>
-      <a href="{{ '/projects/' | relative_url }}"{% if page.url == '/projects/' %} class="is-active"{% endif %}>Projects</a>
-      <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} class="is-active"{% endif %}>About</a>
-    </nav>
+    <div class="site-header-end">
+
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="{{ '/posts/' | relative_url }}"{% if page.url == '/posts/' %} class="is-active"{% endif %}>Posts</a>
+        <a href="{{ '/projects/' | relative_url }}"{% if page.url == '/projects/' %} class="is-active"{% endif %}>Projects</a>
+        <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} class="is-active"{% endif %}>About</a>
+      </nav>
+
+      {%- if profile -%}
+      {%- comment -%} 프로필 카드. 내용은 _data/profile.yml, 열고 닫기는 assets/js/profile.js {%- endcomment -%}
+      <div class="profile" data-profile>
+
+        <button type="button" class="icon-button profile-button" data-profile-toggle
+                aria-haspopup="dialog" aria-expanded="false" aria-controls="profile-popover"
+                aria-label="프로필 보기">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/>
+          </svg>
+        </button>
+
+        <div class="profile-popover" id="profile-popover" role="dialog"
+             aria-labelledby="profile-name" data-profile-popover>
+
+          <div class="profile-head">
+            {%- if profile.image and profile.image != empty -%}
+            <img class="profile-avatar" src="{{ profile.image | relative_url }}" alt="">
+            {%- else -%}
+            <span class="profile-avatar is-placeholder" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/>
+              </svg>
+            </span>
+            {%- endif -%}
+
+            <div class="profile-id">
+              <p class="profile-name" id="profile-name">{{ profile.name }}</p>
+              {%- if profile.github_username and profile.github_url -%}
+              <a class="profile-username" href="{{ profile.github_url }}" target="_blank" rel="noopener">@{{ profile.github_username }}</a>
+              {%- endif -%}
+            </div>
+          </div>
+
+          <dl class="profile-info">
+            {%- if profile.github_url -%}
+            <div class="profile-row">
+              <dt>GitHub</dt>
+              <dd><a href="{{ profile.github_url }}" target="_blank" rel="noopener">{{ profile.github_url | remove: "https://" | remove: "http://" }}</a></dd>
+            </div>
+            {%- endif -%}
+            {%- if profile.email and profile.email != empty -%}
+            <div class="profile-row">
+              <dt>Email</dt>
+              <dd><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></dd>
+            </div>
+            {%- endif -%}
+          </dl>
+
+        </div>
+
+      </div>
+      {%- endif -%}
+
+    </div>
 
   </div>
 
