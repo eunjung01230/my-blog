@@ -4,6 +4,8 @@ title: About
 permalink: /about/
 ---
 
+<div class="page-center">
+
 <section class="page-head">
 
   <h1 class="page-title">About</h1>
@@ -19,5 +21,7 @@ permalink: /about/
   <p class="page-note">
     상세 소개는 추후 작성할 예정입니다.
   </p>
+
+</div>
 
 </div>

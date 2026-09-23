@@ -10,6 +10,8 @@ permalink: /projects/
   projects/<slug>.md 를 하나 만들면 된다.
 {%- endcomment -%}
 
+<div class="page-center">
+
 <section class="page-head">
 
   <h1 class="page-title">Projects</h1>
@@ -35,3 +37,5 @@ permalink: /projects/
 {%- else -%}
 <p class="empty-message">아직 등록된 프로젝트가 없습니다.</p>
 {%- endif -%}
+
+</div>

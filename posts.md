@@ -9,7 +9,7 @@ permalink: /posts/
 {%- endcomment -%}
 {%- assign all_entries = site.posts | concat: site.project_posts | sort: "date" | reverse -%}
 
-<div class="posts-page">
+<div class="page-center">
 
 <section class="page-head">
 
