@@ -9,6 +9,8 @@ permalink: /posts/
 {%- endcomment -%}
 {%- assign all_entries = site.posts | concat: site.project_posts | sort: "date" | reverse -%}
 
+<div class="posts-page">
+
 <section class="page-head">
 
   <h1 class="page-title">Posts</h1>
@@ -22,4 +24,6 @@ permalink: /posts/
   {%- for post in all_entries -%}
     {% include post-card.html post=post %}
   {%- endfor -%}
+</div>
+
 </div>
