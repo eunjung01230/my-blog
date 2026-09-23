@@ -634,13 +634,48 @@ h1, h2, h3, h4 {
 
 .quick-menu {
   display: none;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
   margin-bottom: 40px;
 }
 
 .sidebar-collapsed .quick-menu {
-  display: grid;
+  display: block;
+}
+
+.quick-menu-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.quick-menu-button:disabled {
+  background: transparent;
+  border-color: transparent;
+  color: var(--border-strong);
+  cursor: default;
+}
+
+/* 카드 한 줄. 넘치는 카드는 가로 스크롤(버튼/트랙패드/터치)로 넘긴다. */
+.quick-track {
+  --quick-per-view: 4;
+  --quick-gap: 14px;
+
+  display: flex;
+  gap: var(--quick-gap);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.quick-track::-webkit-scrollbar {
+  display: none;
+}
+
+.quick-track > .quick-card {
+  flex: 0 0 calc((100% - (var(--quick-per-view) - 1) * var(--quick-gap)) / var(--quick-per-view));
+  min-width: 0;
+  scroll-snap-align: start;
 }
 
 .quick-card {
@@ -1247,8 +1282,11 @@ h1, h2, h3, h4 {
   }
 
   .quick-menu {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: block;
+  }
+
+  .quick-track {
+    --quick-per-view: 2;
   }
 
   .post-grid {
@@ -1403,8 +1441,8 @@ h1, h2, h3, h4 {
     font-size: 14px;
   }
 
-  .quick-menu {
-    grid-template-columns: minmax(0, 1fr);
+  .quick-track {
+    --quick-per-view: 1;
   }
 
   .page-title {
