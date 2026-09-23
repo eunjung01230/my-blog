@@ -3,6 +3,7 @@ layout: post
 title: "Git 기초와 Branch"
 date: 2026-08-31
 categories: git
+mermaid: true
 ---
 
 ## 들어가며 (Situation)
