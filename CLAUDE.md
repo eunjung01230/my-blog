@@ -186,7 +186,7 @@ YYYY-MM-DD-제목.md
 layout: post
 title: "브라우저 캐싱 문제를 React Query로 해결하기"
 date: 2026-08-30 14:00:00 +0900
-categories: [Frontend]
+categories: frontend
 tags: [react, react-query, caching]
 ---
 ```
@@ -196,12 +196,45 @@ tags: [react, react-query, caching]
 | `layout` | 필수 | 테마에서 제공하는 레이아웃 이름 (보통 `post`) |
 | `title` | 필수 | 글 제목. 콜론(`:`) 등 특수문자 포함 시 반드시 따옴표로 감싼다 |
 | `date` | 필수 | 파일명 날짜와 일치, 한국 시간대 `+0900` 명시 |
-| `categories` | 권장 | 1~2개, 대분류 중심 |
+| `categories` | 필수 | 아래 5.2.1의 canonical slug **중 정확히 1개**, 소문자 그대로 (`categories: frontend`) |
 | `tags` | 권장 | 3~5개, 소문자 |
 
 주의사항:
 - `date`가 **미래 시각**이면 기본 설정에서 글이 보이지 않는다.
 - Front Matter 위·아래의 `---` 구분선을 빠뜨리지 않는다.
+
+#### 5.2.1 categories 규칙 (canonical slug)
+
+`categories`에는 **화면 표시명이 아니라 slug**를 쓴다. 사용할 수 있는 값은 아래 8개뿐이다.
+이 목록의 단일 출처(source of truth)는 `_data/categories.yml`이다.
+
+| slug (front matter에 쓰는 값) | 화면 표시명 (label) |
+|------|------|
+| `git` | Git & GitHub |
+| `terminal` | Terminal |
+| `frontend` | Frontend |
+| `backend` | Backend |
+| `database` | Database |
+| `deployment` | Deployment |
+| `ai-tools` | AI & Tools |
+| `project` | Project |
+
+규칙:
+- `categories`에는 위 slug **하나만** 쓴다. 대문자·공백·`&`·여러 값 금지.
+  - :흰색_확인_표시: `categories: frontend`
+  - :x: `categories: [Frontend]`, `categories: Git & GitHub`, `categories: [git, terminal]`, `categories: react`
+- `Git & GitHub`, `AI & Tools` 같은 **표시명은 `_data/categories.yml`의 `label`에서만** 쓴다. front matter에 넣지 않는다.
+- `project`는 `_project_posts/`의 프로젝트 글 전용이다. 이 폴더의 글은 `_config.yml` defaults가 자동으로 채우므로 직접 적지 않는다. `_posts/`의 학습 글은 나머지 7개 중에서 고른다.
+- 새 slug가 필요하면 글에 먼저 쓰지 말고, `_data/categories.yml`과 `categories/<slug>.md` 페이지를 함께 추가한 뒤 사용한다.
+
+아래가 모두 같은 slug를 기준으로 동작하므로, 값이 어긋나면 글이 사이드바·카테고리 페이지에서 빠진다.
+
+| 사용처 | 동작 |
+|------|------|
+| 사이드바 개수·링크 (`_includes/sidebar.html`) | `categories contains slug`로 셈 — 대소문자 구분 |
+| 카테고리 페이지 (`categories/<slug>.md`, `_layouts/category.html`) | 같은 방식으로 글 목록을 거름 |
+| 글 상단 카테고리 링크 (`_layouts/post.html`) | `categories`의 첫 값으로 label·링크를 찾음 |
+| 글 URL (permalink) | Jekyll 기본 permalink에 `/:categories/`가 들어가 `/frontend/2026/09/21/...` 형태가 됨 |
 
 ### 5.3 이미지 및 리소스 경로
 
@@ -216,10 +249,9 @@ tags: [react, react-query, caching]
 
 ### 5.4 Mermaid 사용 시 주의
 
-Jekyll 기본 설정은 Mermaid를 렌더링하지 않는다. 아래 중 하나가 적용되어 있는지 확인한다.
-
-- 테마 설정에서 Mermaid 지원 활성화 (예: Chirpy 테마 → Front Matter에 `mermaid: true` 추가)
-- 또는 레이아웃에 Mermaid 스크립트 직접 추가
+Jekyll 기본 설정은 Mermaid를 렌더링하지 않는다.
+이 블로그는 `_layouts/default.html`에서 **front matter에 `mermaid: true`가 있는 글/페이지에만** Mermaid(jsDelivr, 버전 고정)와 `assets/js/mermaid-init.js`를 불러온다.
+`mermaid: true`가 없으면 ```` ```mermaid ```` 블록은 다이어그램이 아니라 코드 블록으로 보인다.
 
 ```yaml
 ---
@@ -251,9 +283,9 @@ Agent는 초안 작성 시 아래 골격을 따른다. **Front Matter를 포함�
 layout: post
 title: "[문제 중심의 제목 — 'OO 기술 사용기'가 아닌 'OO 문제를 OO로 해결하기']"
 date: YYYY-MM-DD HH:MM:SS +0900
-categories: [카테고리]
+categories: frontend   # 5.2.1의 slug 중 하나만 (소문자)
 tags: [태그1, 태그2, 태그3]
-mermaid: true
+mermaid: true          # Mermaid 다이어그램이 있을 때만
 ---
 
 ## 들어가며 (Situation)
@@ -299,5 +331,6 @@ mermaid: true
 - [ ] 결과에 정량적 지표가 있는가?
 - [ ] 파일명이 `_posts/YYYY-MM-DD-제목.md` 형식인가?
 - [ ] Front Matter가 올바르게 작성되어 있는가? (layout, title, date)
+- [ ] `categories`가 5.2.1의 소문자 slug 하나인가? (표시명·대문자 아님)
 - [ ] Mermaid 사용 시 `mermaid: true`가 Front Matter에 있는가?
 - [ ] 이미지 경로가 `{{ site.baseurl }}/assets/...` 형식인가?
