@@ -36,6 +36,7 @@ sitemap: false
       data-branch="{{ write.branch | default: 'main' | escape }}">
 
   <script type="application/json" data-write-existing>{{ existing_paths | jsonify }}</script>
+  <script type="application/json" data-write-projects>{{ site.data.projects | map: "slug" | jsonify }}</script>
 
   <div class="write-field">
     <label for="write-title">제목</label>
@@ -85,6 +86,7 @@ sitemap: false
         {%- for project in site.data.projects %}
         <option value="{{ project.slug }}">{{ project.label }}</option>
         {%- endfor %}
+        <option value="__new__">+ 새 프로젝트 추가</option>
       </select>
     </div>
 
@@ -96,6 +98,49 @@ sitemap: false
     </div>
 
   </div>
+
+  {%- comment -%}
+    새 프로젝트: 기존 구조대로 파일 3개가 필요하다.
+      _data/projects.yml 항목 · projects/<slug>.md 페이지 · _project_posts/<slug>/00-*.md 첫 기록
+    GitHub 새 파일 화면은 한 번에 한 파일만 저장하므로 3단계로 나눠 저장한다.
+  {%- endcomment %}
+  <fieldset class="write-newproject" data-write-newproject hidden>
+
+    <legend>새 프로젝트 정보</legend>
+
+    <div class="write-row">
+      <div class="write-field write-field-grow">
+        <label for="write-project-label">프로젝트 이름</label>
+        <input id="write-project-label" name="project_label" type="text" placeholder="예) 탄천런">
+      </div>
+      <div class="write-field write-field-grow">
+        <label for="write-project-title">원어 표기 <span class="write-label-note">(선택)</span></label>
+        <input id="write-project-title" name="project_title" type="text" placeholder="예) TanchunRun">
+      </div>
+      <div class="write-field write-field-grow">
+        <label for="write-project-slug">폴더명 (영문)</label>
+        <input id="write-project-slug" name="project_slug" type="text" placeholder="예) tanchunrun"
+               autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+    <p class="write-hint">폴더명은 주소에도 쓰입니다. (<code>/projects/폴더명/</code>) 영문 소문자·숫자·하이픈(-)만 씁니다.</p>
+
+    <ol class="write-steps">
+      <li>
+        <button type="button" class="write-button" data-write-step="list">1. 프로젝트 목록에 등록 &rarr;</button>
+        <span class="write-step-desc"><code>_data/projects.yml</code> 편집 화면이 열립니다. 복사된 내용을 <strong>맨 아래</strong>에 붙여넣고 Commit 하세요.</span>
+      </li>
+      <li>
+        <button type="button" class="write-button" data-write-step="page">2. 프로젝트 페이지 만들기 &rarr;</button>
+        <span class="write-step-desc"><code data-write-project-page-path>projects/폴더명.md</code> 가 채워진 화면이 열립니다. 바로 Commit 하세요.</span>
+      </li>
+      <li>
+        <span class="write-step-label">3. 첫 기록 저장</span>
+        <span class="write-step-desc">아래 본문을 쓰고 <strong>GitHub에서 저장</strong>을 누르세요.</span>
+      </li>
+    </ol>
+
+  </fieldset>
 
   <div class="write-field">
     <div class="write-label-row">
