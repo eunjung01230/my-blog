@@ -8,6 +8,11 @@
 
   <title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
 
+  {%- comment -%} front matter 에 noindex: true 가 있으면 검색엔진 수집을 막는다. (예: /write/) {%- endcomment -%}
+  {%- if page.noindex %}
+  <meta name="robots" content="noindex, nofollow">
+  {%- endif %}
+
   {%- comment -%}
     첫 페인트 전에 사이드바 접힘 상태를 복원해 깜빡임을 막는다.
     (데스크톱에서만 의미가 있고, 좁은 화면은 CSS에서 drawer로 처리한다)

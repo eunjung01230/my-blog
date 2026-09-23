@@ -11,11 +11,14 @@ permalink: /posts/
 
 <div class="page-center">
 
-<section class="page-head">
+<section class="page-head page-head-with-action">
 
-  <h1 class="page-title">Posts</h1>
+  <div class="page-head-text">
+    <h1 class="page-title">Posts</h1>
+    <p class="page-meta">전체 기록 {{ all_entries | size }}개</p>
+  </div>
 
-  <p class="page-meta">전체 기록 {{ all_entries | size }}개</p>
+  <a class="page-action" href="{{ '/write/' | relative_url }}?type=post">포스트 추가 +</a>
 
 </section>
 
