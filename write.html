@@ -59,7 +59,6 @@ sitemap: false
 </section>
 
 <form class="write-form" data-write-form data-write-type="post" novalidate
-      data-code-hash="{{ write.code_hash | escape }}"
       data-repo="{{ write.repo | escape }}"
       data-branch="{{ write.branch | default: 'main' | escape }}">
 
@@ -241,21 +240,7 @@ sitemap: false
 
 </form>
 
-<dialog class="write-gate" data-write-gate aria-labelledby="write-gate-title">
-  <form method="dialog" data-write-gate-form>
-    <h2 class="write-gate-title" id="write-gate-title">저장 코드 입력</h2>
-    <p class="write-hint">블로그 주인만 저장할 수 있어요. 코드를 모르면 취소를 누르세요. 작성한 내용은 그대로 남습니다.</p>
-    <input type="password" autocomplete="current-password" aria-label="저장 코드" data-write-gate-input>
-    <p class="write-gate-error" data-write-gate-error hidden>코드가 맞지 않습니다.</p>
-    <label class="write-gate-remember">
-      <input type="checkbox" data-write-gate-remember> 이 브라우저에서 기억하기
-    </label>
-    <div class="write-actions">
-      <button type="submit" class="write-button write-button-primary">확인</button>
-      <button type="button" class="write-button" data-write-gate-cancel>취소</button>
-    </div>
-  </form>
-</dialog>
+{% include save-gate.html %}
 
 </div>
 
