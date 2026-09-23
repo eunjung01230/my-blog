@@ -6,18 +6,9 @@ permalink: /about/
 
 <div class="page-center">
 
-{%- comment -%}
-  소개 편집: 이 페이지의 원본 파일(page.path = about.md)을 GitHub 편집 화면으로 연다.
-{%- endcomment -%}
-<section class="page-head page-head-with-action">
+<section class="page-head">
 
-  <div class="page-head-text">
-    <h1 class="page-title">About</h1>
-  </div>
-
-  <a class="page-action"
-     href="https://github.com/{{ site.write.repo }}/edit/{{ site.write.branch | default: 'main' }}/{{ page.path }}"
-     target="_blank" rel="noopener">소개 편집</a>
+  <h1 class="page-title">About</h1>
 
 </section>
 
