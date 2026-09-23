@@ -61,27 +61,18 @@
     </nav>
 
     {%- comment -%}
-      방명록.
-      방명록은 아직 저장할 곳(백엔드·댓글 서비스)이 없어 입력 UI만 둔다. 등록 버튼은 동작하지 않는다.
+      방명록. 글은 /guestbook/ 페이지(Giscus, GitHub Discussions)에서 남긴다.
     {%- endcomment -%}
     <section class="guestbook" aria-labelledby="guestbook-title">
 
       <h2 class="guestbook-title" id="guestbook-title">방명록</h2>
 
-      <label class="visually-hidden" for="guestbook-input">방명록 댓글</label>
-      <textarea class="guestbook-input" id="guestbook-input" rows="3" maxlength="200"
-                placeholder="댓글을 남겨주세요 :)" data-guestbook-input></textarea>
-
-      <div class="guestbook-actions">
-        <span class="guestbook-count" data-guestbook-count>0/200</span>
-        <button type="button" class="guestbook-submit" aria-disabled="true"
-                title="방명록 기능은 준비 중입니다">등록</button>
-      </div>
-
       <p class="guestbook-note">
         작은 배움과<br>
         블로그에 온 이야기가 됩니다.
       </p>
+
+      <a class="guestbook-link" href="{{ '/guestbook/' | relative_url }}">방명록 남기기 &rarr;</a>
 
     </section>
 

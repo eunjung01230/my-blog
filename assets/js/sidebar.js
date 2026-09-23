@@ -69,13 +69,4 @@
   }
 
   sync();
-
-  // 방명록 입력 글자 수 표시 (저장 기능은 아직 없다)
-  var guestbookInput = document.querySelector('[data-guestbook-input]');
-  var guestbookCount = document.querySelector('[data-guestbook-count]');
-  if (guestbookInput && guestbookCount) {
-    guestbookInput.addEventListener('input', function () {
-      guestbookCount.textContent = guestbookInput.value.length + '/' + guestbookInput.maxLength;
-    });
-  }
 })();

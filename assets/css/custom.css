@@ -437,18 +437,6 @@ h1, h2, h3, h4 {
 
 /* Sidebar 하단: 방명록 + 링크 */
 
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
-
 .guestbook {
   margin-top: 32px;
   padding: 24px 8px 0;
@@ -462,61 +450,44 @@ h1, h2, h3, h4 {
   color: var(--text);
 }
 
-.guestbook-input {
-  display: block;
-  width: 100%;
-  min-height: 72px;
-  padding: 8px 10px;
-  resize: vertical;
-
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--text);
-  font-family: inherit;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.guestbook-input::placeholder {
-  color: #9ca3af;
-}
-
-.guestbook-input:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-.guestbook-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 8px;
-}
-
-.guestbook-count {
+.guestbook-note {
+  margin: 0;
   font-size: 12px;
-  font-variant-numeric: tabular-nums;
+  line-height: 1.6;
   color: var(--muted);
 }
 
-.guestbook-submit {
-  padding: 4px 12px;
+.guestbook-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 5px 12px;
 
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   color: var(--text);
-  font-family: inherit;
   font-size: 12px;
   font-weight: 600;
-  cursor: not-allowed;
 }
 
-.guestbook-note {
-  margin: 16px 0 0;
-  font-size: 12px;
-  line-height: 1.6;
+.guestbook-link:hover {
+  border-color: var(--border-strong);
+  color: var(--accent);
+}
+
+/* 방명록 페이지 (/guestbook/) — Giscus 가 이 영역 안에 iframe 을 넣는다. */
+
+.guestbook-page {
+  max-width: var(--list-width);
+  margin-top: 28px;
+}
+
+.guestbook-pending {
+  margin: 0;
+  padding: 16px 18px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  font-size: 14px;
   color: var(--muted);
 }
 
