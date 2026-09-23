@@ -12,6 +12,8 @@ permalink: /guestbook/
 {%- endcomment -%}
 {%- assign giscus = site.giscus -%}
 
+<div class="page-center">
+
 <section class="page-head">
 
   <h1 class="page-title">방명록</h1>
@@ -52,5 +54,7 @@ permalink: /guestbook/
   {%- else -%}
   <p class="guestbook-pending">방명록 준비 중입니다.</p>
   {%- endif -%}
+
+</div>
 
 </div>

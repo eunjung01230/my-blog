@@ -17,6 +17,8 @@ layout: default
   {%- assign category_label = cat_slug -%}
 {%- endif -%}
 
+<div class="page-center">
+
 <section class="page-head">
 
   <h1 class="page-title">{{ category_label }}</h1>
@@ -34,4 +36,6 @@ layout: default
   {%- else -%}
   <p class="empty-message">아직 이 카테고리에 작성된 글이 없습니다.</p>
   {%- endif -%}
+</div>
+
 </div>

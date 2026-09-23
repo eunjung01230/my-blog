@@ -17,6 +17,8 @@ layout: default
 {%- endif -%}
 {%- assign project_entries = site.project_posts | where: "project", project_slug | sort: "date" | reverse -%}
 
+<div class="page-center">
+
 <section class="page-head">
 
   <h1 class="page-title">{{ project_label }}</h1>
@@ -34,4 +36,6 @@ layout: default
   {%- else -%}
   <p class="empty-message">아직 작성된 프로젝트 기록이 없습니다.</p>
   {%- endif -%}
+</div>
+
 </div>
