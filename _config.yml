@@ -1,8 +1,6 @@
 title: 나의 학습 노트 
 # 헤더와 사이드바에 표시되는 블로그 이름 (브라우저 탭 제목은 title 을 사용)
 brand: "Learning Notes"
-# 사이드바 하단 GitHub 아이콘 링크 (markdown-test.md 에 있던 기존 주소)
-github_url: "https://github.com/eunjung01230"
 remote_theme: daattali/beautiful-jekyll@6.0.1
 baseurl: "/my-blog"
 site-css:
