@@ -677,14 +677,25 @@ h1, h2, h3, h4 {
 
 /* Recent posts */
 
+/* 섹션 제목 줄: 왼쪽 제목, 오른쪽 "전체 글 보기". 공간이 모자라면 링크가 다음 줄로 내려간다. */
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 16px;
+  margin-bottom: 14px;
+}
+
 .section-title {
-  margin: 0 0 14px;
+  margin: 0;
   font-size: 17px;
   letter-spacing: -0.01em;
 }
 
 .section-more {
-  margin: 28px 0 0;
+  margin: 0;
+  white-space: nowrap;
   font-size: 14px;
 }
 
