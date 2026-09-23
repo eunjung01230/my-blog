@@ -1,0 +1,132 @@
+---
+layout: default
+title: 새 글 쓰기
+permalink: /write/
+noindex: true
+sitemap: false
+---
+
+{%- comment -%}
+  새 글 작성 폼. 메뉴에는 노출하지 않고 /write/ 주소로만 들어온다.
+  "GitHub에서 저장"을 누르면 파일명과 내용이 채워진 GitHub 새 파일 화면이 열리고,
+  거기서 Commit 하면 글이 추가된다. (?type=post → _posts, ?type=project → _project_posts) 저장소 쓰기 권한이 있는 사람만 커밋할 수 있다.
+  카테고리 목록은 _data/categories.yml 을 그대로 쓴다. (project 는 _project_posts 전용이라 제외)
+  동작은 assets/js/write.js 에 있다.
+{%- endcomment -%}
+{%- assign write = site.write -%}
+{%- comment -%}
+  ?type=post    (기본) 일반 학습 글 → _posts/YYYY-MM-DD-slug.md
+  ?type=project 프로젝트 기록     → _project_posts/<project>/NN-slug.md
+                (layout·category 는 _config.yml defaults 가 채우므로 머리말에 쓰지 않는다)
+{%- endcomment -%}
+{%- assign existing_paths = site.posts | concat: site.project_posts | map: "path" -%}
+
+<div class="page-center">
+
+<section class="page-head">
+
+  <h1 class="page-title" data-write-heading>새 글 쓰기</h1>
+
+  <p class="page-meta">작성한 뒤 GitHub에서 Commit 하면 몇 분 뒤 블로그에 게시됩니다.</p>
+
+</section>
+
+<form class="write-form" data-write-form data-write-type="post" novalidate
+      data-repo="{{ write.repo | escape }}"
+      data-branch="{{ write.branch | default: 'main' | escape }}">
+
+  <script type="application/json" data-write-existing>{{ existing_paths | jsonify }}</script>
+
+  <div class="write-field">
+    <label for="write-title">제목</label>
+    <input id="write-title" name="title" type="text" required
+           placeholder="예) 새로고침하면 로그인이 풀리는 문제를 쿠키로 해결하기">
+    <p class="write-hint">'OO 사용기'보다 'OO 문제를 OO로 해결하기'처럼 문제 중심으로 씁니다.</p>
+  </div>
+
+  <div class="write-row">
+
+    <div class="write-field">
+      <label for="write-date">게시일</label>
+      <input id="write-date" name="date" type="date" required>
+    </div>
+
+    <div class="write-field write-field-grow">
+      <label for="write-slug">파일명 (영문)</label>
+      <div class="write-slug">
+        <span class="write-slug-date" data-write-slug-date></span>
+        <input id="write-slug" name="slug" type="text" required
+               placeholder="login-cookie-session" autocomplete="off" spellcheck="false">
+        <span class="write-slug-ext">.md</span>
+      </div>
+      <p class="write-hint">영문 소문자·숫자·하이픈(-)만 씁니다.<span data-write-mode="project" hidden> 앞 번호는 프로젝트 기록 순서대로 자동으로 붙습니다.</span></p>
+    </div>
+
+  </div>
+
+  <div class="write-row">
+
+    <div class="write-field" data-write-mode="post">
+      <label for="write-category">카테고리</label>
+      <select id="write-category" name="category" required>
+        <option value="">선택하세요</option>
+        {%- for category in site.data.categories -%}
+          {%- if category.slug != "project" %}
+        <option value="{{ category.slug }}">{{ category.label }}</option>
+          {%- endif -%}
+        {%- endfor %}
+      </select>
+    </div>
+
+    {%- comment -%} 프로젝트 기록은 category 가 project 로 고정되고, 대신 어느 프로젝트인지 고른다. {%- endcomment %}
+    <div class="write-field" data-write-mode="project" hidden>
+      <label for="write-project">프로젝트 <span class="write-label-note">(카테고리: Project)</span></label>
+      <select id="write-project" name="project" required>
+        {%- for project in site.data.projects %}
+        <option value="{{ project.slug }}">{{ project.label }}</option>
+        {%- endfor %}
+      </select>
+    </div>
+
+    <div class="write-field write-field-grow">
+      <label for="write-tags">태그</label>
+      <input id="write-tags" name="tags" type="text"
+             placeholder="react, cookie, session" autocomplete="off" spellcheck="false">
+      <p class="write-hint">쉼표로 구분, 3~5개. 자동으로 소문자로 바뀝니다.</p>
+    </div>
+
+  </div>
+
+  <div class="write-field">
+    <div class="write-label-row">
+      <label for="write-body">본문 (Markdown)</label>
+      <button type="button" class="write-text-button" data-write-template>STAR 템플릿 다시 넣기</button>
+    </div>
+    <textarea id="write-body" name="body" rows="22" spellcheck="false"></textarea>
+    <p class="write-hint">
+      <code>```mermaid</code> 블록이 있으면 머리말에 <code>mermaid: true</code>가 자동으로 들어갑니다.
+      작성 중인 내용은 이 브라우저에 임시 저장됩니다.
+    </p>
+  </div>
+
+  <ul class="write-errors" data-write-errors hidden></ul>
+
+  <details class="write-preview">
+    <summary>만들어질 파일 미리보기 <span data-write-filename></span></summary>
+    <pre><code data-write-output></code></pre>
+  </details>
+
+  <div class="write-actions">
+    <button type="submit" class="write-button write-button-primary">GitHub에서 저장 &rarr;</button>
+    <button type="button" class="write-button" data-write-copy>내용 복사</button>
+    <button type="button" class="write-button" data-write-download>.md 다운로드</button>
+    <button type="button" class="write-button write-button-quiet" data-write-reset>새로 쓰기</button>
+  </div>
+
+  <p class="write-status" data-write-status role="status" aria-live="polite"></p>
+
+</form>
+
+</div>
+
+<script src="{{ '/assets/js/write.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
