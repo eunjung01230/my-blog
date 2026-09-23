@@ -219,10 +219,6 @@ h1, h2, h3, h4 {
   display: flex;
 }
 
-.profile-button {
-  margin-right: -6px;
-}
-
 .profile-button[aria-expanded="true"] {
   background: var(--surface-soft);
   border-color: var(--border);
@@ -522,29 +518,6 @@ h1, h2, h3, h4 {
   font-size: 12px;
   line-height: 1.6;
   color: var(--muted);
-}
-
-.sidebar-links {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 14px;
-  padding: 0 4px;
-}
-
-.sidebar-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: var(--radius);
-  color: var(--muted);
-}
-
-a.sidebar-link:hover {
-  background: #eef0f3;
-  color: var(--text);
 }
 
 .sidebar-foot {

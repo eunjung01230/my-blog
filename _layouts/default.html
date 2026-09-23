@@ -24,7 +24,12 @@
     })();
   </script>
 
-  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+  {%- comment -%}
+    GitHub Pages 는 CSS/JS 를 10분간 캐시한다. 배포 직후 새 HTML 이 예전 CSS 와 섞이지 않도록
+    빌드 시각을 쿼리로 붙여 배포마다 새 파일을 받게 한다.
+  {%- endcomment -%}
+  {%- assign asset_version = site.time | date: '%s' -%}
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}?v={{ asset_version }}">
 
 </head>
 
@@ -50,8 +55,8 @@
 
   </div>
 
-  <script src="{{ '/assets/js/sidebar.js' | relative_url }}" defer></script>
-  <script src="{{ '/assets/js/profile.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/sidebar.js' | relative_url }}?v={{ asset_version }}" defer></script>
+  <script src="{{ '/assets/js/profile.js' | relative_url }}?v={{ asset_version }}" defer></script>
 
 </body>
 
