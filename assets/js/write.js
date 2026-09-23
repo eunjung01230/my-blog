@@ -65,6 +65,8 @@
     projectLabel: form.elements.project_label,
     projectTitle: form.elements.project_title,
     projectSlug: form.elements.project_slug,
+    categoryLabel: form.elements.category_label,
+    categorySlug: form.elements.category_slug,
     tags: form.elements.tags,
     body: form.elements.body
   };
@@ -85,15 +87,20 @@
   var repo = form.getAttribute('data-repo');
   var branch = form.getAttribute('data-branch') || 'main';
   var NEW_PROJECT = '__new__';
-  var existingProjects = [];
-  try {
-    existingProjects = JSON.parse(form.querySelector('[data-write-projects]').textContent) || [];
-  } catch (e) {}
+  var NEW_CATEGORY = '__new__';
 
-  var existing = [];
-  try {
-    existing = JSON.parse(form.querySelector('[data-write-existing]').textContent) || [];
-  } catch (e) {}
+  function readJson(selector) {
+    try {
+      return JSON.parse(form.querySelector(selector).textContent) || [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  var existingProjects = readJson('[data-write-projects]');
+  var existingCategories = readJson('[data-write-categories]');
+
+  var existing = readJson('[data-write-existing]');
 
   var el = {
     slugDate: form.querySelector('[data-write-slug-date]'),
@@ -102,7 +109,9 @@
     filename: form.querySelector('[data-write-filename]'),
     status: form.querySelector('[data-write-status]'),
     newProject: form.querySelector('[data-write-newproject]'),
-    projectPagePath: form.querySelector('[data-write-project-page-path]')
+    projectPagePath: form.querySelector('[data-write-project-page-path]'),
+    newCategory: form.querySelector('[data-write-newcategory]'),
+    categoryPagePath: form.querySelector('[data-write-category-page-path]')
   };
 
   /* ---------- 날짜 (한국 시간 기준) ---------- */
@@ -195,11 +204,53 @@
     ].join('\n');
   }
 
+  /* ---------- 새 카테고리 ----------
+     기존 구조대로 _data/categories.yml 항목과 categories/<slug>.md 페이지가 필요하다. (CLAUDE.md 5.2.1) */
+
+  function isNewCategory() {
+    return !isProject && fields.category.value === NEW_CATEGORY;
+  }
+
+  function newCategoryInfo() {
+    return {
+      slug: fields.categorySlug.value.trim(),
+      label: fields.categoryLabel.value.trim()
+    };
+  }
+
+  function checkNewCategory() {
+    var info = newCategoryInfo();
+    var errors = [];
+    if (!info.label) errors.push('새 카테고리 표시 이름을 입력하세요.');
+    if (!info.slug) errors.push('새 카테고리 slug(영문)를 입력하세요.');
+    else if (!SLUG_PATTERN.test(info.slug)) errors.push('카테고리 slug 는 영문 소문자·숫자·하이픈(-)만 쓸 수 있습니다. 예) java');
+    else if (existingCategories.indexOf(info.slug) !== -1) errors.push('이미 있는 카테고리입니다: ' + info.slug + ' (목록에서 고르세요)');
+    return errors;
+  }
+
+  // _data/categories.yml 맨 아래에 붙일 항목 (기존 항목과 같은 형식)
+  function categoryListSnippet(info) {
+    return '\n- slug: ' + info.slug + '\n  label: ' + yamlString(info.label) + '\n';
+  }
+
+  // categories/<slug>.md — 기존 categories/*.md 와 같은 형식
+  function categoryPageContent(info) {
+    return [
+      '---',
+      'layout: category',
+      'title: ' + yamlString(info.label),
+      'category: ' + info.slug,
+      'permalink: /categories/' + info.slug + '/',
+      '---',
+      ''
+    ].join('\n');
+  }
+
   function build() {
     var title = fields.title.value.trim();
     var date = fields.date.value;
     var slug = fields.slug.value.trim();
-    var category = isProject ? 'project' : fields.category.value;
+    var category = isProject ? 'project' : isNewCategory() ? fields.categorySlug.value.trim() : fields.category.value;
     var isNew = isNewProject();
     var project = !isProject ? '' : isNew ? fields.projectSlug.value.trim() : fields.project.value;
     var tags = parseTags(fields.tags.value);
@@ -272,7 +323,8 @@
       });
       if (post.slug && same.length) errors.push('같은 이름의 프로젝트 기록이 이미 있습니다: ' + same[0]);
     } else {
-      if (!post.category) errors.push('카테고리를 선택하세요.');
+      if (isNewCategory()) errors = errors.concat(checkNewCategory());
+      else if (!post.category) errors.push('카테고리를 선택하세요.');
       if (existing.indexOf(post.path) !== -1) errors.push('같은 이름의 글이 이미 있습니다: ' + post.path);
     }
     if (!post.body.trim()) errors.push('본문을 입력하세요.');
@@ -327,6 +379,10 @@
     if (el.newProject) {
       el.newProject.hidden = !isNewProject();
       el.projectPagePath.textContent = 'projects/' + (fields.projectSlug.value.trim() || '폴더명') + '.md';
+    }
+    if (el.newCategory) {
+      el.newCategory.hidden = !isNewCategory();
+      el.categoryPagePath.textContent = 'categories/' + (fields.categorySlug.value.trim() || 'slug') + '.md';
     }
     el.slugDate.textContent = post.prefix + '-';
     el.filename.textContent = '(' + post.path + ')';
@@ -485,7 +541,7 @@
   });
 
   // 파일명 칸은 입력하는 동안 규칙에 맞게 바로 고쳐 준다. (대문자 → 소문자, 공백 → 하이픈)
-  [fields.slug, fields.projectSlug].forEach(function (input) {
+  [fields.slug, fields.projectSlug, fields.categorySlug].forEach(function (input) {
     input.addEventListener('input', function () {
       var fixed = input.value.toLowerCase().replace(/[\s_]+/g, '-');
       if (fixed !== input.value) input.value = fixed;
@@ -497,29 +553,43 @@
            (action === 'new' ? '?filename=' + encodeURIComponent(path) : '/' + path);
   }
 
-  // 새 프로젝트 1·2단계. 프로젝트 정보만 검사한다. (제목·본문은 3단계에서 검사)
+  // 목록 파일(yml) 맨 아래에 항목을 붙여넣는 단계: 항목을 복사하고 편집 화면을 연다.
+  function openAppendStep(file, snippet) {
+    var name = file.split('/').pop();
+    copyText(snippet).then(function () {
+      setStatus('항목을 복사했습니다. 열린 ' + name + ' 편집 화면의 맨 아래에 Ctrl+V 로 붙여넣고 Commit 하세요.');
+    }, function () {
+      setStatus('자동 복사에 실패했습니다. 아래 내용을 ' + name + ' 맨 아래에 붙여넣으세요:' + snippet);
+    });
+    window.open(githubUrl('edit', file), '_blank', 'noopener');
+  }
+
+  // 새 파일을 만드는 단계: 내용이 채워진 GitHub 새 파일 화면을 연다.
+  function openNewFileStep(path, content, next) {
+    window.open(githubUrl('new', path) + '&value=' + encodeURIComponent(content), '_blank', 'noopener');
+    setStatus(path + ' 화면이 열렸습니다. 내용 확인 후 Commit 하세요. 그다음 아래에서 ' + next + '을 저장합니다.');
+  }
+
+  // 새 프로젝트·새 카테고리의 1·2단계. 해당 정보만 검사한다. (제목·본문은 3단계에서 검사)
   form.querySelectorAll('[data-write-step]').forEach(function (button) {
     button.addEventListener('click', function () {
-      var errors = checkNewProject();
+      var step = button.getAttribute('data-write-step');
+      var forCategory = step.indexOf('category-') === 0;
+      var errors = forCategory ? checkNewCategory() : checkNewProject();
       showMessages({ errors: errors, warnings: [] });
       if (errors.length) {
         setStatus('');
         return;
       }
       requireCode(function () {
-        var info = newProjectInfo();
-
-        if (button.getAttribute('data-write-step') === 'list') {
-          copyText(projectListSnippet(info)).then(function () {
-            setStatus('프로젝트 항목을 복사했습니다. 열린 projects.yml 편집 화면의 맨 아래에 Ctrl+V 로 붙여넣고 Commit 하세요.');
-          }, function () {
-            setStatus('자동 복사에 실패했습니다. 아래 내용을 projects.yml 맨 아래에 붙여넣으세요:' + projectListSnippet(info));
-          });
-          window.open(githubUrl('edit', '_data/projects.yml'), '_blank', 'noopener');
+        if (forCategory) {
+          var category = newCategoryInfo();
+          if (step === 'category-list') openAppendStep('_data/categories.yml', categoryListSnippet(category));
+          else openNewFileStep('categories/' + category.slug + '.md', categoryPageContent(category), '글');
         } else {
-          var path = 'projects/' + info.slug + '.md';
-          window.open(githubUrl('new', path) + '&value=' + encodeURIComponent(projectPageContent(info)), '_blank', 'noopener');
-          setStatus(path + ' 화면이 열렸습니다. 내용 확인 후 Commit 하세요. 그다음 아래에서 첫 기록을 저장합니다.');
+          var project = newProjectInfo();
+          if (step === 'project-list') openAppendStep('_data/projects.yml', projectListSnippet(project));
+          else openNewFileStep('projects/' + project.slug + '.md', projectPageContent(project), '첫 기록');
         }
         button.classList.add('is-done');
       });
