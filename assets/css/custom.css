@@ -139,6 +139,25 @@ h1, h2, h3, h4 {
   max-width: var(--list-width);
 }
 
+/* Posts 페이지: 본문 영역을 가운데 두고, 제목·목록이 같은 기준선을 쓰도록 폭을 함께 넓힌다. */
+.posts-page {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.posts-page .page-head,
+.posts-page .post-list {
+  max-width: none;
+}
+
+@media (min-width: 1100px) {
+
+  .posts-page {
+    padding: 0 28px;
+  }
+
+}
+
 
 /* =========================================================
    4. Header
