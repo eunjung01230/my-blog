@@ -12,11 +12,14 @@ permalink: /projects/
 
 <div class="page-center">
 
-<section class="page-head">
+<section class="page-head page-head-with-action">
 
-  <h1 class="page-title">Projects</h1>
+  <div class="page-head-text">
+    <h1 class="page-title">Projects</h1>
+    <p class="page-meta">진행한 프로젝트와 개발 과정 기록을 모아둡니다.</p>
+  </div>
 
-  <p class="page-meta">진행한 프로젝트와 개발 과정 기록을 모아둡니다.</p>
+  <a class="page-action" href="{{ '/write/' | relative_url }}?type=project">프로젝트 추가 +</a>
 
 </section>
 

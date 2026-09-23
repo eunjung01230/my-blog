@@ -875,6 +875,61 @@ h1, h2, h3, h4 {
   color: var(--muted);
 }
 
+/* 제목 오른쪽 관리 버튼 (Posts·Projects·About).
+   버튼은 제목과 같은 줄(1행 오른쪽)에만 두고, 보조 문구는 2행 전체 폭을 쓴다.
+   → 좁은 화면에서도 문구가 버튼 때문에 줄바꿈되거나 버튼이 아래로 밀리지 않아 구분선 위치가 그대로다. */
+.page-head-with-action {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 16px;
+  align-items: start;
+}
+
+.page-head-text {
+  display: contents;
+}
+
+.page-head-with-action .page-title {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.page-head-with-action .page-meta {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+.page-action {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  /* 버튼이 제목 줄보다 높아 행 높이를 키우지 않도록 레이아웃상 높이만 줄인다. (보이는 크기는 그대로) */
+  margin: -4px 0;
+  padding: 5px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  white-space: nowrap;
+  transition: border-color 0.15s, background-color 0.15s, color 0.15s;
+}
+
+.page-action:hover {
+  background: var(--accent-soft);
+  border-color: #c9d8ea;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.page-action:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .post-list {
   display: flex;
   flex-direction: column;
