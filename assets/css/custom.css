@@ -1074,6 +1074,14 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
+/* Mermaid 다이어그램 (assets/js/mermaid-init.js 가 코드 블록을 바꿔 넣는다) */
+.post-content .mermaid {
+  margin: 0 0 18px;
+  max-width: 100%;
+  overflow-x: auto;
+  text-align: center;
+}
+
 .post-content table {
   width: 100%;
   margin: 0 0 18px;
