@@ -338,7 +338,7 @@ h1, h2, h3, h4 {
 }
 
 .profile-row dt {
-  flex: 0 0 48px;
+  flex: 0 0 56px;
   color: var(--muted);
 }
 
@@ -354,6 +354,25 @@ h1, h2, h3, h4 {
 
 .profile-row a:hover {
   text-decoration: underline;
+}
+
+.profile-edit-link {
+  display: block;
+  margin-top: 14px;
+  padding: 7px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--text);
+}
+
+.profile-edit-link:hover {
+  background: var(--accent-soft);
+  border-color: #c9d8ea;
+  color: var(--accent);
+  text-decoration: none;
 }
 
 
@@ -1315,6 +1334,133 @@ h1, h2, h3, h4 {
 .write-label-note {
   font-weight: 400;
   color: var(--muted);
+}
+
+/* 프로필 사진 편집 (/profile/edit/, assets/js/profile-edit.js) */
+.photo-edit {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.photo-edit-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.photo-edit-stage {
+  position: relative;
+  width: min(280px, 100%);
+  aspect-ratio: 1;
+  background: var(--surface);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.photo-edit.has-photo .photo-edit-stage {
+  border-style: solid;
+}
+
+.photo-edit-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+}
+
+.photo-edit-canvas:active {
+  cursor: grabbing;
+}
+
+.photo-edit-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  pointer-events: none;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.photo-edit-empty[hidden] {
+  display: none;
+}
+
+.photo-edit-empty p {
+  margin: 0;
+}
+
+.photo-edit-side {
+  display: flex;
+  gap: 24px;
+}
+
+.photo-edit-label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.photo-edit-current,
+.photo-edit-preview {
+  width: 88px;
+  height: 88px;
+}
+
+.photo-edit-preview {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.photo-edit-pick {
+  align-self: flex-start;
+  display: inline-block;
+}
+
+.photo-edit-file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.photo-edit-file:focus-visible + .photo-edit-pick,
+.photo-edit-pick:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.photo-edit input[type="range"] {
+  width: min(280px, 100%);
+  accent-color: var(--accent);
+}
+
+.photo-edit .write-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.photo-edit-connect {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 14px 16px;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.photo-edit-connect .write-hint code {
+  font-family: var(--font-mono);
 }
 
 /* 저장 코드 설정 도우미 (/write/?setup=1) */

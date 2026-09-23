@@ -412,86 +412,16 @@
   }
 
   /* ---------- 저장 코드 ----------
-     누구나 폼을 써 볼 수 있지만, GitHub 저장 화면은 저장 코드를 맞힌 경우에만 연다.
-     _config.yml 의 write.code_hash 에는 코드 원문이 아니라 SHA-256 해시만 둔다.
-     정적 사이트라 이 검사는 브라우저에서만 이뤄지므로 우회할 수 있다. 실제로 글을 막는 것은
-     GitHub 저장소 쓰기 권한이며(주인만 Commit 가능), 이 코드는 방문자에게 '체험'과 '저장'을 나누는 입구다. */
-
-  var CODE_SALT = 'my-blog-write:';
-  var UNLOCK_KEY = 'write-unlock';
-  var codeHash = (form.getAttribute('data-code-hash') || '').trim().toLowerCase();
-  var unlocked = false;
-  var pendingAction = null;
-
-  var gate = {
-    dialog: document.querySelector('[data-write-gate]'),
-    form: document.querySelector('[data-write-gate-form]'),
-    input: document.querySelector('[data-write-gate-input]'),
-    remember: document.querySelector('[data-write-gate-remember]'),
-    error: document.querySelector('[data-write-gate-error]'),
-    cancel: document.querySelector('[data-write-gate-cancel]')
-  };
-
-  try {
-    if (codeHash && localStorage.getItem(UNLOCK_KEY) === codeHash) unlocked = true;
-  } catch (e) {}
-
-  function hashCode(code) {
-    var bytes = new TextEncoder().encode(CODE_SALT + code);
-    return crypto.subtle.digest('SHA-256', bytes).then(function (buffer) {
-      return Array.prototype.map.call(new Uint8Array(buffer), function (b) {
-        return ('0' + b.toString(16)).slice(-2);
-      }).join('');
-    });
-  }
+     저장 코드 확인은 assets/js/save-gate.js 가 맡는다. (글쓰기·프로필 사진 편집 공용) */
 
   function requireCode(action) {
-    if (unlocked) return action();
-    if (!codeHash) {
-      setStatus('저장 코드가 아직 설정되지 않아 저장할 수 없습니다. 지금은 체험 모드입니다.');
+    if (!window.SaveGate) {
+      setStatus('저장 코드 확인 기능을 불러오지 못했습니다. 새로고침해 주세요.');
       return;
     }
-    if (!window.crypto || !crypto.subtle || !gate.dialog || !gate.dialog.showModal) {
-      setStatus('이 브라우저에서는 저장 코드를 확인할 수 없습니다. (https 주소에서 열어 주세요)');
-      return;
-    }
-    pendingAction = action;
-    gate.input.value = '';
-    gate.error.hidden = true;
-    gate.dialog.showModal();
-    gate.input.focus();
-  }
-
-  if (gate.form) {
-    gate.form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      var code = gate.input.value;
-      if (!code) return;
-      hashCode(code).then(function (hash) {
-        if (hash !== codeHash) {
-          gate.error.hidden = false;
-          gate.input.select();
-          return;
-        }
-        unlocked = true;
-        try {
-          if (gate.remember.checked) localStorage.setItem(UNLOCK_KEY, codeHash);
-        } catch (e) {}
-        var action = pendingAction;
-        pendingAction = null;
-        gate.dialog.close();
-        if (action) action();
-      });
-    });
-
-    gate.cancel.addEventListener('click', function () {
-      gate.dialog.close();
-    });
-
-    gate.dialog.addEventListener('close', function () {
-      if (!pendingAction) return;
-      pendingAction = null;
-      setStatus('체험 모드입니다. 작성한 글은 저장되지 않았습니다. (내용 복사·다운로드는 할 수 있어요)');
+    window.SaveGate.require(action, {
+      notify: setStatus,
+      cancelMessage: '체험 모드입니다. 작성한 글은 저장되지 않았습니다. (내용 복사·다운로드는 할 수 있어요)'
     });
   }
 
@@ -509,14 +439,14 @@
     var result = panel.querySelector('[data-write-setup-result]');
     var output = panel.querySelector('[data-write-setup-output]');
     var message = panel.querySelector('[data-write-setup-message]');
-    panel.querySelector('[data-write-setup-state]').textContent = codeHash ? '설정됨' : '아직 설정되지 않음';
+    panel.querySelector('[data-write-setup-state]').textContent = window.SaveGate && window.SaveGate.configured ? '설정됨' : '아직 설정되지 않음';
 
     panel.querySelector('[data-write-setup-make]').addEventListener('click', function () {
       result.hidden = true;
       if (code1.value.length < 4) { message.textContent = '코드는 4자 이상으로 정하세요.'; return; }
       if (code1.value !== code2.value) { message.textContent = '두 칸의 코드가 다릅니다.'; return; }
       message.textContent = '';
-      hashCode(code1.value).then(function (hash) {
+      window.SaveGate.hash(code1.value).then(function (hash) {
         output.textContent = '  code_hash: "' + hash + '"';
         result.hidden = false;
         code1.value = code2.value = '';

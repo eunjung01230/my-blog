@@ -13,4 +13,7 @@ github_url: "https://github.com/eunjung01230"
 
 # 이메일. 비워 두면 카드에서 이메일 줄이 표시되지 않는다.
 #   예) email: "name@example.com"
-email: ""
+email: "eunjung01230@gmail.com"
+
+# 카카오톡 ID. 비워 두면 카드에서 카카오ID 줄이 표시되지 않는다.
+kakao_id: eunjung01230
