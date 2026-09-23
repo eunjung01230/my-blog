@@ -61,6 +61,9 @@
     slug: form.elements.slug,
     category: form.elements.category,
     project: form.elements.project,
+    projectLabel: form.elements.project_label,
+    projectTitle: form.elements.project_title,
+    projectSlug: form.elements.project_slug,
     tags: form.elements.tags,
     body: form.elements.body
   };
@@ -80,6 +83,12 @@
 
   var repo = form.getAttribute('data-repo');
   var branch = form.getAttribute('data-branch') || 'main';
+  var NEW_PROJECT = '__new__';
+  var existingProjects = [];
+  try {
+    existingProjects = JSON.parse(form.querySelector('[data-write-projects]').textContent) || [];
+  } catch (e) {}
+
   var existing = [];
   try {
     existing = JSON.parse(form.querySelector('[data-write-existing]').textContent) || [];
@@ -90,7 +99,9 @@
     errors: form.querySelector('[data-write-errors]'),
     output: form.querySelector('[data-write-output]'),
     filename: form.querySelector('[data-write-filename]'),
-    status: form.querySelector('[data-write-status]')
+    status: form.querySelector('[data-write-status]'),
+    newProject: form.querySelector('[data-write-newproject]'),
+    projectPagePath: form.querySelector('[data-write-project-page-path]')
   };
 
   /* ---------- 날짜 (한국 시간 기준) ---------- */
@@ -137,12 +148,59 @@
     return next.length < 2 ? '0' + next : next;
   }
 
+  /* ---------- 새 프로젝트 ---------- */
+
+  function isNewProject() {
+    return isProject && fields.project.value === NEW_PROJECT;
+  }
+
+  function newProjectInfo() {
+    var label = fields.projectLabel.value.trim();
+    return {
+      slug: fields.projectSlug.value.trim(),
+      label: label,
+      title: fields.projectTitle.value.trim() || label
+    };
+  }
+
+  function checkNewProject() {
+    var info = newProjectInfo();
+    var errors = [];
+    if (!info.label) errors.push('새 프로젝트 이름을 입력하세요.');
+    if (!info.slug) errors.push('새 프로젝트 폴더명(영문)을 입력하세요.');
+    else if (!SLUG_PATTERN.test(info.slug)) errors.push('프로젝트 폴더명은 영문 소문자·숫자·하이픈(-)만 쓸 수 있습니다. 예) tanchunrun');
+    else if (existingProjects.indexOf(info.slug) !== -1 ||
+             existing.some(function (path) { return path.indexOf('_project_posts/' + info.slug + '/') === 0; })) {
+      errors.push('이미 있는 프로젝트 폴더명입니다: ' + info.slug);
+    }
+    return errors;
+  }
+
+  // _data/projects.yml 맨 아래에 붙일 항목 (기존 항목과 같은 키 순서)
+  function projectListSnippet(info) {
+    return '\n- slug: ' + info.slug + '\n  title: ' + yamlString(info.title) + '\n  label: ' + yamlString(info.label) + '\n';
+  }
+
+  // projects/<slug>.md — 기존 projects/tanchunrun.md 와 같은 형식
+  function projectPageContent(info) {
+    return [
+      '---',
+      'layout: project',
+      'title: ' + yamlString(info.label),
+      'project: ' + info.slug,
+      'permalink: /projects/' + info.slug + '/',
+      '---',
+      ''
+    ].join('\n');
+  }
+
   function build() {
     var title = fields.title.value.trim();
     var date = fields.date.value;
     var slug = fields.slug.value.trim();
     var category = isProject ? 'project' : fields.category.value;
-    var project = isProject ? fields.project.value : '';
+    var isNew = isNewProject();
+    var project = !isProject ? '' : isNew ? fields.projectSlug.value.trim() : fields.project.value;
     var tags = parseTags(fields.tags.value);
     var body = fields.body.value.replace(/\s+$/, '') + '\n';
     var now = nowKst();
@@ -154,7 +212,7 @@
     var prefix, path;
 
     if (isProject) {
-      prefix = project ? nextProjectNumber(project) : 'NN';
+      prefix = isNew ? '00' : project ? nextProjectNumber(project) : 'NN';
       path = '_project_posts/' + project + '/' + prefix + '-' + slug + '.md';
       lines.push(
         'title: ' + yamlString(title),
@@ -204,7 +262,8 @@
     if (!post.slug) errors.push('파일명(영문)을 입력하세요.');
     else if (!SLUG_PATTERN.test(post.slug)) errors.push('파일명은 영문 소문자·숫자·하이픈(-)만 쓸 수 있습니다. 예) login-cookie-session');
     if (isProject) {
-      if (!post.project) errors.push('프로젝트를 선택하세요.');
+      if (isNewProject()) errors = errors.concat(checkNewProject());
+      else if (!post.project) errors.push('프로젝트를 선택하세요.');
       var dir = '_project_posts/' + post.project + '/';
       var same = existing.filter(function (path) {
         return path.indexOf(dir) === 0 && /^\d+-/.test(path.slice(dir.length)) &&
@@ -264,6 +323,10 @@
 
   function refresh() {
     var post = build();
+    if (el.newProject) {
+      el.newProject.hidden = !isNewProject();
+      el.projectPagePath.textContent = 'projects/' + (fields.projectSlug.value.trim() || '폴더명') + '.md';
+    }
     el.slugDate.textContent = post.prefix + '-';
     el.filename.textContent = '(' + post.path + ')';
     el.output.textContent = post.content;
@@ -299,9 +362,43 @@
   });
 
   // 파일명 칸은 입력하는 동안 규칙에 맞게 바로 고쳐 준다. (대문자 → 소문자, 공백 → 하이픈)
-  fields.slug.addEventListener('input', function () {
-    var fixed = fields.slug.value.toLowerCase().replace(/[\s_]+/g, '-');
-    if (fixed !== fields.slug.value) fields.slug.value = fixed;
+  [fields.slug, fields.projectSlug].forEach(function (input) {
+    input.addEventListener('input', function () {
+      var fixed = input.value.toLowerCase().replace(/[\s_]+/g, '-');
+      if (fixed !== input.value) input.value = fixed;
+    });
+  });
+
+  function githubUrl(action, path) {
+    return 'https://github.com/' + repo + '/' + action + '/' + encodeURIComponent(branch) +
+           (action === 'new' ? '?filename=' + encodeURIComponent(path) : '/' + path);
+  }
+
+  // 새 프로젝트 1·2단계. 프로젝트 정보만 검사한다. (제목·본문은 3단계에서 검사)
+  form.querySelectorAll('[data-write-step]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var errors = checkNewProject();
+      showMessages({ errors: errors, warnings: [] });
+      if (errors.length) {
+        setStatus('');
+        return;
+      }
+      var info = newProjectInfo();
+
+      if (button.getAttribute('data-write-step') === 'list') {
+        copyText(projectListSnippet(info)).then(function () {
+          setStatus('프로젝트 항목을 복사했습니다. 열린 projects.yml 편집 화면의 맨 아래에 Ctrl+V 로 붙여넣고 Commit 하세요.');
+        }, function () {
+          setStatus('자동 복사에 실패했습니다. 아래 내용을 projects.yml 맨 아래에 붙여넣으세요:' + projectListSnippet(info));
+        });
+        window.open(githubUrl('edit', '_data/projects.yml'), '_blank', 'noopener');
+      } else {
+        var path = 'projects/' + info.slug + '.md';
+        window.open(githubUrl('new', path) + '&value=' + encodeURIComponent(projectPageContent(info)), '_blank', 'noopener');
+        setStatus(path + ' 화면이 열렸습니다. 내용 확인 후 Commit 하세요. 그다음 아래에서 첫 기록을 저장합니다.');
+      }
+      button.classList.add('is-done');
+    });
   });
 
   form.addEventListener('submit', function (event) {
