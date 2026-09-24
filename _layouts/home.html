@@ -42,7 +42,7 @@ layout: default
 
 {%- if home.quick_menu and home.quick_menu.size > 0 -%}
 {%- comment -%}
-  카드가 한 화면에 다 들어가지 않으면 ← → 버튼이 나타난다. 양 끝에서는 반대쪽 끝으로 돌아간다. (assets/js/quick-menu.js)
+  카드는 ← → 버튼으로 넘기고, 끊김 없이 순환한다. (assets/js/quick-menu.js)
   JS 가 없어도 가로 스크롤로 넘겨 볼 수 있다.
 {%- endcomment -%}
 <section class="quick-menu" aria-label="주요 카테고리 바로가기" data-quick-menu>
