@@ -1,0 +1,58 @@
+{%- comment -%}
+  첫 방문 안내 팝업. 홈(_layouts/home.html)에서만 불러온다.
+  한 번 닫으면 localStorage('welcome-popup') 에 기록해 이 브라우저에서는 다시 띄우지 않는다.
+  (저장소를 쓸 수 없는 환경이면 기록 없이 매번 뜬다)
+  <dialog> + showModal() 이라 ESC 로 닫히고, 열려 있는 동안 Tab 포커스가 팝업 안에 머문다.
+  열릴 때 dialog 자체에 포커스를 두어, 버튼에 포커스 테두리가 먼저 보이지 않게 한다. (Tab 으로 버튼 이동)
+{%- endcomment %}
+<dialog class="welcome-popup" data-welcome-popup aria-labelledby="welcome-popup-title" tabindex="-1">
+  <form method="dialog" class="welcome-popup-form">
+
+    <button type="submit" class="icon-button welcome-popup-close" aria-label="안내 닫기">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+
+    <p class="welcome-popup-title" id="welcome-popup-title">
+      글이 너무 길어도 놀라지 말아요.<br>
+      이 블로그의 주인은 많은 것을 경험했답니다.
+    </p>
+
+    <div class="welcome-popup-talk">
+      <p class="welcome-popup-bubble is-other">“어? 잠시만요. 왜 이러지?”</p>
+      <p class="welcome-popup-bubble is-me">“……저도 몰라여……”</p>
+    </div>
+
+    <p class="welcome-popup-text">그렇게 하나씩 찾아가며 기록했습니다.</p>
+
+    <p class="welcome-popup-text">필요한 부분만 읽어가세요 :)</p>
+
+    <div class="welcome-popup-actions">
+      <button type="submit" class="write-button write-button-primary">확인했어요</button>
+    </div>
+
+  </form>
+</dialog>
+
+<script>
+  (function () {
+    var popup = document.querySelector('[data-welcome-popup]');
+    if (!popup || typeof popup.showModal !== 'function') return;
+
+    try {
+      if (localStorage.getItem('welcome-popup') === 'seen') return;
+    } catch (e) {}
+
+    // ×, 확인했어요, ESC 어느 쪽으로 닫아도 본 것으로 기록한다.
+    popup.addEventListener('close', function () {
+      try {
+        localStorage.setItem('welcome-popup', 'seen');
+      } catch (e) {}
+    });
+
+    popup.showModal();
+    popup.focus();
+  })();
+</script>

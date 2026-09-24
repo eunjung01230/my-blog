@@ -1,0 +1,23 @@
+{%- comment -%}
+  Dev Setup 글 상단(제목 아래, 본문 위) 안내 카드. 첫 방문 안내 팝업과 같은 문구다.
+  _layouts/post.html 에서 categories 가 dev-setup 인 글에만 불러온다. 글 파일(_posts)은 건드리지 않는다.
+  본문(.post-content) 밖에 있어 자동 목차(post-toc.js)에 영향을 주지 않는다.
+  대화 두 줄은 들여쓰기 + 왼쪽 선으로 나눈다. (custom.css .welcome-note)
+{%- endcomment %}
+<aside class="welcome-note" aria-label="블로그 안내">
+
+  <p class="welcome-popup-title">
+    글이 너무 길어도 놀라지 말아요.<br>
+    이 블로그의 주인은 많은 것을 경험했답니다.
+  </p>
+
+  <div class="welcome-popup-talk">
+    <p class="welcome-popup-bubble is-other">“어? 잠시만요. 왜 이러지?”</p>
+    <p class="welcome-popup-bubble is-me">“……저도 몰라여……”</p>
+  </div>
+
+  <p class="welcome-popup-text">그렇게 하나씩 찾아가며 기록했습니다.</p>
+
+  <p class="welcome-popup-text">필요한 부분만 읽어가세요 :)</p>
+
+</aside>
