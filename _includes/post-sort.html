@@ -1,0 +1,17 @@
+{%- comment -%}
+  글 목록 정렬 드롭다운. 목록 페이지 제목 영역의 안내 줄 오른쪽에 둔다. (구분선 위)
+    {% include post-sort.html count=all_entries.size %}
+  글이 2개 이상일 때만 보인다. 정렬 대상 목록은 _includes/post-list.html 의 #post-list, 로직은 assets/js/post-sort.js.
+{%- endcomment -%}
+{%- if include.count > 1 %}
+<div class="post-sort">
+  <label class="post-sort-label" for="post-sort">정렬</label>
+  <select class="post-sort-select" id="post-sort" data-post-sort aria-controls="post-list" autocomplete="off">
+    <option value="latest" selected>최신순</option>
+    <option value="oldest">오래된순</option>
+    <option value="series">학습순</option>
+    <option value="custom">직접 지정순</option>
+  </select>
+</div>
+<script src="{{ '/assets/js/post-sort.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+{%- endif %}

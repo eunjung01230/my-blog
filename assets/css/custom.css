@@ -998,6 +998,49 @@ h1, h2, h3, h4 {
   flex-direction: column;
 }
 
+/* 목록 페이지 제목 아래 안내 줄: 왼쪽 "N개", 오른쪽 정렬 드롭다운 (_includes/post-sort.html) */
+.page-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  column-gap: 16px;
+}
+
+.page-head-with-action .page-meta-row {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+/* 정렬 드롭다운 — 박스 없이 글자만 */
+.post-sort {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-left: auto;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.post-sort-select {
+  padding: 0 2px;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.post-sort-select:hover {
+  color: var(--accent);
+}
+
+.post-sort-select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
 .post-card {
   padding: 22px 0;
   border-bottom: 1px solid var(--border);
