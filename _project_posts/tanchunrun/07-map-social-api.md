@@ -2,7 +2,7 @@
 title: "지도 API와 소셜 로그인 API 연동"
 date: 2026-09-21 11:10:00 +0900
 project: tanchunrun
-learningOrder: 190
+learningOrder: 80
 tags:
   - api
   - oauth

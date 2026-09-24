@@ -2,7 +2,7 @@
 title: "Vercel 배포 환경"
 date: 2026-09-21 11:00:00 +0900
 project: tanchunrun
-learningOrder: 180
+learningOrder: 70
 tags:
   - vercel
   - deployment
