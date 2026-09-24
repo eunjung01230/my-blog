@@ -90,7 +90,7 @@ SourceTree는 Atlassian에서 제공하는 Git GUI 클라이언트다.
 
 Git Repository를 화면으로 확인하고 관리할 수 있게 해주는 프로그램이다.
 
-Atlassian 역시 SourceTree를 Windows와 macOS에서 사용할 수 있는 Git GUI 클라이언트로 소개하고 있다.
+Atlassian 역시 [공식 사이트](https://www.sourcetreeapp.com/)에서 SourceTree를 Windows와 macOS에서 사용할 수 있는 Git GUI 클라이언트로 소개하고 있다.
 
 Git Bash에서는 다음처럼 명령어를 직접 입력한다.
 
@@ -595,7 +595,7 @@ Windows 보안 창이 나타나면 프로그램 게시자와 파일 출처를 �
 
 설치 방식은 SourceTree 버전에 따라 조금씩 달라질 수 있다.
 
-Atlassian 공식 설치 안내에서도 설치 프로그램을 내려받아 실행하고 초기 설정을 진행하도록 안내하고 있다.
+[Atlassian 공식 설치 안내](https://confluence.atlassian.com/get-started-with-sourcetree/install-sourcetree-847359094.html)에서도 설치 프로그램을 내려받아 실행하고 초기 설정을 진행하도록 안내하고 있다.
 
 초기 설치 중 약관 동의나 Atlassian 계정과 관련된 화면이 나타날 수도 있다.
 
@@ -684,7 +684,7 @@ System Git은 이미 내 Windows에 설치되어 있는 Git이다.
 C:\Program Files\Git
 ```
 
-SourceTree는 시스템에 설치된 Git을 찾아 사용할 수 있다. Atlassian 문서에도 SourceTree가 시스템에 설치된 Git을 찾아 사용하도록 구성할 수 있다는 설명이 있다.
+SourceTree는 시스템에 설치된 Git을 찾아 사용할 수 있다. [Atlassian 문서](https://support.atlassian.com/sourcetree/kb/using-embedded-git-or-system-git-in-sourcetree/)에도 SourceTree가 시스템에 설치된 Git을 찾아 사용하도록 구성할 수 있다는 설명이 있다.
 
 이번 시리즈에서는 앞선 01편에서 이미 Git을 설치했기 때문에 가능하면 **기존에 설치한 Git을 사용하는 흐름**으로 이해하면 된다.
 
@@ -801,7 +801,7 @@ GitHub는 별도의 원격 Git 호스팅 서비스다.
 
 SourceTree에서 GitHub 계정을 연결하면 GitHub의 Repository를 찾고 관리하기 편해진다.
 
-Atlassian 공식 가이드에서도 원격 Repository를 SourceTree에 추가하려면 GitHub나 Bitbucket과 같은 호스팅 계정을 연결하는 절차를 안내하고 있다.
+[Atlassian 공식 가이드](https://confluence.atlassian.com/get-started-with-sourcetree/connect-your-bitbucket-or-github-account-847359096.html)에서도 원격 Repository를 SourceTree에 추가하려면 GitHub나 Bitbucket과 같은 호스팅 계정을 연결하는 절차를 안내하고 있다.
 
 구조를 보면 다음과 같다.
 
@@ -825,7 +825,7 @@ Remote Repository
 
 SourceTree에서 계정 설정 메뉴로 이동한다.
 
-SourceTree 버전에 따라 위치가 조금 달라질 수 있지만 Atlassian 공식 가이드에서는 Accounts 메뉴에서 계정을 추가하도록 안내하고 있다.
+SourceTree 버전에 따라 위치가 조금 달라질 수 있지만 [Atlassian 공식 가이드](https://confluence.atlassian.com/get-started-with-sourcetree/connect-your-bitbucket-or-github-account-847359096.html)에서는 Accounts 메뉴에서 계정을 추가하도록 안내하고 있다.
 
 설정 화면에서
 
@@ -913,7 +913,7 @@ SourceTree에 접근 권한 허용
 
 과 같은 방식으로 인증할 수 있다.
 
-Atlassian은 SourceTree의 계정 인증에 OAuth와 Credential Manager를 지원해왔다.
+[Atlassian은 SourceTree의 계정 인증에 OAuth와 Credential Manager를 지원해왔다.](https://support.atlassian.com/sourcetree/kb/sourcetree-for-windows-1100-authentication-and-accounts-updates/)
 
 초보자라면 특별한 이유가 없다면 SourceTree에서 제공하는 기본 인증 방식을 그대로 사용하는 것이 편하다.
 
@@ -923,7 +923,7 @@ Atlassian은 SourceTree의 계정 인증에 OAuth와 Credential Manager를 지�
 
 GitHub를 Host로 선택했다면 인증 방식은 기본값을 우선 사용한다.
 
-Atlassian의 공식 연결 가이드 역시 GitHub를 선택한 후 기본 인증 방식을 유지하고 계정 연결을 진행하도록 안내한다.
+[Atlassian의 공식 연결 가이드](https://confluence.atlassian.com/get-started-with-sourcetree/connect-your-bitbucket-or-github-account-847359096.html) 역시 GitHub를 선택한 후 기본 인증 방식을 유지하고 계정 연결을 진행하도록 안내한다.
 
 화면에
 
@@ -1017,7 +1017,7 @@ Authentication
 
 GitHub Repository를 연결할 때 HTTPS와 SSH라는 방식을 볼 수 있다.
 
-Atlassian의 계정 연결 가이드에서도 HTTPS 또는 SSH 중 연결 방식을 선택할 수 있다고 안내한다.
+[Atlassian의 계정 연결 가이드](https://confluence.atlassian.com/get-started-with-sourcetree/connect-your-bitbucket-or-github-account-847359096.html)에서도 HTTPS 또는 SSH 중 연결 방식을 선택할 수 있다고 안내한다.
 
 앞선 Git 환경 구축 글에서는 초보자가 시작하기 쉬운 HTTPS 방식을 사용했다.
 
@@ -1055,7 +1055,7 @@ git@github.com:username/repository.git
 
 SSH를 사용하려면 일반적으로 SSH Key를 생성하고 GitHub에 등록하는 과정을 거친다.
 
-SourceTree 공식 가이드에서도 SSH를 사용할 경우 SSH Key 설정이 별도로 필요하다고 안내한다.
+[SourceTree 공식 가이드](https://confluence.atlassian.com/get-started-with-sourcetree/connect-your-bitbucket-or-github-account-847359096.html)에서도 SSH를 사용할 경우 SSH Key 설정이 별도로 필요하다고 안내한다.
 
 아직 SSH를 따로 설정하지 않았다면 이번에는 HTTPS를 사용하면 된다.
 
@@ -1908,7 +1908,7 @@ X
 
 이때 사용하는 것이 **Clone**이다.
 
-Atlassian 역시 SourceTree 시작 가이드에서 Remote Repository의 복사본을 컴퓨터에 만들기 위해 Clone을 사용하는 흐름을 제공한다.
+Atlassian 역시 [SourceTree 시작 가이드](https://confluence.atlassian.com/get-started-with-sourcetree/clone-a-remote-repository-847359098.html)에서 Remote Repository의 복사본을 컴퓨터에 만들기 위해 Clone을 사용하는 흐름을 제공한다.
 
 ---
 
@@ -2120,7 +2120,7 @@ Private Repository는 접근 권한이 있는 계정에서만 볼 수 있다.
 
 하지만 현재 GitHub 인증 방식은 예전의 단순 계정 비밀번호 기반 Git 인증과 다르다.
 
-따라서 최신 SourceTree에서는 가능한 경우 SourceTree가 제공하는 OAuth나 Credential Manager 기반 인증 흐름을 사용하는 것이 편하다. Atlassian 공식 자료에서도 OAuth와 Windows Credential Manager 지원을 설명하고 있다.
+따라서 최신 SourceTree에서는 가능한 경우 SourceTree가 제공하는 OAuth나 Credential Manager 기반 인증 흐름을 사용하는 것이 편하다. [Atlassian 공식 자료](https://support.atlassian.com/sourcetree/kb/sourcetree-for-windows-1100-authentication-and-accounts-updates/)에서도 OAuth와 Windows Credential Manager 지원을 설명하고 있다.
 
 오래된 자료의 화면이 현재와 다르다고 해서 내 SourceTree가 잘못 설치된 것은 아닐 수 있다.
 
@@ -2917,6 +2917,8 @@ Dev Setup
 - [Atlassian - Install Sourcetree](https://confluence.atlassian.com/get-started-with-sourcetree/install-sourcetree-847359094.html)
 - [Atlassian - Connect your Bitbucket or GitHub account](https://confluence.atlassian.com/get-started-with-sourcetree/connect-your-bitbucket-or-github-account-847359096.html)
 - [Atlassian - Clone a remote repository](https://confluence.atlassian.com/get-started-with-sourcetree/clone-a-remote-repository-847359098.html)
+- [Atlassian Support - Using Embedded Git or System Git in Sourcetree](https://support.atlassian.com/sourcetree/kb/using-embedded-git-or-system-git-in-sourcetree/)
+- [Atlassian Support - Sourcetree for Windows authentication and accounts updates](https://support.atlassian.com/sourcetree/kb/sourcetree-for-windows-1100-authentication-and-accounts-updates/)
 - [Pro Git - Recording Changes to the Repository](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
 - [Git Docs - git-clone](https://git-scm.com/docs/git-clone)
 - [GitHub Docs - Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
