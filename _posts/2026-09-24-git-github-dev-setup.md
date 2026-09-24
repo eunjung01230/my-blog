@@ -306,7 +306,7 @@ Local Repository
 
 이 글에서는 **Windows 기준**으로 진행한다.
 
-브라우저에서 Git 공식 사이트에 접속한다.
+브라우저에서 [Git 공식 사이트](https://git-scm.com/downloads/win)에 접속한다.
 
 검색창에서 다음과 같이 검색해도 된다.
 
