@@ -23,19 +23,14 @@ layout: default
 
   <h1 class="page-title">{{ category_label }}</h1>
 
-  <p class="page-meta">{{ category_posts | size }} posts</p>
+  <div class="page-meta-row">
+    <p class="page-meta">{{ category_posts | size }} posts</p>
+    {% include post-sort.html count=category_posts.size %}
+  </div>
 
 </section>
 
 
-<div class="post-list">
-  {%- if category_posts.size > 0 -%}
-    {%- for post in category_posts -%}
-      {% include post-card.html post=post %}
-    {%- endfor -%}
-  {%- else -%}
-  <p class="empty-message">아직 이 카테고리에 작성된 글이 없습니다.</p>
-  {%- endif -%}
-</div>
+{% include post-list.html entries=category_posts empty="아직 이 카테고리에 작성된 글이 없습니다." %}
 
 </div>

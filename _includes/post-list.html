@@ -1,0 +1,16 @@
+{%- comment -%}
+  글 목록. 전체 글(posts.md) · 카테고리(_layouts/category.html) · 프로젝트(_layouts/project.html) 공용.
+    {% include post-list.html entries=all_entries empty="아직 작성된 글이 없습니다." %}
+  - entries 는 최신순으로 넘긴다. (정렬 드롭다운의 기본값과 같은 순서)
+  - 정렬 드롭다운은 제목 영역에 따로 둔다. (_includes/post-sort.html) 정렬 로직은 assets/js/post-sort.js 한 곳에 있다.
+  - 정렬에 쓰는 값(date · seriesOrder · order)은 카드의 data-* 속성에 들어 있다. (_includes/post-card.html)
+{%- endcomment %}
+<div class="post-list" id="post-list">
+  {%- if include.entries.size > 0 -%}
+    {%- for post in include.entries -%}
+      {% include post-card.html post=post %}
+    {%- endfor -%}
+  {%- else -%}
+  <p class="empty-message">{{ include.empty }}</p>
+  {%- endif -%}
+</div>

@@ -15,7 +15,10 @@ permalink: /posts/
 
   <div class="page-head-text">
     <h1 class="page-title">Posts</h1>
-    <p class="page-meta">전체 기록 {{ all_entries | size }}개</p>
+    <div class="page-meta-row">
+      <p class="page-meta">전체 기록 {{ all_entries | size }}개</p>
+      {% include post-sort.html count=all_entries.size %}
+    </div>
   </div>
 
   <a class="page-action" href="{{ '/write/' | relative_url }}?type=post">포스트 추가 +</a>
@@ -23,10 +26,6 @@ permalink: /posts/
 </section>
 
 
-<div class="post-list">
-  {%- for post in all_entries -%}
-    {% include post-card.html post=post %}
-  {%- endfor -%}
-</div>
+{% include post-list.html entries=all_entries empty="아직 작성된 글이 없습니다." %}
 
 </div>

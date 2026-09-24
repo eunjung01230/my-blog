@@ -23,19 +23,14 @@ layout: default
 
   <h1 class="page-title">{{ project_label }}</h1>
 
-  <p class="page-meta">프로젝트 기록 · 총 {{ project_entries | size }}개의 기록</p>
+  <div class="page-meta-row">
+    <p class="page-meta">프로젝트 기록 · 총 {{ project_entries | size }}개의 기록</p>
+    {% include post-sort.html count=project_entries.size %}
+  </div>
 
 </section>
 
 
-<div class="post-list">
-  {%- if project_entries.size > 0 -%}
-    {%- for post in project_entries -%}
-      {% include post-card.html post=post %}
-    {%- endfor -%}
-  {%- else -%}
-  <p class="empty-message">아직 작성된 프로젝트 기록이 없습니다.</p>
-  {%- endif -%}
-</div>
+{% include post-list.html entries=project_entries empty="아직 작성된 프로젝트 기록이 없습니다." %}
 
 </div>
