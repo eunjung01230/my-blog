@@ -25,9 +25,14 @@ layout: default
 
     <h1 class="post-title">{{ page.title }}</h1>
 
-    <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
-      {{ page.date | date: "%Y.%m.%d" }}
-    </time>
+    <div class="post-meta-row">
+      <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%Y.%m.%d" }}
+      </time>
+
+      {%- comment -%} 수정은 저장 코드를 확인한 뒤 진행된다. (edit.html) {%- endcomment %}
+      <a class="page-action post-edit-button" href="{{ '/edit/' | relative_url }}?path={{ page.path | url_encode }}">수정</a>
+    </div>
 
   </header>
 

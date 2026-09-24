@@ -1067,6 +1067,18 @@ h1, h2, h3, h4 {
   font-variant-numeric: tabular-nums;
 }
 
+/* 글 상단 수정 버튼 (edit.html) — 날짜 줄 오른쪽. 모양은 Posts 의 "포스트 추가" 버튼(.page-action)과 같다 */
+.post-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.post-edit-button {
+  margin: 0;
+}
+
 .post-content {
   font-size: 16px;
   line-height: 1.8;
@@ -1801,6 +1813,37 @@ h1, h2, h3, h4 {
   min-height: 1.5em;
   font-size: 13px;
   color: var(--accent);
+}
+
+/* 게시물 수정 목록 (/edit/, path 없이 열었을 때) */
+.edit-list {
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.edit-list-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.edit-list-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 15px;
+}
+
+.edit-list-date {
+  font-size: 13px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.edit-list .page-action {
+  margin: 0;
 }
 
 @media (max-width: 640px) {
