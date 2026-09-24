@@ -23,13 +23,16 @@ description: 배운 것을 학습 노트로 정리해서 블로그에 올린다.
 
 | slug (머리말에 쓰는 값) | 화면 표시명 |
 |------|------|
+| `dev-setup` | Dev Setup |
 | `git` | Git & GitHub |
 | `terminal` | Terminal |
 | `frontend` | Frontend |
 | `backend` | Backend |
 | `database` | Database |
 | `deployment` | Deployment |
+| `design` | Design |
 | `ai-tools` | AI & Tools |
+| `my-blog` | MY-Blog |
 
 - 표는 현재 기준이다. `_data/categories.yml` 에 새로 등록된 slug 도 쓸 수 있다. 목록에 없는 새 카테고리가 필요하면 지어내지 말고 나에게 물어본 뒤, `_data/categories.yml` 항목과 `categories/<slug>.md` 페이지를 먼저 추가한다.
 - `project` 는 `_project_posts/` 프로젝트 글 전용이라 `/note` 학습 글에는 쓰지 않는다.
