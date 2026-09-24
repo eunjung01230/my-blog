@@ -3170,30 +3170,3 @@ Dev Setup
 이제 **코드를 작성할 장소까지 준비됐다.**
 
 다음 단계부터는 VS Code에서 작성한 코드를 실제 실행 환경과 연결해본다.
-
----
-
-## 더 학습하면 좋은 개념
-
-- **Emmet** — VS Code에 기본으로 들어 있는 HTML·CSS 약어 확장 기능이다. `!` 한 글자로 66장의 HTML 기본 골격을 만들 수 있어서 HTML을 공부하기 시작하면 바로 쓰게 된다.
-- **`file://`과 로컬 서버(`http://`)의 차이** — 70장에서 본 두 주소 방식이다. JavaScript 모듈이나 `fetch`를 쓰기 시작하면 `file://`에서는 막히는 기능이 생기기 때문에, Live Server 같은 로컬 서버가 필요한 이유를 이해할 수 있다.
-- **EditorConfig와 Prettier 설정 파일** — 48장과 61장에서 말한 "프로젝트의 코드 스타일"을 파일로 정해 두는 방법이다. 팀원마다 에디터 설정이 달라도 같은 형식을 유지할 수 있다.
-- **VS Code 디버거 (Run and Debug)** — 22장 Activity Bar에 있던 기능이다. `console.log`만으로 찾기 어려운 버그를 중단점으로 따라가 볼 수 있어서 Node.js를 설치한 다음에 익히면 좋다.
-- **Profiles와 Settings Sync** — 94·96장에서 미뤄 둔 기능이다. 새 PC에서 설정과 확장을 그대로 옮길 수 있어서 08편 "새 PC에서 개발환경 다시 구축하기"와도 이어진다.
-
-## 참고 자료
-
-- [Visual Studio Code - Download](https://code.visualstudio.com/download)
-- [VS Code Docs - Installing Visual Studio Code on Windows](https://code.visualstudio.com/docs/setup/windows)
-- [VS Code Docs - Command Line Interface (CLI)](https://code.visualstudio.com/docs/configure/command-line)
-- [VS Code Docs - Terminal Basics](https://code.visualstudio.com/docs/terminal/basics)
-- [VS Code Docs - Terminal Profiles](https://code.visualstudio.com/docs/terminal/profiles)
-- [VS Code Docs - Workspace Trust](https://code.visualstudio.com/docs/editing/workspaces/workspace-trust)
-- [VS Code Docs - User and workspace settings](https://code.visualstudio.com/docs/configure/settings)
-- [VS Code Docs - Profiles](https://code.visualstudio.com/docs/configure/profiles)
-- [VS Code Docs - Extension Marketplace](https://code.visualstudio.com/docs/configure/extensions/extension-marketplace)
-- [VS Code Docs - Extension runtime security](https://code.visualstudio.com/docs/configure/extensions/extension-runtime-security)
-- [VS Code Docs - Source control in VS Code](https://code.visualstudio.com/docs/sourcecontrol/overview)
-- [VS Code Marketplace - Korean Language Pack for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-ko)
-- [VS Code Marketplace - Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
-- [VS Code Marketplace - Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)

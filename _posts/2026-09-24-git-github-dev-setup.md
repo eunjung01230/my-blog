@@ -2135,25 +2135,3 @@ Dev Setup
 
 08 새 PC에서 개발환경 다시 구축하기
 ```
-
----
-
-## 더 학습하면 좋은 개념
-
-- **Staging Area (Index)** — `git add`로 파일을 올려두는 중간 단계다. 39장의 "선택한다" 단계가 실제로 무엇인지 알면 `git status` 출력이 훨씬 잘 읽힌다.
-- **.gitignore** — Git이 추적하지 않을 파일을 정하는 규칙 파일이다. `git add .`를 쓰기 시작하면 `node_modules`나 비밀 키 같은 파일이 같이 올라가지 않게 막는 데 꼭 필요하다.
-- **SSH 키 인증** — 57장에서 뒤로 미룬 공개키·개인키 방식이다. 여러 PC에서 GitHub를 자주 쓰게 되면 HTTPS 인증 대신 고려하게 된다.
-- **git clone과 fetch / pull** — 이번 글의 반대 방향, Remote의 내용을 Local로 가져오는 흐름이다. 새 PC에서 프로젝트를 다시 받는 08편과도 이어진다.
-- **Branch와 Merge** — 42장에서 "기본 작업 공간"으로만 설명한 branch의 실제 쓰임이다. 협업과 PR을 이해하는 출발점이다.
-
-## 참고 자료
-
-- [Git 공식 사이트 - Download for Windows](https://git-scm.com/downloads/win)
-- [Pro Git - First-Time Git Setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
-- [Git Docs - git-config](https://git-scm.com/docs/git-config)
-- [GitHub Docs - Creating a new repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository)
-- [GitHub Docs - About remote repositories](https://docs.github.com/en/get-started/git-basics/about-remote-repositories)
-- [GitHub Docs - Caching your GitHub credentials in Git](https://docs.github.com/en/get-started/git-basics/caching-your-github-credentials-in-git)
-- [GitHub Docs - Setting your commit email address](https://docs.github.com/en/account-and-profile/how-tos/email-preferences/setting-your-commit-email-address)
-- [GitHub Docs - Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
-- [Git Credential Manager (GitHub)](https://github.com/git-ecosystem/git-credential-manager)

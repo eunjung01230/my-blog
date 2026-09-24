@@ -573,13 +573,7 @@ Tomcat은 이런 Java 웹 애플리케이션을 실행하는 데 사용되는 **
 
 이라고 이해하면 충분하다.
 
-Tomcat을 설치하고 정상적으로 실행하면 보통 브라우저에서
-
-```text
-localhost
-```
-
-주소를 이용해 내 컴퓨터에서 실행 중인 서버에 접근하게 된다. Tomcat은 기본 설정에서 8080 포트를 사용하기 때문에 실제로는 `http://localhost:8080`처럼 포트 번호까지 붙여서 접속한다.
+Tomcat의 구체적인 설치와 설정, 실행 방법은 07편 Tomcat 환경 구축 글에서 다룬다.
 
 ---
 
@@ -1294,25 +1288,3 @@ Dev Setup
 ```
 
 개발환경 구축을 마치고 나면 앞으로 새로운 프로젝트를 시작할 때도 지금 설치한 프로그램들이 어디에서 사용되는지 훨씬 쉽게 이해할 수 있을 것이다.
-
----
-
-## 더 학습하면 좋은 개념
-
-- **컴파일 언어와 인터프리터 언어** — Java는 `javac`로 먼저 컴파일하고, JavaScript는 Node.js가 바로 실행하는 차이가 여기서 나온다. JDK와 Node.js가 왜 다른 방식으로 설치되는지 이해할 수 있다.
-- **JVM (Java Virtual Machine)** — `java Hello`가 실제로 무엇을 실행하는지 알려주는 개념이다. JDK·JRE·JVM의 관계를 정리하면 Java 환경 설정이 훨씬 덜 헷갈린다.
-- **포트(Port)와 네트워크 기초** — `localhost:8080`, `localhost:3000`처럼 같은 내 컴퓨터 안에서도 서버를 구분하는 방법이다. Tomcat, Node.js, React 개발 서버를 동시에 띄울 때 꼭 필요하다.
-- **패키지 매니저와 lock 파일** — npm의 `package.json`과 `package-lock.json`이 "내 컴퓨터에서는 되는데" 문제를 어떻게 줄이는지 이어서 볼 수 있다.
-- **버전 관리 도구 (nvm, SDKMAN 등)** — 프로젝트마다 Node.js·JDK 버전이 다를 때 여러 버전을 오가며 쓰는 방법이다. 17장의 "여러 버전이 설치되어 있다" 문제의 다음 단계다.
-
-## 참고 자료
-
-- [Visual Studio Code Docs](https://code.visualstudio.com/docs)
-- [IntelliJ IDEA Docs - Getting started](https://www.jetbrains.com/help/idea/getting-started.html)
-- [Node.js - Introduction to Node.js](https://nodejs.org/en/learn/getting-started/introduction-to-nodejs)
-- [npm Docs - About npm](https://docs.npmjs.com/about-npm)
-- [Oracle - Java SE 21 Documentation](https://docs.oracle.com/en/java/javase/21/)
-- [Pro Git (한국어)](https://git-scm.com/book/ko/v2)
-- [GitHub Docs - Get started](https://docs.github.com/ko/get-started)
-- [Sourcetree](https://www.sourcetreeapp.com/)
-- [Apache Tomcat Documentation](https://tomcat.apache.org/tomcat-10.1-doc/index.html)
