@@ -13,14 +13,26 @@
   {%- assign card_slug = card_post.category -%}
 {%- endif -%}
 {%- assign card_category = site.data.categories | where: "slug", card_slug | first -%}
-{%- comment -%} _data/categories.yml 에서 몇 번째 카테고리인지 (학습순에서 learningOrder 가 없는 글의 순서) {%- endcomment -%}
-{%- assign card_category_rank = "" -%}
-{%- for category in site.data.categories -%}
-  {%- if category.slug == card_slug -%}
-    {%- assign card_category_rank = forloop.index -%}
+{%- comment -%}
+  학습순에서 이 글의 카테고리가 몇 번째인지. 순서는 _data/learning_order.yml 한 곳에서 정한다.
+  거기 없는 카테고리는 목록 뒤에 _data/categories.yml 순서로 붙는다. (둘 다 없으면 빈 값 → 맨 뒤)
+{%- endcomment -%}
+{%- assign card_learning_rank = "" -%}
+{%- for learning_slug in site.data.learning_order -%}
+  {%- if learning_slug == card_slug -%}
+    {%- assign card_learning_rank = forloop.index -%}
     {%- break -%}
   {%- endif -%}
 {%- endfor -%}
+{%- if card_learning_rank == "" -%}
+  {%- assign learning_listed = site.data.learning_order.size | default: 0 -%}
+  {%- for category in site.data.categories -%}
+    {%- if category.slug == card_slug -%}
+      {%- assign card_learning_rank = learning_listed | plus: forloop.index -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
 
 {%- if card_post.description and card_post.description != empty -%}
   {%- assign card_summary = card_post.description | strip_html | normalize_whitespace | strip -%}
@@ -33,12 +45,12 @@
 
 {%- comment -%}
   data-* 는 글 목록 정렬에 쓰인다. (assets/js/post-sort.js) 값이 없는 속성은 빈 값으로 둔다.
-  선택 front matter: learningOrder(전체 글 학습순) · seriesOrder(시리즈 안 학습순) · order(직접 지정순)
+  선택 front matter: learningOrder(같은 카테고리 안 학습순) · seriesOrder(시리즈 안 학습순) · order(직접 지정순)
 {%- endcomment %}
 <article class="post-card"
          data-date="{{ card_post.date | date: '%s' }}"
+         data-learning-rank="{{ card_learning_rank }}"
          data-learning-order="{{ card_post.learningOrder }}"
-         data-category-rank="{{ card_category_rank }}"
          data-series-order="{{ card_post.seriesOrder }}"
          data-order="{{ card_post.order }}">
 

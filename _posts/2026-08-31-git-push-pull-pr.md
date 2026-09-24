@@ -3,7 +3,7 @@ layout: post
 title: "Git push-pull"
 date: 2026-08-31
 categories: git
-learningOrder: 30
+learningOrder: 20
 mermaid: true
 ---
 

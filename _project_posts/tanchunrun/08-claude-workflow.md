@@ -2,7 +2,7 @@
 title: "Claude Code / Claude Design을 활용하며 겪은 시행착오"
 date: 2026-09-21 11:20:00 +0900
 project: tanchunrun
-learningOrder: 200
+learningOrder: 90
 tags:
   - claude-code
   - claude-design

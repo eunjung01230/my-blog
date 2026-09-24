@@ -2,7 +2,7 @@
 title: "Figma에서 Claude Design으로 디자인 전달하기"
 date: 2026-09-21 10:20:00 +0900
 project: tanchunrun
-learningOrder: 140
+learningOrder: 30
 tags:
   - figma
   - claude-design

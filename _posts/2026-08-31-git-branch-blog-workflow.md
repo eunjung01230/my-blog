@@ -3,7 +3,7 @@ layout: post
 title: "git branch로 블로그 만들기, 그리고 merge 충돌 대비하기"
 date: 2026-08-31
 categories: git
-learningOrder: 40
+learningOrder: 30
 mermaid: true
 ---
 
