@@ -4423,32 +4423,3 @@ Process finished with exit code 0
 ```
 
 까지 확인했다면 **IntelliJ IDEA와 JDK 21 연결은 정상적으로 완료된 것**이다.
-
----
-
-## 더 학습하면 좋은 개념
-
-- **Maven과 Gradle의 빌드 생명주기** — 44~47장에서 미뤄 둔 Build Tool이다. 의존성(Dependency)을 선언하면 라이브러리를 자동으로 받아 주고, 컴파일·테스트·패키징을 한 명령으로 묶어 준다. Spring Boot 프로젝트를 시작하면 바로 필요해진다.
-- **Debugger와 Breakpoint 활용** — 117~119장에서 소개만 한 기능이다. Step Over·Step Into, 변수 값 확인, 조건부 Breakpoint를 익히면 `System.out.println`으로 값을 찍어 보는 것보다 훨씬 빠르게 원인을 찾을 수 있다.
-- **Run Configuration의 VM 옵션과 프로그램 인자** — 115장에서 말한 "어떤 방식으로 실행할지"의 구체적인 내용이다. `main(String[] args)`의 `args`가 어디서 들어오는지, JVM 메모리 옵션을 어디에 넣는지 이해할 수 있다.
-- **Inspections(정적 분석)** — 98~99장의 "컴파일 전에 오류를 알려주는" 기능의 정체다. 오류뿐 아니라 사용하지 않는 코드, 잠재적 버그까지 경고해 주는 규칙들을 알면 IDE의 노란 경고를 제대로 읽을 수 있다.
-- **`.idea` 폴더와 `.gitignore`** — 129장의 `.idea`를 Git에 올릴지 말지의 문제다. 팀원마다 다른 개인 설정이 섞이지 않게 어떤 파일을 공유하고 어떤 파일을 제외하는지 알아 두면 협업할 때 충돌이 줄어든다.
-
-## 참고 자료
-
-- [JetBrains - IntelliJ IDEA Download](https://www.jetbrains.com/idea/download/)
-- [IntelliJ IDEA Docs - Install IntelliJ IDEA](https://www.jetbrains.com/help/idea/installation-guide.html)
-- [IntelliJ IDEA Docs - IntelliJ IDEA as a unified product](https://www.jetbrains.com/help/idea/intellij-idea-single-distribution.html)
-- [JetBrains Blog - The Unified IntelliJ IDEA](https://blog.jetbrains.com/idea/2025/12/intellij-idea-unified-release/)
-- [JetBrains - Toolbox App](https://www.jetbrains.com/toolbox-app/)
-- [IntelliJ IDEA Docs - Create your first Java application](https://www.jetbrains.com/help/idea/creating-and-running-your-first-java-application.html)
-- [IntelliJ IDEA Docs - Projects](https://www.jetbrains.com/help/idea/creating-and-managing-projects.html)
-- [IntelliJ IDEA Docs - SDKs](https://www.jetbrains.com/help/idea/sdk.html)
-- [IntelliJ IDEA Docs - Project structure settings](https://www.jetbrains.com/help/idea/project-settings-and-structure.html)
-- [IntelliJ IDEA Docs - Terminal](https://www.jetbrains.com/help/idea/terminal-emulator.html)
-- [IntelliJ IDEA Docs - Save and revert changes](https://www.jetbrains.com/help/idea/saving-and-reverting-changes.html)
-- [IntelliJ IDEA Docs - Project tool window](https://www.jetbrains.com/help/idea/project-tool-window.html)
-- [IntelliJ IDEA Docs - Search everywhere](https://www.jetbrains.com/help/idea/searching-everywhere.html)
-- [IntelliJ IDEA Docs - Run/debug configurations](https://www.jetbrains.com/help/idea/run-debug-configuration.html)
-- [IntelliJ IDEA Docs - Debug code](https://www.jetbrains.com/help/idea/debugging-code.html)
-- [IntelliJ IDEA Docs - Code refactoring](https://www.jetbrains.com/help/idea/refactoring-source-code.html)

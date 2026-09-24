@@ -840,8 +840,6 @@ Eclipse Temurin 21
 
 [Temurin 21 역시 Windows용 JDK MSI를 제공](https://adoptium.net/installation/windows/)하며 PATH와 `JAVA_HOME` 설정 옵션을 제공한다.
 
-참고로 [Oracle 다운로드 페이지](https://www.oracle.com/java/technologies/downloads/)에 따르면 Oracle JDK 21은 2026년 9월까지 무료 조건(NFTC)으로 업데이트가 제공되고, 그 이후의 업데이트는 Java SE OTN 라이선스로 바뀐다. 개인 학습이나 개발 용도로는 계속 사용할 수 있지만 회사에서 운영(production) 용도로 쓰려면 비용이 들 수 있으므로, 이런 조건이 신경 쓰인다면 Eclipse Temurin 21 같은 OpenJDK 배포판을 선택해도 된다.
-
 ---
 
 ## 22. JDK 배포판과 Java 버전은 구분해서 보기
@@ -2267,8 +2265,6 @@ java Hello.class
 java Hello
 ```
 
-참고로 Java 11부터는 `java Hello.java`처럼 소스 파일을 컴파일 없이 바로 실행하는 방식([JEP 330](https://openjdk.org/jeps/330))도 지원한다. 다만 이 방식은 `.class` 파일을 만들지 않기 때문에, 이번 글에서는 컴파일과 실행을 나눠서 직접 확인한다.
-
 ---
 
 ## 85. 결과 확인
@@ -3642,26 +3638,3 @@ Dev Setup
 ```
 
 다음 글에서는 **IntelliJ IDEA Community/무료 사용 범위부터 설치, JDK 21 연결, Project SDK, 첫 Java 프로젝트 생성, Run까지** 이어서 진행한다.
-
----
-
-## 더 학습하면 좋은 개념
-
-- **JIT 컴파일러와 JVM 메모리 구조** — `javac`가 만든 Bytecode를 JVM이 실행하면서 다시 기계어로 바꾸는 과정이다. 7장의 "Write Once, Run Anywhere"가 성능을 잃지 않는 이유이고, Heap·Stack 같은 메모리 개념으로 이어진다.
-- **package와 classpath** — 지금은 `Hello.java` 하나였지만 파일이 여러 폴더로 나뉘면 `java`가 클래스를 어디서 찾는지 정해야 한다. 이 규칙이 classpath이고, IntelliJ가 대신 관리해 주는 부분이다.
-- **Maven·Gradle과 Toolchain** — 95장에서 말한 빌드 도구다. 프로젝트마다 필요한 JDK 버전을 빌드 설정에 적어 두는 Toolchain 기능을 알면 107장의 "JDK 여러 개" 문제를 훨씬 깔끔하게 관리할 수 있다.
-- **Java 릴리스 주기와 LTS** — Java는 6개월마다 새 버전이 나오고 그중 일부가 LTS가 된다. 18장에서 17·21·25가 나란히 등장한 이유와 배포판별 지원 기간을 이해할 수 있다.
-- **JShell** — 11장의 도구 목록에 있던 Java REPL이다. Node.js REPL처럼 Java 코드를 한 줄씩 바로 실행해 볼 수 있어서 문법을 공부할 때 편하다.
-
-## 참고 자료
-
-- [Oracle - Java Downloads](https://www.oracle.com/java/technologies/downloads/)
-- [Oracle Docs - JDK 21 Installation on Microsoft Windows](https://docs.oracle.com/en/java/javase/21/install/installation-jdk-microsoft-windows-platforms.html)
-- [Oracle Docs - Java SE 21 Documentation](https://docs.oracle.com/en/java/javase/21/)
-- [Oracle Docs - The java Command (JDK 21)](https://docs.oracle.com/en/java/javase/21/docs/specs/man/java.html)
-- [Oracle Docs - The javac Command (JDK 21)](https://docs.oracle.com/en/java/javase/21/docs/specs/man/javac.html)
-- [Java.com - How do I set or change the PATH system variable?](https://www.java.com/en/download/help/path.html)
-- [Oracle - Java SE Licensing FAQ](https://www.oracle.com/java/technologies/javase/jdk-faqs.html)
-- [Eclipse Temurin - JDK 21 Releases](https://adoptium.net/temurin/releases/?version=21)
-- [Adoptium - Installing Temurin on Windows](https://adoptium.net/installation/windows/)
-- [OpenJDK - JEP 330: Launch Single-File Source-Code Programs](https://openjdk.org/jeps/330)

@@ -90,7 +90,7 @@ SourceTree는 Atlassian에서 제공하는 Git GUI 클라이언트다.
 
 Git Repository를 화면으로 확인하고 관리할 수 있게 해주는 프로그램이다.
 
-Atlassian 역시 [공식 사이트](https://www.sourcetreeapp.com/)에서 SourceTree를 Windows와 macOS에서 사용할 수 있는 Git GUI 클라이언트로 소개하고 있다.
+[Atlassian 역시](https://www.sourcetreeapp.com/) SourceTree를 Windows와 macOS에서 사용할 수 있는 Git GUI 클라이언트로 소개하고 있다.
 
 Git Bash에서는 다음처럼 명령어를 직접 입력한다.
 
@@ -2900,26 +2900,3 @@ Dev Setup
 
 08 새 PC에서 개발환경 다시 구축하기
 ```
-
----
-
-## 더 학습하면 좋은 개념
-
-- **Working Directory · Staging Area · Repository** — Git이 파일을 다루는 세 영역이다. SourceTree의 Unstaged / Staged / History 화면이 각각 이 세 영역을 보여주는 것이라 함께 이해하면 좋다.
-- **Fetch와 Pull의 차이** — SourceTree 상단에 나란히 있는 두 버튼이다. 원격 변경을 확인만 하는지, 내 branch에 합치기까지 하는지가 다르다.
-- **OAuth 2.0 인가 흐름** — 23장에서 본 "브라우저에서 로그인하고 권한 허용"이 실제로 어떻게 동작하는지 설명해 준다. 비밀번호를 앱에 주지 않고 권한만 넘기는 방식이다.
-- **git reset과 git revert** — 73장에서 조심하라고 한 Reset·Discard의 실제 의미다. 되돌리기 방법을 알면 GUI 버튼을 훨씬 덜 두려워하게 된다.
-- **Branch 전략 (GitHub Flow)** — 72장의 `feat/login → PR → main` 흐름을 정리한 방식이다. 팀 프로젝트를 시작하기 전에 알아두면 좋다.
-
-## 참고 자료
-
-- [Sourcetree 공식 사이트](https://www.sourcetreeapp.com/)
-- [Atlassian - Install Sourcetree](https://confluence.atlassian.com/get-started-with-sourcetree/install-sourcetree-847359094.html)
-- [Atlassian - Connect your Bitbucket or GitHub account](https://confluence.atlassian.com/get-started-with-sourcetree/connect-your-bitbucket-or-github-account-847359096.html)
-- [Atlassian - Clone a remote repository](https://confluence.atlassian.com/get-started-with-sourcetree/clone-a-remote-repository-847359098.html)
-- [Atlassian Support - Using Embedded Git or System Git in Sourcetree](https://support.atlassian.com/sourcetree/kb/using-embedded-git-or-system-git-in-sourcetree/)
-- [Atlassian Support - Sourcetree for Windows authentication and accounts updates](https://support.atlassian.com/sourcetree/kb/sourcetree-for-windows-1100-authentication-and-accounts-updates/)
-- [Pro Git - Recording Changes to the Repository](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
-- [Git Docs - git-clone](https://git-scm.com/docs/git-clone)
-- [GitHub Docs - Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-- [GitHub Docs - Authorizing OAuth apps](https://docs.github.com/en/apps/oauth-apps/using-oauth-apps/authorizing-oauth-apps)

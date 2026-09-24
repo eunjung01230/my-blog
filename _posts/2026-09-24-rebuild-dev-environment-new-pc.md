@@ -11,6 +11,12 @@ tags:
   - setup
 ---
 
+개발환경도 한 번만 만들어두고 끝낼 수는 없었습니다. 새 PC를 켤 때마다 Git부터 JDK까지 다시 깔아야 하는, 일종의 개발자용 이사 체크리스트가 필요해졌습니다.
+
+(일단 저도 노트북이 하나가 아니다...)
+
+---
+
 개발 공부를 어느 정도 하다 보면 언젠가는 개발환경을 다시 만들어야 하는 순간이 온다.
 
 예를 들면 이런 경우다.
@@ -27,8 +33,6 @@ Windows를 다시 설치했다.
 개발용 계정을 새로 만들었다.
 
 기존 개발환경이 너무 꼬여서 처음부터 다시 구축하고 싶다.
-
-( 블로그작성자처럼 노트북이 하나가 아니다...)
 ```
 
 처음 개발환경을 만들 때는 하나씩 검색하면서 설치했기 때문에 시간이 오래 걸린다.
@@ -3949,29 +3953,93 @@ Deployment
 
 ---
 
-## 더 학습하면 좋은 개념
+## 부록 — 나중에 공부할 후보 목록
 
-- **winget (Windows Package Manager)** — Git, VS Code, Node.js 같은 프로그램을 명령어 한 줄로 설치할 수 있는 Windows 공식 패키지 관리자다. 이 글의 설치 순서를 스크립트로 만들어 두면 다음 새 PC에서는 훨씬 빠르게 복구할 수 있다.
-- **dotfiles와 설정 동기화** — Git 전역 설정, VS Code Settings Sync, IntelliJ 설정 백업처럼 "프로그램이 아니라 설정"을 옮기는 방법이다. 126장의 "무엇을 백업해야 할까?"를 실제로 실천하는 방식이다.
-- **Version Manager (nvm-windows, fnm 등)** — 97·106장의 "Node 여러 버전" 문제를 정리하는 도구다. 프로젝트마다 다른 Node 버전을 요구하기 시작하면 필요해진다.
-- **Dev Containers와 Docker** — 개발환경 자체를 파일로 정의해서 어느 PC에서나 같은 환경을 띄우는 방식이다. 이 글의 체크리스트를 "사람이 하는 일"에서 "파일이 하는 일"로 바꾸는 다음 단계다.
-- **Secret 관리 (.env.example, 비밀번호 관리자)** — 127~128장의 "값은 남기지 않고 이름과 출처만 기록"하는 원칙을 팀 단위로 확장한 방식이다. 협업 프로젝트에서 새 팀원이 합류할 때도 똑같이 쓰인다.
+여기까지 왔다면 개발환경은 이미 충분히 갖춰졌다.
 
-## 참고 자료
+아래 목록은 **지금 당장 공부해야 하는 숙제가 아니다.**
 
-- [Git - Download for Windows](https://git-scm.com/downloads/win)
-- [Git Docs - git-config (init.defaultBranch)](https://git-scm.com/docs/git-config)
-- [GitHub Docs - Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-- [GitHub Docs - Ignoring files](https://docs.github.com/en/get-started/git-basics/ignoring-files)
-- [Sourcetree 공식 사이트](https://www.sourcetreeapp.com/)
-- [Visual Studio Code - Download](https://code.visualstudio.com/download)
-- [VS Code Docs - Settings Sync](https://code.visualstudio.com/docs/configure/settings-sync)
-- [Node.js - Download](https://nodejs.org/en/download)
-- [npm Docs - npm install](https://docs.npmjs.com/cli/commands/npm-install)
-- [Oracle - Java Downloads](https://www.oracle.com/java/technologies/downloads/)
-- [Eclipse Temurin - JDK 21 Releases](https://adoptium.net/temurin/releases/?version=21)
-- [JetBrains - IntelliJ IDEA Download](https://www.jetbrains.com/idea/download/)
-- [IntelliJ IDEA Docs - SDKs](https://www.jetbrains.com/help/idea/sdk.html)
-- [Apache Tomcat - Which Version Do I Want?](https://tomcat.apache.org/whichversion.html)
-- [Tomcat 11 Docs - RUNNING.txt](https://tomcat.apache.org/tomcat-11.0-doc/RUNNING.txt)
-- [Microsoft Learn - Windows Package Manager (winget)](https://learn.microsoft.com/en-us/windows/package-manager/winget/)
+개발을 하다 보면 "이건 뭐지?" 싶은 순간이 가끔 찾아오는데, 그때 꺼내 볼 수 있도록 이름만 모아 둔 **메뉴판**에 가깝다.
+
+전부 몰라도 개발은 얼마든지 시작할 수 있다. 몇 개는 몇 달 뒤에, 어떤 것은 한참 뒤에야 필요해질 수도 있다. 관심이 가는 것부터, 순서와 상관없이 하나씩 골라 보면 된다.
+
+이 블로그의 다른 글에서 이미 정리한 주제는 목록에서 뺐다.
+
+### Git을 조금 더 쓰다 보면
+
+- **git reset과 git revert** — 이미 만든 commit을 되돌리는 두 가지 방법과 그 차이
+- **git stash** — 작업하던 변경 사항을 잠시 치워 두고 다른 일을 먼저 해야 할 때
+- **git rebase** — merge와는 다른 방식으로 commit 기록을 정리하는 방법
+- **git cherry-pick** — 다른 branch의 commit 하나만 골라서 가져오는 방법
+- **SSH 키 인증** — HTTPS 대신 공개키·개인키로 GitHub에 연결하는 방식
+- **Git 줄바꿈 설정 (CRLF / LF)** — Windows와 macOS·Linux의 줄바꿈 방식 차이 때문에 보이는 경고의 정체
+- **커밋 메시지 규칙 (Conventional Commits)** — `feat:`, `fix:`처럼 commit 메시지를 일정한 형식으로 쓰는 약속
+- **Git LFS** — 이미지·영상처럼 큰 파일을 Git으로 다루는 방법
+
+### 개발환경을 더 편하게 만들고 싶을 때
+
+- **Version Manager (nvm-windows, fnm)** — 프로젝트마다 다른 Node.js 버전을 바꿔 가며 쓰는 도구. `.nvmrc`, `package.json`의 `engines`와 함께 보면 좋다
+- **여러 JDK를 오가며 쓰기** — 프로젝트마다 Java 버전이 다를 때 `JAVA_HOME`과 IDE 설정을 관리하는 방법
+- **설정 옮기기 (Settings Sync, Profiles, dotfiles)** — 프로그램이 아니라 "내 설정"을 새 PC로 가져오는 방법
+- **winget** — Windows 공식 패키지 관리자. 이 글의 설치 순서를 명령어로 자동화해 볼 수 있다
+- **WSL** — Windows 안에서 Linux 환경을 함께 쓰는 방법
+- **Docker와 Dev Containers** — 개발환경 자체를 파일로 정의해서 어느 PC에서나 같은 환경을 띄우는 방식
+- **EditorConfig와 Prettier 설정 파일** — 팀원마다 에디터가 달라도 코드 스타일을 맞추는 방법
+- **Emmet** — VS Code에 들어 있는 HTML·CSS 약어 입력 기능
+- **IDE 디버거 (VS Code Run and Debug, IntelliJ Breakpoint)** — 코드를 한 줄씩 멈춰 가며 값을 확인하는 방법
+- **IntelliJ Inspections** — 코드를 쓰는 동안 IDE가 보여 주는 경고와 제안을 읽는 법
+- **Run Configuration의 VM 옵션과 프로그램 인자** — `main(String[] args)`의 `args`가 어디서 들어오는지
+
+### JavaScript 프로젝트를 하다 보면
+
+- **`file://`과 로컬 서버(`http://`)의 차이** — HTML 파일을 그냥 열 때와 Live Server로 열 때 무엇이 다른지
+- **package-lock.json과 Semantic Versioning** — `^1.2.3` 같은 버전 표기와 lock 파일이 하는 일
+- **npx** — 패키지를 전역으로 설치하지 않고 바로 실행하는 방법
+- **CommonJS와 ES Modules** — `require`와 `import`, 두 가지 모듈 방식
+- **Node.js 이벤트 루프** — Node.js가 비동기 작업을 처리하는 내부 동작
+- **pnpm, yarn** — npm 말고도 쓰이는 다른 패키지 매니저
+- **TypeScript** — JavaScript에 타입을 더한 언어
+- **ESLint** — 코드의 실수나 규칙 위반을 미리 알려 주는 도구
+- **Vite 같은 빌드 도구** — 개발 서버와 번들링을 맡는 도구가 하는 일
+
+### Java를 더 공부하다 보면
+
+- **컴파일 언어와 인터프리터 언어** — Java와 JavaScript가 실행 방식에서 어떻게 다른지
+- **JVM, JIT 컴파일러, JVM 메모리 구조** — `java Hello`를 실행했을 때 내부에서 일어나는 일
+- **package와 classpath** — 파일이 여러 폴더로 나뉘었을 때 Java가 클래스를 찾는 규칙
+- **JAR 파일** — 여러 class 파일을 하나로 묶어 실행하는 방법
+- **Maven·Gradle 빌드 생명주기와 Toolchain** — 의존성 관리와 빌드를 자동화하는 도구
+- **Java 릴리스 주기와 LTS** — Java 17, 21, 25처럼 LTS 버전이 나오는 방식
+- **최근 Java 버전에서 추가된 문법 (record, switch 식 등)** — 새 버전에서 달라진 코드 작성 방식
+- **JShell** — Java 코드를 한 줄씩 바로 실행해 보는 도구
+- **JUnit 테스트** — Java 코드를 자동으로 검사하는 테스트 작성법
+- **예외와 스택 트레이스 읽기** — 오류가 났을 때 콘솔에 길게 나오는 메시지를 읽는 방법
+
+### Java 웹을 배우고 나면
+
+- **Servlet Lifecycle** — Servlet이 만들어지고, 요청을 처리하고, 종료되는 과정
+- **JSP** — Java로 HTML 화면을 만들어 응답하는 방식
+- **WAR 구조와 WEB-INF** — Java 웹 애플리케이션을 배포하는 파일 구조
+- **Servlet Filter** — 요청이 Servlet에 닿기 전에 공통 처리를 끼워 넣는 방법
+- **IntelliJ와 Tomcat 연동** — IDE 안에서 Tomcat을 실행하고 배포하는 방법
+- **Spring Boot와 Embedded Tomcat** — Tomcat을 따로 설치하지 않고 애플리케이션 안에 넣어 실행하는 방식
+
+### 웹의 기본 원리가 궁금해질 때
+
+- **CORS** — 다른 출처(Origin)의 서버에 요청할 때 브라우저가 확인하는 규칙
+- **HTTPS와 인증서** — 주소창의 자물쇠 표시가 의미하는 것
+- **DNS와 도메인** — 주소를 입력하면 서버를 어떻게 찾아가는지
+
+### 데이터베이스를 더 다루다 보면
+
+- **인덱스** — 데이터가 많아져도 조회를 빠르게 하는 방법
+- **트랜잭션** — 여러 작업을 "모두 성공하거나 모두 취소"로 묶는 방법
+
+### 서비스를 밖으로 내보낼 때
+
+- **Reverse Proxy (Nginx, Apache HTTP Server + Tomcat)** — 웹 서버와 애플리케이션 서버를 함께 쓰는 구조
+- **클라우드 가상 서버에 직접 배포하기** — 내 PC 대신 인터넷 위의 서버에 실행 환경을 다시 만드는 일. 이 글의 설치 순서가 그대로 쓰인다
+
+목록이 길어 보여도 괜찮다.
+
+하나를 공부할 때마다 목록에서 지워 나가고, 새로 궁금한 것이 생기면 여기에 더해 가면 된다.

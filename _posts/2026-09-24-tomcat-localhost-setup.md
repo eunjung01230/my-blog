@@ -4226,33 +4226,3 @@ http://localhost:8080
 에서 Tomcat 기본 화면을 확인하고,
 
 Tomcat을 종료한 뒤 해당 주소가 더 이상 열리지 않는 것까지 확인했다면 **이번 단계의 Tomcat 기본 실행환경 구축은 완료**다.
-
----
-
-## 더 학습하면 좋은 개념
-
-- **HTTP Method와 Status Code** — 2장의 `GET /hello` 요청과, 서버가 돌려주는 `200`·`404`·`500` 같은 응답 코드다. Servlet의 `doGet`·`doPost`가 왜 나뉘어 있는지 이해하는 바탕이 된다.
-- **Servlet Lifecycle** — Servlet이 `init` → `service` → `destroy` 순서로 Container에 의해 관리되는 과정이다. 16~17장의 "누가 Servlet을 실행해 주는가"에 대한 구체적인 답이다.
-- **WAR 구조와 `WEB-INF`** — 107장에서 소개만 한 WAR 안에 무엇이 들어가는지, 왜 `WEB-INF` 아래 파일은 브라우저에서 직접 열 수 없는지 알면 배포 구조가 한눈에 보인다.
-- **Reverse Proxy (Apache HTTP Server·Nginx + Tomcat)** — 20장에서 구분한 Web Server와 Tomcat을 실제 운영에서 함께 쓰는 방식이다. 정적 파일과 HTTPS는 앞단 Web Server가, Java 요청은 Tomcat이 맡는 구조를 이해할 수 있다.
-- **Spring Boot의 Embedded Tomcat** — 117~118장에서 미리 본 개념이다. 외부 Tomcat에 WAR를 배포하는 방식과 JAR 하나로 서버까지 실행하는 방식의 차이를 알면 Spring Boot를 시작할 때 덜 헷갈린다.
-
-## 참고 자료
-
-- [Apache Tomcat 공식 사이트](https://tomcat.apache.org/)
-- [Apache Tomcat - Which Version Do I Want?](https://tomcat.apache.org/whichversion.html)
-- [Apache Tomcat 11 Downloads](https://tomcat.apache.org/download-11.cgi)
-- [Tomcat 11 Docs - Documentation Index](https://tomcat.apache.org/tomcat-11.0-doc/index.html)
-- [Tomcat 11 Docs - RUNNING.txt](https://tomcat.apache.org/tomcat-11.0-doc/RUNNING.txt)
-- [Tomcat 11 Docs - Introduction (CATALINA_HOME, 디렉터리 구조)](https://tomcat.apache.org/tomcat-11.0-doc/introduction.html)
-- [Tomcat 11 Docs - Tomcat Setup](https://tomcat.apache.org/tomcat-11.0-doc/setup.html)
-- [Tomcat 11 Docs - The HTTP Connector](https://tomcat.apache.org/tomcat-11.0-doc/config/http.html)
-- [Tomcat 11 Docs - Default Servlet](https://tomcat.apache.org/tomcat-11.0-doc/default-servlet.html)
-- [Tomcat 11 Docs - Deployer How-To](https://tomcat.apache.org/tomcat-11.0-doc/deployer-howto.html)
-- [Tomcat 11 Docs - Security Considerations](https://tomcat.apache.org/tomcat-11.0-doc/security-howto.html)
-- [Tomcat 9 Servlet API (javax.servlet)](https://tomcat.apache.org/tomcat-9.0-doc/servletapi/index.html)
-- [Tomcat 10.1 Servlet API (jakarta.servlet)](https://tomcat.apache.org/tomcat-10.1-doc/servletapi/index.html)
-- [Jakarta Servlet 6.1 Specification](https://jakarta.ee/specifications/servlet/6.1/)
-- [Apache HTTP Server Project](https://httpd.apache.org/)
-- [MDN - An overview of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview)
-- [Spring Boot Docs - Servlet Web Applications](https://docs.spring.io/spring-boot/reference/web/servlet.html)

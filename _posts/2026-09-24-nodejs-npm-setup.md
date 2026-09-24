@@ -3378,30 +3378,3 @@ node hello.js
 ```
 
 로 직접 JavaScript 파일까지 실행된다면 **Node.js와 npm 개발환경 구축은 완료**다.
-
----
-
-## 더 학습하면 좋은 개념
-
-- **package-lock.json과 Semantic Versioning** — 80장에서 말한 "lock 파일"의 정체다. `^1.2.3` 같은 버전 범위와 lock 파일이 함께 동작해야 팀원 모두가 같은 패키지 버전을 설치할 수 있다.
-- **npx** — npm과 함께 설치되는 도구로, 패키지를 전역 설치하지 않고 바로 실행할 수 있다. React·Next.js 프로젝트를 처음 만들 때 자주 보게 된다.
-- **CommonJS와 ES Modules** — Node.js에서 파일을 나눠 불러오는 두 방식(`require` / `import`)이다. `package.json`의 `"type"` 값에 따라 동작이 달라져서, 파일을 여러 개로 나누기 시작하면 바로 만나게 된다.
-- **이벤트 루프와 비동기 I/O** — Node.js가 하나의 스레드로도 많은 요청을 처리하는 원리다. 96장의 "Node.js로 서버를 만든다"가 어떻게 가능한지 이해하는 출발점이다.
-- **Version Manager와 `engines` 필드** — 20·90장에서 미뤄 둔 nvm-windows·fnm과, `package.json`에 필요한 Node 버전을 적는 `engines` 필드다. 여러 프로젝트를 오가기 시작하면 필요해진다.
-
-## 참고 자료
-
-- [Node.js 공식 사이트](https://nodejs.org/en)
-- [Node.js - Download](https://nodejs.org/en/download)
-- [Node.js - Previous Releases (릴리스 상태와 LTS 정책)](https://nodejs.org/en/about/previous-releases)
-- [Node.js - v24.21.0 릴리스 노트](https://nodejs.org/en/blog/release/v24.21.0)
-- [Node.js 배포 목록 - v24.21.0](https://nodejs.org/dist/v24.21.0/)
-- [Node.js Docs - REPL](https://nodejs.org/api/repl.html)
-- [npm Docs - About npm](https://docs.npmjs.com/about-npm)
-- [npm Docs - Downloading and installing Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-- [npm Docs - package.json](https://docs.npmjs.com/cli/configuring-npm/package-json)
-- [npm Docs - npm init](https://docs.npmjs.com/cli/commands/npm-init)
-- [npm Docs - npm install](https://docs.npmjs.com/cli/commands/npm-install)
-- [npm Docs - npm run](https://docs.npmjs.com/cli/commands/npm-run)
-- [Microsoft Learn - about_Execution_Policies](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies)
-- [nvm-windows (GitHub)](https://github.com/nvm-windows/nvm)
