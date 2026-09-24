@@ -2626,3 +2626,157 @@ h1, h2, h3, h4 {
   }
 
 }
+
+
+/* =========================================================
+   첫 방문 안내 팝업 (_includes/welcome-popup.html)
+   Dev Setup 글 상단 안내 카드 (_includes/welcome-note.html)
+   ========================================================= */
+
+.welcome-popup {
+  width: min(400px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow-y: auto;
+
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  color: var(--text);
+}
+
+/* 뒤쪽 화면이 그대로 보이도록 아주 옅게만 가린다. */
+.welcome-popup::backdrop {
+  background: rgba(15, 23, 42, 0.08);
+}
+
+.welcome-popup:focus {
+  outline: none;
+}
+
+.welcome-popup-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 22px 20px;
+}
+
+.welcome-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.welcome-popup-title {
+  margin: 0;
+  padding-right: 28px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+/* 팝업의 대화: 질문한 대상의 말은 왼쪽, 블로그 주인의 말은 오른쪽 말풍선 */
+.welcome-popup-talk {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 2px 0;
+}
+
+.welcome-popup-bubble {
+  max-width: 85%;
+  margin: 0;
+  padding: 7px 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.welcome-popup-bubble.is-other {
+  align-self: flex-start;
+  background: var(--surface-soft);
+  border-color: var(--border);
+  border-bottom-left-radius: 3px;
+}
+
+.welcome-popup-bubble.is-me {
+  align-self: flex-end;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-bottom-right-radius: 3px;
+}
+
+.welcome-popup-text {
+  margin: 0;
+  font-size: 14px;
+}
+
+.welcome-popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+/* Dev Setup 글 상단 카드: 팝업과 같은 문구·글자 스타일을 쓰고,
+   대화 두 줄은 말풍선 대신 들여쓰기 + 왼쪽 선으로 나눈다. */
+.welcome-note {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 0 32px;
+  padding: 18px 20px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.welcome-note .welcome-popup-title {
+  padding-right: 0;
+}
+
+.welcome-note .welcome-popup-talk {
+  gap: 4px;
+}
+
+.welcome-note .welcome-popup-bubble {
+  align-self: stretch;
+  max-width: none;
+  padding: 2px 0 2px 12px;
+  background: none;
+  border: 0;
+  border-left: 2px solid;
+  border-radius: 0;
+}
+
+.welcome-note .welcome-popup-bubble.is-other {
+  border-left-color: var(--border-strong);
+  color: var(--muted);
+}
+
+.welcome-note .welcome-popup-bubble.is-me {
+  margin-left: 20px;
+  border-left-color: var(--accent);
+  color: var(--accent);
+}
+
+@media (max-width: 480px) {
+
+  .welcome-popup {
+    width: calc(100vw - 24px);
+  }
+
+  .welcome-popup-form {
+    padding: 20px 16px 16px;
+  }
+
+  .welcome-note {
+    padding: 16px;
+  }
+
+}

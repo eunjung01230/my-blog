@@ -47,6 +47,11 @@ layout: default
 
   </header>
 
+  {%- comment -%} Dev Setup 글에만 상단 안내 카드를 보여 준다. (_includes/welcome-note.html) {%- endcomment -%}
+  {%- if post_slug == 'dev-setup' %}
+  {% include welcome-note.html %}
+  {%- endif %}
+
   {%- comment -%}
     자동 목차. 본문의 h2/h3 (kramdown 이 만든 id) 를 읽어 assets/js/post-toc.js 가 채운다.
     h2/h3 가 3개 미만이거나 JS 가 없으면 hidden 그대로 남는다.
