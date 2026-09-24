@@ -284,6 +284,23 @@ tags: [react, react-query, caching]
 - `project`는 `_project_posts/`의 프로젝트 글 전용이다. 이 폴더의 글은 `_config.yml` defaults가 자동으로 채우므로 직접 적지 않는다. `_posts/`의 학습 글은 나머지 10개 중에서 고른다.
 - 새 slug가 필요하면 글에 먼저 쓰지 말고, `_data/categories.yml`과 `categories/<slug>.md` 페이지를 함께 추가한 뒤 사용한다. 블로그 `/write/` 페이지의 "+ 새 카테고리 추가"가 이 두 파일을 만드는 단계를 안내한다.
 
+#### 5.2.2 프로젝트 글 규칙 — Git 저장소 주소 필수
+
+프로젝트 글(`_project_posts/<slug>/NN-제목.md`)은 상단에 **그 프로젝트의 Git 저장소 주소**가 보여야 한다.
+
+- 주소는 글마다 적지 않고, 프로젝트 목록의 단일 출처인 `_data/projects.yml`의 해당 항목에 `repo`로 **한 번만** 적는다.
+  ```yaml
+  - slug: tanchunrun
+    title: TanchunRun
+    label: 탄천런
+    repo: https://github.com/NextComm1T/tanchunrun
+  ```
+- `_layouts/post.html`이 글의 `project` 값으로 이 `repo`를 찾아 제목·날짜 아래에 자동으로 표시한다.
+- `repo`는 **필수**다. `https://`로 시작하는 전체 주소로 쓰고, 방문자가 열 수 있는 공개 저장소인지 확인한다.
+- 새 프로젝트를 추가할 때는 `_data/projects.yml` 항목(`repo` 포함) · `projects/<slug>.md` · `_project_posts/<slug>/00-*.md`를 함께 만든다. `/write/?type=project`의 "+ 새 프로젝트 추가"에 Git 저장소 주소 칸이 있고, 비워 두면 다음 단계로 넘어가지 않는다.
+- 이미 있는 프로젝트에 글을 추가할 때 그 프로젝트에 `repo`가 없으면 `/write/`가 저장을 막는다. `_data/projects.yml`에 먼저 `repo`를 추가한다.
+- 저장소 주소를 모르면 지어내지 말고 사용자에게 묻는다.
+
 아래가 모두 같은 slug를 기준으로 동작하므로, 값이 어긋나면 글이 사이드바·카테고리 페이지에서 빠진다.
 
 | 사용처 | 동작 |
@@ -393,5 +410,6 @@ mermaid: true          # Mermaid 다이어그램이 있을 때만
 - [ ] 파일명이 `_posts/YYYY-MM-DD-제목.md` 형식인가?
 - [ ] Front Matter가 올바르게 작성되어 있는가? (layout, title, date)
 - [ ] `categories`가 5.2.1의 소문자 slug 하나인가? (표시명·대문자 아님)
+- [ ] 프로젝트 글이면 `_data/projects.yml`의 해당 프로젝트에 `repo`(Git 저장소 주소)가 있는가? (5.2.2)
 - [ ] Mermaid 사용 시 `mermaid: true`가 Front Matter에 있는가?
 - [ ] 이미지 경로가 `{{ site.baseurl }}/assets/...` 형식인가?

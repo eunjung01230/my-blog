@@ -6,7 +6,7 @@ permalink: /projects/
 
 {%- comment -%}
   프로젝트 목록은 _data/projects.yml 하나만 보고 만든다.
-  프로젝트를 추가할 때는 projects.yml 에 항목을 넣고
+  프로젝트를 추가할 때는 projects.yml 에 항목(Git 저장소 주소 repo 포함)을 넣고
   projects/<slug>.md 를 하나 만들면 된다.
 {%- endcomment -%}
 

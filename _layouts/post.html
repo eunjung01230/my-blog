@@ -9,6 +9,10 @@ layout: default
   {%- assign post_slug = page.category -%}
 {%- endif -%}
 {%- assign post_category = site.data.categories | where: "slug", post_slug | first -%}
+{%- comment -%} 프로젝트 글이면 _data/projects.yml 의 repo 를 글 상단에 보여 준다 {%- endcomment -%}
+{%- if page.project -%}
+  {%- assign post_project = site.data.projects | where: "slug", page.project | first -%}
+{%- endif -%}
 
 <article class="post">
 
@@ -33,6 +37,13 @@ layout: default
       {%- comment -%} 수정은 저장 코드를 확인한 뒤 진행된다. (edit.html) {%- endcomment %}
       <a class="page-action post-edit-button" href="{{ '/edit/' | relative_url }}?path={{ page.path | url_encode }}">수정</a>
     </div>
+
+    {%- if post_project and post_project.repo %}
+    <p class="post-project-repo">
+      <span class="post-project-repo-label">{{ post_project.label }} Git 저장소</span>
+      <a href="{{ post_project.repo }}" target="_blank" rel="noopener">{{ post_project.repo | remove_first: "https://" | remove_first: "http://" }}</a>
+    </p>
+    {%- endif %}
 
   </header>
 
