@@ -105,6 +105,31 @@ h1, h2, h3, h4 {
   outline-offset: 1px;
 }
 
+/* 얇은 스크롤바: 평소엔 투명하고, 스크롤하는 동안에만 보인다. (카테고리 사이드바, 글 목차)
+   is-scrolling 클래스는 assets/js/scroll-quiet.js 가 붙이고 뗀다. */
+.scroll-quiet {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.scroll-quiet.is-scrolling {
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+/* scrollbar-color 를 지원하지 않는 브라우저(Safari 등) */
+.scroll-quiet::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-quiet::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.scroll-quiet.is-scrolling::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+}
+
 
 /* =========================================================
    3. Shell Layout (sidebar + page)
@@ -129,6 +154,8 @@ h1, h2, h3, h4 {
   max-width: var(--layout-width);
   margin: 0 auto;
   padding: 36px var(--page-padding) 80px;
+  /* 글 목차가 본문 오른쪽에 들어갈 자리가 있는지 main 의 실제 폭으로 판단한다. (사이드바 접힘 여부까지 반영) */
+  container-type: inline-size;
 }
 
 /* 목록/소개 페이지는 읽기 좋은 폭으로 제한한다. (홈은 넓게 사용) */
@@ -1036,6 +1063,7 @@ h1, h2, h3, h4 {
 
 /* 글 페이지: 읽기 좋은 폭은 유지하고, 목록 페이지(.page-center)처럼 가운데 둔다 */
 .post {
+  position: relative;
   max-width: var(--content-width);
   margin: 0 auto;
 }
@@ -1081,6 +1109,192 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
+/* 자동 목차 (assets/js/post-toc.js) — 본문 시작 전 카드. 본문보다 눈에 띄지 않게 muted 색을 기본으로 둔다 */
+.post-toc {
+  margin: 0 0 32px;
+  padding: 14px 16px 14px 20px;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.post-toc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.post-toc-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.post-toc-toggle svg {
+  transition: transform 0.15s;
+}
+
+.post-toc.is-collapsed .post-toc-toggle svg {
+  transform: rotate(180deg);
+}
+
+.post-toc-list,
+.post-toc-sub {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 항목이 많은 글은 목록 안에서 스크롤한다. (본문이 목차에 밀려 내려가지 않게) 스크롤바는 .scroll-quiet */
+.post-toc-list {
+  margin-top: 8px;
+  max-height: min(60vh, 480px);
+  overflow-y: auto;
+  counter-reset: post-toc;
+}
+
+.post-toc-list a {
+  display: flex;
+  gap: 10px;
+  padding: 4px 8px;
+  border-radius: var(--radius);
+  color: var(--muted);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.post-toc-list a:hover {
+  color: var(--accent);
+}
+
+.post-toc-list a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* h2 에 번호가 없는 글만 자동 번호를 붙인다 */
+.post-toc.is-numbered .post-toc-list > .is-h2 {
+  counter-increment: post-toc;
+}
+
+.post-toc.is-numbered .post-toc-list > .is-h2 > a::before {
+  content: counter(post-toc);
+  flex: 0 0 auto;
+  min-width: 1.2em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* h3: 한 단계 들여쓰고 왼쪽 선으로 계층을 보여 준다 */
+.post-toc-sub {
+  margin: 2px 0 4px 16px;
+  padding-left: 8px;
+  border-left: 1px solid var(--border);
+}
+
+.post-toc.is-numbered .post-toc-sub {
+  margin-left: calc(8px + 1.2em + 2px);
+}
+
+.post-toc-sub a,
+.post-toc-list > .is-h3 > a {
+  font-size: 13px;
+}
+
+/* 지금 읽는 항목 */
+.post-toc-list .is-active > a {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+@media (max-width: 767px) {
+
+  .post-toc {
+    padding: 12px 12px 12px 16px;
+  }
+
+  /* 터치 영역 확보 */
+  .post-toc-list a {
+    padding: 7px 8px;
+  }
+
+  .post-toc-sub {
+    margin-left: 10px;
+  }
+
+  .post-toc.is-numbered .post-toc-sub {
+    margin-left: 12px;
+  }
+
+}
+
+/* 목차가 없는 글(h2/h3 3개 미만)은 빈 자리도 만들지 않는다. (오른쪽 배치 때 가로 스크롤 방지) */
+.post-toc-rail:has(> .post-toc[hidden]) {
+  display: none;
+}
+
+/* 본문 오른쪽에 목차가 들어가면 (본문 760 + 간격 56 + 목차 210 − main 안쪽 여백으로 들어가는 16 = 1010px)
+   목차를 본문 오른쪽 바깥에 붙여 스크롤해도 따라오게 하고, 박스 없이 목록만 보인다.
+   목차가 있는 글은 목차 오른쪽 끝이 main 안쪽 여백(40px)으로 16px 들어가도록 본문을 왼쪽으로 옮긴다.
+   (본문이 가운데보다 더 오른쪽으로는 가지 않는다) 그보다 좁으면 본문 위 카드. */
+@container (min-width: 1010px) {
+
+  .post:has(.post-toc:not([hidden])) {
+    margin-left: min((100cqw - 760px) / 2, 100cqw - 1010px);
+  }
+
+  .post-toc-rail {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(100% + 56px);
+    width: 210px;
+    padding-top: 20px;
+  }
+
+  .post-toc {
+    position: sticky;
+    top: 48px;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 72px);
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    font-size: 13px;
+  }
+
+  .post-toc-head {
+    padding-left: 8px;
+  }
+
+  .post-toc-list {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .post-toc-sub a,
+  .post-toc-list > .is-h3 > a {
+    font-size: 12.5px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .post-toc-toggle svg {
+    transition: none;
+  }
+
+}
+
 .post-content {
   font-size: 16px;
   line-height: 1.8;
@@ -1096,6 +1310,12 @@ h1, h2, h3, h4 {
 .post-content h3 {
   margin: 32px 0 10px;
   font-size: 17px;
+}
+
+/* 목차·#주소로 이동했을 때 제목이 화면 맨 위에 딱 붙지 않게 약간 띄운다 */
+.post-content h2,
+.post-content h3 {
+  scroll-margin-top: 16px;
 }
 
 .post-content h4 {
