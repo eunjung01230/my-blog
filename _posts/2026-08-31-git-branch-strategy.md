@@ -3,6 +3,7 @@ layout: post
 title: "Git 기초와 Branch"
 date: 2026-08-31
 categories: git
+learningOrder: 50
 mermaid: true
 ---
 

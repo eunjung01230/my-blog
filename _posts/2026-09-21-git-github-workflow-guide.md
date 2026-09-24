@@ -3,6 +3,7 @@ layout: post
 title: "Git과 GitHub 협업 흐름 한 번에 정리하기"
 date: 2026-09-21 15:15:00 +0900
 categories: git
+learningOrder: 60
 tags:
   - git
   - github

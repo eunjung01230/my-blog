@@ -2,6 +2,7 @@
 title: "기획과 디자인"
 date: 2026-09-21 10:10:00 +0900
 project: tanchunrun
+learningOrder: 130
 tags:
   - planning
   - design

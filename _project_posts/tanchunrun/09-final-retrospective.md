@@ -2,6 +2,7 @@
 title: "프로젝트 최종 회고"
 date: 2026-09-21 11:30:00 +0900
 project: tanchunrun
+learningOrder: 210
 tags:
   - retrospective
   - vibe-coding

@@ -3,6 +3,7 @@ layout: post
 title: "Git 기초부터 브랜치까지, 버전 관리의 큰 그림 잡기"
 date: 2026-08-31
 categories: git
+learningOrder: 20
 mermaid: true
 ---
 Git 기초부터 브랜치까지, 버전 관리의 큰 그림 잡기

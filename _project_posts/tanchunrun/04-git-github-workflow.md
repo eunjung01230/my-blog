@@ -2,6 +2,7 @@
 title: "Git / GitHub 협업 과정"
 date: 2026-09-21 10:40:00 +0900
 project: tanchunrun
+learningOrder: 160
 tags:
   - git
   - github
