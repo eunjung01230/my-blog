@@ -2,6 +2,8 @@
 # slug  : _project_posts/<slug>/ 폴더명이자 글의 project 값, URL에 사용
 # title : 원어 표기
 # label : 화면에 표시되는 이름
+# repo  : 프로젝트 Git 저장소 주소 (필수). 이 프로젝트의 모든 글 상단에 자동으로 표시된다. (_layouts/post.html)
 - slug: tanchunrun
   title: TanchunRun
   label: 탄천런
+  repo: https://github.com/NextComm1T/tanchunrun

@@ -65,6 +65,7 @@
     projectLabel: form.elements.project_label,
     projectTitle: form.elements.project_title,
     projectSlug: form.elements.project_slug,
+    projectRepo: form.elements.project_repo,
     categoryLabel: form.elements.category_label,
     categorySlug: form.elements.category_slug,
     tags: form.elements.tags,
@@ -98,6 +99,17 @@
   }
 
   var existingProjects = readJson('[data-write-projects]');
+  // _data/projects.yml 전체 (slug·label·repo). 프로젝트 글 상단의 Git 저장소 주소 확인용
+  var projectMeta = readJson('[data-write-project-meta]');
+  // 프로젝트 Git 저장소 주소: https:// 로 시작하는 주소 (예: https://github.com/NextComm1T/tanchunrun)
+  var REPO_PATTERN = /^https:\/\/[^\s\/]+\/\S+$/;
+
+  function projectRepoOf(slug) {
+    for (var i = 0; i < projectMeta.length; i++) {
+      if (projectMeta[i] && projectMeta[i].slug === slug) return projectMeta[i].repo || '';
+    }
+    return '';
+  }
   var existingCategories = readJson('[data-write-categories]');
 
   var existing = readJson('[data-write-existing]');
@@ -110,6 +122,7 @@
     status: form.querySelector('[data-write-status]'),
     newProject: form.querySelector('[data-write-newproject]'),
     projectPagePath: form.querySelector('[data-write-project-page-path]'),
+    projectRepo: form.querySelector('[data-write-project-repo]'),
     newCategory: form.querySelector('[data-write-newcategory]'),
     categoryPagePath: form.querySelector('[data-write-category-page-path]')
   };
@@ -169,7 +182,8 @@
     return {
       slug: fields.projectSlug.value.trim(),
       label: label,
-      title: fields.projectTitle.value.trim() || label
+      title: fields.projectTitle.value.trim() || label,
+      repo: fields.projectRepo.value.trim()
     };
   }
 
@@ -183,12 +197,15 @@
              existing.some(function (path) { return path.indexOf('_project_posts/' + info.slug + '/') === 0; })) {
       errors.push('이미 있는 프로젝트 폴더명입니다: ' + info.slug);
     }
+    if (!info.repo) errors.push('프로젝트 Git 저장소 주소를 입력하세요. (프로젝트 글 상단에 표시됩니다)');
+    else if (!REPO_PATTERN.test(info.repo)) errors.push('Git 저장소 주소는 https:// 로 시작하는 전체 주소로 씁니다. 예) https://github.com/NextComm1T/tanchunrun');
     return errors;
   }
 
   // _data/projects.yml 맨 아래에 붙일 항목 (기존 항목과 같은 키 순서)
   function projectListSnippet(info) {
-    return '\n- slug: ' + info.slug + '\n  title: ' + yamlString(info.title) + '\n  label: ' + yamlString(info.label) + '\n';
+    return '\n- slug: ' + info.slug + '\n  title: ' + yamlString(info.title) + '\n  label: ' + yamlString(info.label) +
+           '\n  repo: ' + info.repo + '\n';
   }
 
   // projects/<slug>.md — 기존 projects/tanchunrun.md 와 같은 형식
@@ -316,6 +333,9 @@
     if (isProject) {
       if (isNewProject()) errors = errors.concat(checkNewProject());
       else if (!post.project) errors.push('프로젝트를 선택하세요.');
+      else if (!projectRepoOf(post.project)) {
+        errors.push('이 프로젝트에는 Git 저장소 주소가 없습니다. _data/projects.yml 의 ' + post.project + ' 항목에 repo 를 추가한 뒤 저장하세요.');
+      }
       var dir = '_project_posts/' + post.project + '/';
       var same = existing.filter(function (path) {
         return path.indexOf(dir) === 0 && /^\d+-/.test(path.slice(dir.length)) &&
@@ -379,6 +399,16 @@
     if (el.newProject) {
       el.newProject.hidden = !isNewProject();
       el.projectPagePath.textContent = 'projects/' + (fields.projectSlug.value.trim() || '폴더명') + '.md';
+    }
+    if (el.projectRepo && isProject) {
+      if (isNewProject()) {
+        el.projectRepo.textContent = 'Git 저장소 주소는 아래 "새 프로젝트 정보"에 입력합니다.';
+      } else {
+        var repoUrl = projectRepoOf(fields.project.value);
+        el.projectRepo.textContent = repoUrl
+          ? 'Git 저장소: ' + repoUrl + ' (글 상단에 자동으로 표시됩니다)'
+          : 'Git 저장소 주소가 등록되지 않은 프로젝트입니다. _data/projects.yml 에 repo 를 추가해야 저장할 수 있습니다.';
+      }
     }
     if (el.newCategory) {
       el.newCategory.hidden = !isNewCategory();

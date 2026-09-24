@@ -1369,6 +1369,26 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
+/* 프로젝트 글 상단 Git 저장소 주소 (_data/projects.yml 의 repo) — 날짜 줄 아래 */
+.post-project-repo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.post-project-repo a {
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
+
+.post-project-repo a:hover {
+  text-decoration: underline;
+}
+
 /* 자동 목차 (assets/js/post-toc.js) — 본문 시작 전 카드. 본문보다 눈에 띄지 않게 muted 색을 기본으로 둔다 */
 .post-toc {
   margin: 0 0 32px;
