@@ -1,7 +1,7 @@
 {%- comment -%}
   카테고리 사이드바.
   집계 대상은 일반 글(_posts) + 프로젝트 글(_project_posts) 전체다.
-  _data/categories.yml 의 순서/표시명을 사용하고, 글이 0개인 카테고리는 노출하지 않는다.
+  _data/categories.yml 의 순서/표시명을 사용하고, 등록된 카테고리는 글이 0개여도 모두 노출한다. (개수 0으로 표시)
   데스크톱에서는 접기/펼치기, 좁은 화면에서는 drawer 로 동작한다. (assets/js/sidebar.js)
 {%- endcomment -%}
 
@@ -45,7 +45,6 @@
         {%- for category in site.data.categories -%}
           {%- assign cat_slug = category.slug -%}
           {%- assign matched = all_entries | where_exp: "entry", "entry.categories contains cat_slug" -%}
-          {%- if matched.size > 0 -%}
         <li>
           <a href="{{ '/categories/' | append: cat_slug | append: '/' | relative_url }}"
              class="category-link{% if page.category == cat_slug %} is-active{% endif %}">
@@ -53,7 +52,6 @@
             <span class="category-count">{{ matched | size }}</span>
           </a>
         </li>
-          {%- endif -%}
         {%- endfor -%}
 
       </ul>
