@@ -36,6 +36,27 @@ layout: default
 
   </header>
 
+  {%- comment -%}
+    자동 목차. 본문의 h2/h3 (kramdown 이 만든 id) 를 읽어 assets/js/post-toc.js 가 채운다.
+    h2/h3 가 3개 미만이거나 JS 가 없으면 hidden 그대로 남는다.
+    본문 오른쪽에 자리가 있으면 오른쪽에 고정(sticky)되고, 없으면 본문 위 카드로 보인다. (custom.css .post-toc-rail)
+  {%- endcomment %}
+  <div class="post-toc-rail">
+  <nav class="post-toc" aria-label="이 글의 목차" data-post-toc hidden>
+    <div class="post-toc-head">
+      <p class="post-toc-title">이 글의 목차</p>
+      <button type="button" class="icon-button post-toc-toggle" data-post-toc-toggle
+              aria-controls="post-toc-list" aria-expanded="true" aria-label="목차 접기">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 15l6-6 6 6"/>
+        </svg>
+      </button>
+    </div>
+    <ol class="post-toc-list scroll-quiet" id="post-toc-list" data-post-toc-list></ol>
+  </nav>
+  </div>
+
   <div class="post-content">
     {{ content }}
   </div>
@@ -43,3 +64,5 @@ layout: default
   {% include post-nav.html %}
 
 </article>
+
+<script src="{{ '/assets/js/post-toc.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
