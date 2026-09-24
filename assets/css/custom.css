@@ -1034,8 +1034,10 @@ h1, h2, h3, h4 {
    8. Post Content
    ========================================================= */
 
+/* 글 페이지: 읽기 좋은 폭은 유지하고, 목록 페이지(.page-center)처럼 가운데 둔다 */
 .post {
   max-width: var(--content-width);
+  margin: 0 auto;
 }
 
 .post-header {
