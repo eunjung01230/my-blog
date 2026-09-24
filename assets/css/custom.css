@@ -13,7 +13,7 @@
   --accent: #3b6ea5;
   --accent-soft: #eef3f9;
 
-  --sidebar-width: 208px;
+  --sidebar-width: 232px;
   --content-width: 760px;
   --list-width: 860px;
   --layout-width: 1400px;
@@ -743,7 +743,7 @@ h1, h2, h3, h4 {
 .quick-card {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   padding: 16px 18px;
 
   background: var(--bg);
@@ -768,9 +768,14 @@ h1, h2, h3, h4 {
   color: var(--accent);
 }
 
+.quick-card .category-icon {
+  width: 20px;
+  height: 20px;
+}
+
 .quick-card-title {
   flex: 1 1 auto;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 650;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -778,7 +783,7 @@ h1, h2, h3, h4 {
 
 .quick-card-arrow {
   color: var(--muted);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .quick-card:hover .quick-card-arrow {
@@ -786,7 +791,7 @@ h1, h2, h3, h4 {
 }
 
 .quick-card-desc {
-  font-size: 13px;
+  font-size: 14.5px;
   line-height: 1.55;
   color: var(--muted);
 }

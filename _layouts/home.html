@@ -42,7 +42,7 @@ layout: default
 
 {%- if home.quick_menu and home.quick_menu.size > 0 -%}
 {%- comment -%}
-  카드가 한 화면에 다 들어가지 않으면 ← → 버튼이 나타난다. (assets/js/quick-menu.js)
+  카드가 한 화면에 다 들어가지 않으면 ← → 버튼이 나타난다. 양 끝에서는 반대쪽 끝으로 돌아간다. (assets/js/quick-menu.js)
   JS 가 없어도 가로 스크롤로 넘겨 볼 수 있다.
 {%- endcomment -%}
 <section class="quick-menu" aria-label="주요 카테고리 바로가기" data-quick-menu>
@@ -65,9 +65,10 @@ layout: default
   </div>
 
   <div class="quick-track" id="quick-track" data-quick-track>
-  {%- for item in home.quick_menu -%}
-    {%- assign quick_category = site.data.categories | where: "slug", item.slug | first -%}
-    {%- if quick_category -%}
+  {%- comment -%} 순서는 _data/categories.yml (사이드바와 같다), 보여 줄 카드와 설명은 _data/home.yml quick_menu {%- endcomment -%}
+  {%- for quick_category in site.data.categories -%}
+    {%- assign item = home.quick_menu | where: "slug", quick_category.slug | first -%}
+    {%- if item -%}
   <a class="quick-card" href="{{ '/categories/' | append: quick_category.slug | append: '/' | relative_url }}">
     <span class="quick-card-head">
       {% include category-icon.html slug=quick_category.slug %}

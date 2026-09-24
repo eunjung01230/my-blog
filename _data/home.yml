@@ -8,23 +8,30 @@ hero:
   image: /assets/images/pingu.jpg
   image_alt: "빙산 앞에서 왼쪽을 바라보는 펭귄 캐릭터 핑구"
 
-# 사이드바를 접었을 때 Hero 아래에 보이는 카테고리 바로가기. 순서대로 표시되고,
+# 사이드바를 접었을 때 Hero 아래에 보이는 카테고리 바로가기. 여기에는 보여 줄 카테고리와 설명만 적고,
+# 표시 순서는 _data/categories.yml 순서(사이드바와 같음)를 따른다.
 # 한 화면에 다 들어가지 않으면 ← → 버튼과 가로 스크롤로 넘겨 볼 수 있다.
 # slug 는 _data/categories.yml 의 slug 와 같아야 한다. (표시명은 그쪽 label 을 사용)
 quick_menu:
-  - slug: backend
-    description: 요청부터 응답까지, 서버가 하는 일
-  - slug: database
-    description: Schema · Migration · ORM 기초
-  - slug: frontend
-    description: 화면이 실제 기능이 되기까지
-  - slug: project
-    description: 탄천런 프로젝트 개발 기록
+  - slug: dev-setup
+    description: 개발 공부를 시작하기 위한 개발환경 구축
   - slug: git
     description: 브랜치부터 PR까지, 협업 흐름
   - slug: terminal
     description: 터미널과 프로세스·포트 기초
+  - slug: frontend
+    description: 화면이 실제 기능이 되기까지
+  - slug: backend
+    description: 요청부터 응답까지, 서버가 하는 일
+  - slug: database
+    description: Schema · Migration · ORM 기초
   - slug: deployment
     description: 로컬에서 배포까지, 환경 이해하기
+  - slug: design
+    description: UI/UX를 설계하고 다듬으며 배운 것
   - slug: ai-tools
     description: Claude Code · Claude Design 사용법
+  - slug: project
+    description: 탄천런 프로젝트 개발 기록
+  - slug: my-blog
+    description: 이 블로그를 만들고 운영하며 배운 과정
