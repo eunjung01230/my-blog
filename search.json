@@ -1,0 +1,30 @@
+---
+layout: null
+permalink: /search.json
+sitemap: false
+---
+{%- comment -%}
+  헤더 검색(_includes/site-search.html · assets/js/search.js)이 읽는 검색 데이터.
+  빌드할 때 전체 글(_posts + _project_posts, Posts 페이지와 같은 목록)을 JSON 하나로 만든다. 서버·DB 검색은 쓰지 않는다.
+  검색 대상: 제목 · 본문(HTML 태그를 뺀 글자) · 카테고리(표시명과 slug) · 태그
+{%- endcomment -%}
+{%- assign search_entries = site.posts | concat: site.project_posts | sort: "date" | reverse -%}
+[
+{%- for entry in search_entries -%}
+  {%- if entry.categories and entry.categories.size > 0 -%}
+    {%- assign search_slug = entry.categories | first -%}
+  {%- else -%}
+    {%- assign search_slug = entry.category -%}
+  {%- endif -%}
+  {%- assign search_category = site.data.categories | where: "slug", search_slug | first %}
+  {
+    "title": {{ entry.title | jsonify }},
+    "url": {{ entry.url | relative_url | jsonify }},
+    "date": {{ entry.date | date: "%Y.%m.%d" | jsonify }},
+    "category": {{ search_category.label | default: search_slug | jsonify }},
+    "categorySlug": {{ search_slug | jsonify }},
+    "tags": {{ entry.tags | jsonify }},
+    "content": {{ entry.content | strip_html | normalize_whitespace | strip | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+]

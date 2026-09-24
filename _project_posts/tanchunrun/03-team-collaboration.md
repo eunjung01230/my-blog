@@ -2,6 +2,7 @@
 title: "4인 팀 협업 과정"
 date: 2026-09-21 10:30:00 +0900
 project: tanchunrun
+learningOrder: 150
 tags:
   - collaboration
   - teamwork

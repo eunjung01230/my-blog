@@ -1,0 +1,37 @@
+{%- comment -%}
+  헤더 게시물 검색. 헤더 메뉴(Posts) 왼쪽의 돋보기 버튼과 검색 창(dialog).
+  - 검색 데이터는 /search.json (빌드할 때 만들어지는 정적 파일), 검색 로직은 assets/js/search.js.
+  - JS 가 꺼져 있으면 버튼을 숨긴다. (custom.css .no-js .search-button)
+{%- endcomment -%}
+<button type="button" class="icon-button search-button" data-search-open
+        aria-haspopup="dialog" aria-controls="search-dialog" aria-label="게시물 검색">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="11" cy="11" r="6.5"/>
+    <path d="M20 20l-4.2-4.2"/>
+  </svg>
+</button>
+
+<dialog class="search-dialog" id="search-dialog" aria-label="게시물 검색"
+        data-search-dialog data-search-src="{{ '/search.json' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <div class="search-panel">
+
+    <form class="search-form" role="search" data-search-form>
+      <svg class="search-form-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="6.5"/>
+        <path d="M20 20l-4.2-4.2"/>
+      </svg>
+      <input type="search" class="search-input" data-search-input
+             placeholder="제목, 본문, 카테고리, 태그 검색" aria-label="검색어"
+             autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search">
+      <button type="button" class="search-close" data-search-close>닫기</button>
+    </form>
+
+    <p class="search-status" data-search-status aria-live="polite"></p>
+    <ul class="search-results" data-search-results></ul>
+
+  </div>
+</dialog>
+
+<script src="{{ '/assets/js/search.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

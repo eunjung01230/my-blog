@@ -17,7 +17,7 @@ permalink: /posts/
     <h1 class="page-title">Posts</h1>
     <div class="page-meta-row">
       <p class="page-meta">전체 기록 {{ all_entries | size }}개</p>
-      {% include post-sort.html count=all_entries.size %}
+      {% include post-sort.html count=all_entries.size options="latest,oldest,learning" %}
     </div>
   </div>
 

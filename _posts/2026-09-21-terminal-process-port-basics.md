@@ -3,6 +3,7 @@ layout: post
 title: "개발할 때 자주 쓰는 터미널과 프로세스 기초 정리"
 date: 2026-09-21 15:25:00 +0900
 categories: terminal
+learningOrder: 10
 tags:
   - terminal
   - process

@@ -3,6 +3,7 @@ layout: post
 title: "백엔드는 정확히 무엇을 하는가? 요청부터 응답까지"
 date: 2026-09-21 15:05:00 +0900
 categories: backend
+learningOrder: 80
 tags:
   - backend
   - server
