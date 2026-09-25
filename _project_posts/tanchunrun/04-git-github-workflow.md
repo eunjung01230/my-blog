@@ -634,9 +634,9 @@ GitHub에서 Pull Request를 리뷰할 때
 
 처럼 여러 commit이 생길 수 있다.
 
-이 commit을 그대로 main에 모두 남길 수도 있지만, 탄천런에서는 squash merge를 사용하기도 했다.
+이 commit을 그대로 develop에 모두 남길 수도 있지만, 탄천런에서는 squash merge를 사용하기도 했다.
 
-Squash merge는 작업 브랜치의 여러 commit을 하나의 commit으로 합쳐 main에 넣는 방식이다.
+Squash merge는 작업 브랜치의 여러 commit을 하나의 commit으로 합쳐 develop에 넣는 방식이다.
 
 내 입장에서는
 
@@ -648,7 +648,7 @@ Squash merge는 작업 브랜치의 여러 commit을 하나의 commit으로 합�
 
 으로 정리하는 느낌이었다.
 
-덕분에 main의 commit 기록을 봤을 때 어떤 기능이 들어왔는지 비교적 확인하기 쉬웠다.
+덕분에 develop의 commit 기록을 봤을 때 어떤 기능이 들어왔는지 비교적 확인하기 쉬웠다.
 
 ---
 
@@ -789,9 +789,9 @@ PR
 ↓
 working tree 확인
 ↓
-main 최신화
+develop 최신화
 ↓
-새 작업 브랜치 생성
+develop 기준 새 작업 브랜치 생성
 ↓
 Issue 범위 구현
 ↓
@@ -801,7 +801,7 @@ commit
 ↓
 push
 ↓
-Pull Request
+Pull Request → develop
 ↓
 리뷰
 ↓
@@ -809,9 +809,11 @@ Pull Request
 ↓
 다시 commit / push
 ↓
-merge
+develop에 merge
 ↓
-local main 다시 최신화
+develop에서 통합·Preview 확인
+↓
+local develop 다시 최신화
 ↓
 다음 작업 시작
 ```
@@ -819,6 +821,16 @@ local main 다시 최신화
 단계가 훨씬 많아졌다.
 
 하지만 오히려 왜 이런 순서가 필요한지는 전보다 이해하기 쉬워졌다.
+
+최종 배포는 이 흐름과 따로 진행했다.
+
+```text
+develop에서 통합 확인
+↓
+main으로 최종 반영
+↓
+Production
+```
 
 ---
 
@@ -892,7 +904,7 @@ PR을 만드는 이유도,
 
 리뷰 후 같은 브랜치에 다시 push하는 이유도,
 
-main을 계속 최신화하는 이유도 결국 서로의 작업을 섞지 않고 연결하기 위한 것이었다.
+기준 브랜치를 계속 최신화하는 이유도 결국 서로의 작업을 섞지 않고 연결하기 위한 것이었다.
 
 ---
 
@@ -900,21 +912,23 @@ main을 계속 최신화하는 이유도 결국 서로의 작업을 섞지 않�
 
 다음 팀 프로젝트에서는 새 작업을 시작할 때 다음 순서를 기본으로 사용할 것 같다.
 
+프로젝트의 브랜치 전략에 따라 기준 브랜치는 `main` 또는 `develop`이 될 수 있다.
+
 ```text
 1. 현재 브랜치 확인
 2. git status 확인
 3. 기존 변경사항이 없는지 확인
 4. 원격 저장소 최신 상태 확인
-5. main 최신화
-6. local main과 origin/main 상태 확인
-7. Issue별 새 브랜치 생성
+5. 기준 브랜치 최신화
+6. local과 원격 기준 브랜치 상태 확인
+7. 기준 브랜치에서 Issue별 새 작업 브랜치 생성
 8. 해당 Issue 범위만 작업
 9. 변경사항 확인 후 commit
 10. push
-11. PR 생성
+11. 기준 브랜치로 PR 생성
 12. 리뷰 반영
 13. merge
-14. 다시 main 최신화
+14. 다시 기준 브랜치 최신화
 15. 다음 작업 시작
 ```
 

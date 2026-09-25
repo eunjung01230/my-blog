@@ -423,7 +423,7 @@ vs
 
 Claude를 코드에서만 사용하는 것은 아니었다.
 
-앞 글에서 정리했던 것처럼 Claude Design에서는
+「[Claude Design 활용]({{ site.baseurl }}{% post_url 2026-09-25-designing-with-claude-design %})」에서 정리했던 것처럼 Claude Design에서는
 
 ```text
 기획
