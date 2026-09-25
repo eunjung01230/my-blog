@@ -55,7 +55,7 @@ GitHub 저장소 생성
 GitHub에서 파일 확인
 ```
 
-Git의 `branch`, `pull`, `merge`, `PR` 같은 기능은 이후 Git & GitHub 학습 글에서 별도로 다룬다.
+Git의 `branch`, `pull`, `merge`, `PR` 같은 기능은 Git & GitHub 카테고리의 학습 글에서 별도로 다룬다.
 
 ---
 
@@ -1290,7 +1290,7 @@ git branch -M main
 
 정도로 이해하면 충분하다.
 
-branch는 이후 Git 학습 글에서 자세히 다룬다.
+branch는 Git & GitHub 카테고리의 학습 글에서 자세히 다룬다.
 
 ---
 

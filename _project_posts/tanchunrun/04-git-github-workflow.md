@@ -341,6 +341,8 @@ local main이 최신인가?
 
 그래서 `git status`를 자주 확인하게 됐다.
 
+초기에는 main 중심으로 진행했지만, 협업 과정에서 9월 15일부터 feature → develop → main 구조로 변경했다.
+
 ---
 
 ## git status가 생각보다 중요했다

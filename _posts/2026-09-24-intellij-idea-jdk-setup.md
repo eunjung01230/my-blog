@@ -3572,7 +3572,7 @@ File
 그리고 프로그램을 Run했을 때
 
 ```text
-Hello IntelliJ!
+JDK 21 + IntelliJ 연결 완료!
 ```
 
 정상 출력.

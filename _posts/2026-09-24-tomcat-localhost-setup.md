@@ -46,7 +46,7 @@ IntelliJ IDEA도 설치해서 JDK 21을 연결했다.
 ```java
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello Java!");
+        System.out.println("JDK 21 + IntelliJ 연결 완료!");
     }
 }
 ```
