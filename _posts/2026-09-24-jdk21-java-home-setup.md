@@ -3637,4 +3637,4 @@ Dev Setup
 08 새 PC에서 개발환경 다시 구축하기
 ```
 
-다음 글에서는 **IntelliJ IDEA Community/무료 사용 범위부터 설치, JDK 21 연결, Project SDK, 첫 Java 프로젝트 생성, Run까지** 이어서 진행한다.
+다음 글에서는 **IntelliJ IDEA 무료 사용 범위부터 설치, JDK 21 연결, Project SDK, 첫 Java 프로젝트 생성, Run까지** 이어서 진행한다.
