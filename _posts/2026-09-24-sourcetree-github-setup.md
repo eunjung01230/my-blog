@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "SourceTree 설치하고 GitHub 연결하기"
-date: 2026-09-24 22:30:00 +0900
+date: 2026-09-24 22:33:00 +0900
 categories: dev-setup
 learningOrder: 30
 tags:

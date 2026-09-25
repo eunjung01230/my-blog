@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Git & GitHub 개발환경 구축하기"
-date: 2026-09-24 22:25:00 +0900
+date: 2026-09-24 22:27:00 +0900
 categories: dev-setup
 learningOrder: 20
 tags:

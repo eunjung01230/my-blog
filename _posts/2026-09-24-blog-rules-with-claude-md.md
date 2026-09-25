@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "CLAUDE.md로 블로그 규칙 만들기"
-date: 2026-09-24 12:00:00 +0900
+date: 2026-09-24 20:17:00 +0900
 categories: my-blog
 seriesOrder: 5
 tags:

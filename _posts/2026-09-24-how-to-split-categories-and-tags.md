@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "카테고리와 태그를 어떻게 나눌까"
-date: 2026-09-24 16:00:00 +0900
+date: 2026-09-24 20:34:00 +0900
 categories: my-blog
 seriesOrder: 13
 tags:

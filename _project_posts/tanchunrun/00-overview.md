@@ -1,6 +1,6 @@
 ---
-title: "탄천런 프로젝트 소개 및 전체 회고"
-date: 2026-09-21 10:00:00 +0900
+title: "탄천런 프로젝트 소개 및 전체 흐름"
+date: 2026-09-21 14:20:00 +0900
 project: tanchunrun
 learningOrder: 10
 tags:

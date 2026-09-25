@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "404 페이지와 깨진 링크 챙기기"
-date: 2026-09-24 21:20:00 +0900
+date: 2026-09-24 21:24:00 +0900
 categories: my-blog
 seriesOrder: 35
 tags:
@@ -334,3 +334,5 @@ GitHub 링크,
 **404 페이지 확인:** [eunjung01230.github.io/my-blog/없는-페이지](https://eunjung01230.github.io/my-blog/%EC%97%86%EB%8A%94-%ED%8E%98%EC%9D%B4%EC%A7%80)
 
 글에서 정리한 내용을 실제 블로그에도 적용해 보면서, 404 페이지의 목적은 오류 화면을 꾸미는 것이 아니라 **잘못된 주소에 도착했을 때 다시 돌아갈 길을 만들어주는 것**이라는 점이 더 분명해졌다.
+
+GitHub Pages에서 404 페이지가 실제로 어떻게 동작하는지는 [404 페이지도 직접 만들 수 있을까? GitHub Pages의 404 페이지 꾸미기]({{ site.baseurl }}{% post_url 2026-09-24-github-pages-custom-404-page %})에서 따로 정리했다.

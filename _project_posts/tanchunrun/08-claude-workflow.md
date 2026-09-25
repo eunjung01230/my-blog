@@ -1,6 +1,6 @@
 ---
 title: "Claude Code / Claude Design을 활용하며 겪은 시행착오"
-date: 2026-09-21 11:20:00 +0900
+date: 2026-09-21 14:42:00 +0900
 project: tanchunrun
 learningOrder: 90
 tags:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "새 PC에서 개발환경 다시 구축하기"
-date: 2026-09-24 23:05:00 +0900
+date: 2026-09-24 23:12:00 +0900
 categories: dev-setup
 learningOrder: 90
 tags:

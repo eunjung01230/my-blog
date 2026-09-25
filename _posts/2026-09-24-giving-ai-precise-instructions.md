@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AI에게 작업을 정확하게 지시하는 방법"
-date: 2026-09-24 14:00:00 +0900
+date: 2026-09-24 20:26:00 +0900
 categories: my-blog
 seriesOrder: 9
 tags:

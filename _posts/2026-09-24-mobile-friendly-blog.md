@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "모바일에서도 읽기 좋은 블로그 만들기"
-date: 2026-09-24 19:00:00 +0900
+date: 2026-09-24 20:47:00 +0900
 categories: my-blog
 seriesOrder: 19
 tags:

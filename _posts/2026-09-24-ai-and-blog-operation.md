@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AI와 블로그 운영"
-date: 2026-09-24 11:00:00 +0900
+date: 2026-09-24 20:10:00 +0900
 categories: my-blog
 seriesOrder: 3
 tags:

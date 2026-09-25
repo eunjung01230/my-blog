@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "프로필과 GitHub 연결하기"
-date: 2026-09-24 19:30:00 +0900
+date: 2026-09-24 20:50:00 +0900
 categories: my-blog
 seriesOrder: 20
 tags:

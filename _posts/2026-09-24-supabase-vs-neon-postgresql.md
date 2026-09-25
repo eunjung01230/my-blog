@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Supabase와 Neon은 뭐가 다를까? 둘 다 PostgreSQL인데 다른 이유"
-date: 2026-09-24 22:15:00 +0900
+date: 2026-09-24 22:18:00 +0900
 categories: database
 learningOrder: 20
 tags:

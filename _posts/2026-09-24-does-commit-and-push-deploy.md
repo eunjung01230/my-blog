@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "commit과 push만 하면 자동으로 배포될까"
-date: 2026-09-24 21:24:00 +0900
+date: 2026-09-24 21:36:00 +0900
 categories: my-blog
 seriesOrder: 37
 tags:

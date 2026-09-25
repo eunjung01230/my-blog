@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "IntelliJ IDEA 설치하고 JDK 연결하기"
-date: 2026-09-24 22:55:00 +0900
+date: 2026-09-24 23:02:00 +0900
 categories: dev-setup
 learningOrder: 70
 tags:

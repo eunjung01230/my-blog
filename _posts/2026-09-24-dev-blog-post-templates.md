@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "개발 블로그 포스트 템플릿 만들기"
-date: 2026-09-24 15:30:00 +0900
+date: 2026-09-24 20:32:00 +0900
 categories: my-blog
 seriesOrder: 12
 tags:

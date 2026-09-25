@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "404 페이지도 직접 만들 수 있을까? GitHub Pages의 404 페이지 꾸미기"
-date: 2026-09-24 22:05:00 +0900
+date: 2026-09-24 22:10:00 +0900
 categories: deployment
 learningOrder: 20
 tags:
@@ -283,6 +283,8 @@ noindex: true
 라고 안내하는 것은 꽤 큰 차이가 있다.
 
 favicon이나 OG 이미지처럼 쉽게 놓치는 요소와 함께, **404 페이지도 사이트의 한 화면으로 챙겨야 한다**는 것을 이번에 정리할 수 있었다.
+
+이 페이지를 블로그에 챙기게 된 과정은 [404 페이지와 깨진 링크 챙기기]({{ site.baseurl }}{% post_url 2026-09-24-404-page-and-broken-links %})에 따로 정리해 두었다.
 
 ---
 

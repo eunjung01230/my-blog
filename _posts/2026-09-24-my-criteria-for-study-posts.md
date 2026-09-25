@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "개발 공부를 블로그 글로 남기는 나만의 기준"
-date: 2026-09-24 15:00:00 +0900
+date: 2026-09-24 20:30:00 +0900
 categories: my-blog
 seriesOrder: 11
 tags:

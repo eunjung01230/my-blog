@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Node.js와 npm 개발환경 구축하기"
-date: 2026-09-24 22:40:00 +0900
+date: 2026-09-24 22:46:00 +0900
 categories: dev-setup
 learningOrder: 50
 tags:

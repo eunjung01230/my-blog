@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "title·description과 기본 SEO 설정하기"
-date: 2026-09-24 21:16:00 +0900
+date: 2026-09-24 21:17:00 +0900
 categories: my-blog
 seriesOrder: 33
 tags:

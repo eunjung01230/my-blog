@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "블로그 디자인 개편"
-date: 2026-09-24 17:30:00 +0900
+date: 2026-09-24 20:39:00 +0900
 categories: my-blog
 seriesOrder: 16
 tags:

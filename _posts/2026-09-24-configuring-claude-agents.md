@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Claude Agent 구성하기"
-date: 2026-09-24 12:30:00 +0900
+date: 2026-09-24 20:20:00 +0900
 categories: my-blog
 seriesOrder: 6
 tags:

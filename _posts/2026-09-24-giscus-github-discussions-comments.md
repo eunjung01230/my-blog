@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "GitHub 블로그에도 댓글을 만들 수 있을까? Giscus 알아보기"
-date: 2026-09-24 22:00:00 +0900
+date: 2026-09-24 22:07:00 +0900
 categories: git
 learningOrder: 60
 mermaid: true

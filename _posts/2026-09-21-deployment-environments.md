@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "로컬에서 배포까지: Development·Preview·Production 이해하기"
-date: 2026-09-21 15:10:00 +0900
+date: 2026-09-21 15:55:00 +0900
 categories: deployment
 learningOrder: 10
 tags:

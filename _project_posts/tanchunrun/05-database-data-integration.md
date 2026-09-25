@@ -1,6 +1,6 @@
 ---
 title: "데이터베이스와 데이터 연동"
-date: 2026-09-21 10:50:00 +0900
+date: 2026-09-21 14:36:00 +0900
 project: tanchunrun
 learningOrder: 60
 tags:

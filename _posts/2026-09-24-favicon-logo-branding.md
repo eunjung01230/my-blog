@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "favicon·로고·브랜딩 변경 과정"
-date: 2026-09-24 20:00:00 +0900
+date: 2026-09-24 20:53:00 +0900
 categories: my-blog
 seriesOrder: 21
 tags:

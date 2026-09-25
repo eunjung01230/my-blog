@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "개발 블로그에 검색 기능은 필요할까"
-date: 2026-09-24 21:06:00 +0900
+date: 2026-09-24 21:09:00 +0900
 categories: my-blog
 seriesOrder: 28
 tags:

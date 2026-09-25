@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "개발 블로그를 다시 지속할 수 있게 만든 방법"
-date: 2026-09-24 21:45:00 +0900
+date: 2026-09-24 21:50:00 +0900
 categories: my-blog
 seriesOrder: 42
 tags:

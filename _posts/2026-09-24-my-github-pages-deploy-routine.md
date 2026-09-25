@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "내가 실제로 사용하는 GitHub Pages 배포 순서"
-date: 2026-09-24 21:22:00 +0900
+date: 2026-09-24 21:29:00 +0900
 categories: my-blog
 seriesOrder: 36
 tags:

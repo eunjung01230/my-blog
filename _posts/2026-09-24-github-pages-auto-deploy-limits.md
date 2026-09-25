@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "GitHub Pages 자동 배포의 범위와 한계"
-date: 2026-09-24 21:26:00 +0900
+date: 2026-09-24 21:38:00 +0900
 categories: my-blog
 seriesOrder: 38
 tags:

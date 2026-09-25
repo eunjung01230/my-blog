@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "작은 디테일이 블로그 완성도를 바꾼다"
-date: 2026-09-24 20:30:00 +0900
+date: 2026-09-24 20:56:00 +0900
 categories: my-blog
 seriesOrder: 22
 tags:

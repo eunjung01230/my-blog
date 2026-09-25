@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "긴 개발 글에 TOC를 추가한 이유"
-date: 2026-09-24 16:30:00 +0900
+date: 2026-09-24 20:36:00 +0900
 categories: my-blog
 seriesOrder: 14
 tags:

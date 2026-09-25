@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "VS Code 설치와 초기 개발환경 설정하기"
-date: 2026-09-24 22:35:00 +0900
+date: 2026-09-24 22:41:00 +0900
 categories: dev-setup
 learningOrder: 40
 tags:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "놓치기 쉬운 웹 디테일"
-date: 2026-09-24 21:10:00 +0900
+date: 2026-09-24 21:12:00 +0900
 categories: my-blog
 seriesOrder: 30
 tags:

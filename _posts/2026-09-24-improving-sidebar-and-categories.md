@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "사이드바와 카테고리 구조 개선하기"
-date: 2026-09-24 18:30:00 +0900
+date: 2026-09-24 20:44:00 +0900
 categories: my-blog
 seriesOrder: 18
 tags:

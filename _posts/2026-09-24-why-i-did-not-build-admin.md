@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "블로그 관리자 기능 만들기 — 결국 만들지 않은 이유"
-date: 2026-09-24 21:00:00 +0900
+date: 2026-09-24 21:03:00 +0900
 categories: my-blog
 seriesOrder: 25
 tags:

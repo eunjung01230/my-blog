@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "favicon만 바꾸면 끝일까? 웹사이트 아이콘 정리"
-date: 2026-09-24 21:12:00 +0900
+date: 2026-09-24 21:14:00 +0900
 categories: my-blog
 seriesOrder: 31
 tags:
