@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "글 작성 시스템"
-date: 2026-09-24 14:30:00 +0900
+date: 2026-09-24 20:27:00 +0900
 categories: my-blog
 seriesOrder: 10
 tags:

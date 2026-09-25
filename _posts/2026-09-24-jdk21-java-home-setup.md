@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "JDK 21 설치와 Java 환경변수 설정하기"
-date: 2026-09-24 22:45:00 +0900
+date: 2026-09-24 22:51:00 +0900
 categories: dev-setup
 learningOrder: 60
 tags:

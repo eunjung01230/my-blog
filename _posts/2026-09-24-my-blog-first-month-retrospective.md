@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "MY-BLOG 첫 한 달 회고"
-date: 2026-09-24 21:40:00 +0900
+date: 2026-09-24 21:47:00 +0900
 categories: my-blog
 seriesOrder: 41
 tags:

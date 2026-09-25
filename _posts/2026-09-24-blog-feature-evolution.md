@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "블로그 기능 발전"
-date: 2026-09-24 20:45:00 +0900
+date: 2026-09-24 20:58:00 +0900
 categories: my-blog
 seriesOrder: 23
 tags:

@@ -1,6 +1,6 @@
 ---
 title: "Vercel 배포 환경"
-date: 2026-09-21 11:00:00 +0900
+date: 2026-09-21 14:38:00 +0900
 project: tanchunrun
 learningOrder: 70
 tags:

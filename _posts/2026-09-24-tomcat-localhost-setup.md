@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Tomcat 설치하고 localhost에서 실행하기"
-date: 2026-09-24 23:00:00 +0900
+date: 2026-09-24 23:08:00 +0900
 categories: dev-setup
 learningOrder: 80
 tags:

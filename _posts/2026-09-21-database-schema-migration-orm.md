@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "데이터베이스 기초부터 Schema·Migration·ORM까지"
-date: 2026-09-21 15:00:00 +0900
+date: 2026-09-21 15:25:00 +0900
 categories: database
 learningOrder: 10
 tags:

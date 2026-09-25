@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "포스트 추가·수정 기능 발전 과정"
-date: 2026-09-24 20:50:00 +0900
+date: 2026-09-24 20:59:00 +0900
 categories: my-blog
 seriesOrder: 24
 tags:

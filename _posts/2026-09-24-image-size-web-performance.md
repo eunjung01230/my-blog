@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "이미지 용량과 웹 성능 최적화하기"
-date: 2026-09-24 21:18:00 +0900
+date: 2026-09-24 21:22:00 +0900
 categories: my-blog
 seriesOrder: 34
 tags:

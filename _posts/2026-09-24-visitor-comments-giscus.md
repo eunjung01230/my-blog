@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "방문자 코멘트 기능 고민하기"
-date: 2026-09-24 21:04:00 +0900
+date: 2026-09-24 21:07:00 +0900
 categories: my-blog
 seriesOrder: 27
 tags:
@@ -595,3 +595,5 @@ DB,
 솔직히 조금은 귀찮아서이기도 했다.
 
 하지만 블로그를 계속 만들면서 이제는 그런 이유까지 포함해서 **현재 가장 필요한 작업을 선택하는 것도 개발 과정의 일부**라고 생각하게 됐다.
+
+Giscus가 실제로 어떻게 동작하는지는 [GitHub 블로그에도 댓글을 만들 수 있을까? Giscus 알아보기]({{ site.baseurl }}{% post_url 2026-09-24-giscus-github-discussions-comments %})에서 따로 정리했다.

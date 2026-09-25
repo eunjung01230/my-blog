@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "카테고리 접기·펼치기 기능 만들기"
-date: 2026-09-24 21:02:00 +0900
+date: 2026-09-24 21:05:00 +0900
 categories: my-blog
 seriesOrder: 26
 tags:

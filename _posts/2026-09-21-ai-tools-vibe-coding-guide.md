@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "첫 바이브 코딩에서 배운 Claude Code·Claude Design 사용법"
-date: 2026-09-21 15:30:00 +0900
+date: 2026-09-21 16:23:00 +0900
 categories: ai-tools
 learningOrder: 10
 tags:

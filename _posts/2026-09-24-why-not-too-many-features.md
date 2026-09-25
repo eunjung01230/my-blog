@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "블로그에 기능을 너무 많이 넣지 않기로 한 이유"
-date: 2026-09-24 21:08:00 +0900
+date: 2026-09-24 21:10:00 +0900
 categories: my-blog
 seriesOrder: 29
 tags:

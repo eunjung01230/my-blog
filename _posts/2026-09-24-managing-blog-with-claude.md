@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Claude와 함께 블로그를 관리하기 시작하다"
-date: 2026-09-24 11:30:00 +0900
+date: 2026-09-24 20:13:00 +0900
 categories: my-blog
 seriesOrder: 4
 tags:

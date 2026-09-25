@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "배포가 실패했을 때 어디를 확인해야 할까"
-date: 2026-09-24 21:28:00 +0900
+date: 2026-09-24 21:40:00 +0900
 categories: my-blog
 seriesOrder: 39
 tags:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "프론트엔드에서 화면이 실제 기능이 되기까지"
-date: 2026-09-21 15:20:00 +0900
+date: 2026-09-21 16:09:00 +0900
 categories: frontend
 learningOrder: 10
 tags:

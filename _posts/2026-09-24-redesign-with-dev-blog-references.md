@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "여러 개발 블로그를 참고해 디자인 개편하기"
-date: 2026-09-24 18:00:00 +0900
+date: 2026-09-24 20:42:00 +0900
 categories: my-blog
 seriesOrder: 17
 tags:

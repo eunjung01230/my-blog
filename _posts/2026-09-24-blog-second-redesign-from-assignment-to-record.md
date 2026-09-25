@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "블로그 2차 수정 — 과제로 시작한 블로그를 내 기록 공간으로 바꾸기"
-date: 2026-09-24 21:50:00 +0900
+date: 2026-09-24 21:56:00 +0900
 categories: my-blog
 seriesOrder: 43
 tags:

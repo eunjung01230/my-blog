@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "코드·이미지·표를 보기 좋게 정리하는 방법"
-date: 2026-09-24 17:00:00 +0900
+date: 2026-09-24 20:37:00 +0900
 categories: my-blog
 seriesOrder: 15
 tags:

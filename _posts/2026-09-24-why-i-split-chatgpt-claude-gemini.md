@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ChatGPT / Claude / Gemini를 나눠 쓰는 이유"
-date: 2026-09-24 13:30:00 +0900
+date: 2026-09-24 20:24:00 +0900
 categories: my-blog
 seriesOrder: 8
 tags:

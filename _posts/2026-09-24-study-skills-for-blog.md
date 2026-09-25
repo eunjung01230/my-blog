@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "공부용 Skill 만들기"
-date: 2026-09-24 13:00:00 +0900
+date: 2026-09-24 20:22:00 +0900
 categories: my-blog
 seriesOrder: 7
 tags:

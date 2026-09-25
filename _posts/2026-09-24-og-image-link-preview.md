@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "OG 이미지와 링크 미리보기 설정하기"
-date: 2026-09-24 21:14:00 +0900
+date: 2026-09-24 21:16:00 +0900
 categories: my-blog
 seriesOrder: 32
 tags:

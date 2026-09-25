@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "블로그를 수정하고 배포하는 나만의 작업 흐름"
-date: 2026-09-24 21:30:00 +0900
+date: 2026-09-24 21:43:00 +0900
 categories: my-blog
 seriesOrder: 40
 tags:
