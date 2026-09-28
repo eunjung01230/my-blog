@@ -35,3 +35,5 @@ quick_menu:
     description: 탄천런 프로젝트 개발 기록
   - slug: my-blog
     description: 이 블로그를 만들고 운영하며 배운 과정
+  - slug: problem-solving
+    description: 문제를 풀고 왜 그렇게 되는지 설명하기
