@@ -692,7 +692,7 @@ PATH
 
 같은 환경변수를 설정한다.
 
-자세한 설정 방법은 JDK 환경 구축 글에서 직접 진행할 예정이다.
+JDK 환경 구축 글에서는 Eclipse Temurin 설치 옵션(`Add to PATH`, `Set or override JAVA_HOME variable`)으로 이 환경변수를 설정한다.
 
 ---
 
@@ -847,22 +847,30 @@ npm 버전 확인
 Java 개발을 위한 JDK를 설치한다.
 
 ```text
-Java / JDK / JRE 차이
+Eclipse Temurin JDK 21 설치
 ↓
-JDK 21 설치
-↓
-JAVA_HOME 설정
-↓
-PATH 설정
+설치 옵션으로 PATH·JAVA_HOME 설정
 ↓
 java 버전 확인
 ↓
 javac 버전 확인
 ↓
-첫 Java 프로그램 실행
+JAVA_HOME 확인
 ```
 
-환경변수까지 직접 설정하고 정상적으로 Java가 실행되는지 확인한다.
+설치 옵션으로 환경변수를 설정하고 새 PowerShell에서 정상적으로 설치되었는지 확인한다.
+
+### 05-1. JDK·JRE·JVM과 PATH·JAVA_HOME 이해
+
+JDK를 설치하면서 이해한 개념을 정리한다.
+
+```text
+JDK / JRE / JVM
+↓
+javac와 java
+↓
+PATH와 JAVA_HOME
+```
 
 ### 06. IntelliJ IDEA 환경 구축
 
@@ -1284,6 +1292,9 @@ Dev Setup
    ↓
 
 05 JDK 21 환경 구축
+   ↓
+
+05-1 JDK·JRE·JVM과 PATH·JAVA_HOME 이해
    ↓
 
 06 IntelliJ IDEA 환경 구축
