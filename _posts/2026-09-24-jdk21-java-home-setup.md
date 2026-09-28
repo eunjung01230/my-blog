@@ -12,11 +12,11 @@ tags:
   - windows
 ---
 
-앞선 Dev Setup에서는 Node.js와 npm을 설치해서 JavaScript를 컴퓨터에서 직접 실행할 수 있는 환경을 만들었습니다.
+앞선 Dev Setup에서는 Node.js와 npm을 설치해서 JavaScript를 컴퓨터에서 직접 실행할 수 있는 환경을 만들었다.
 
-이번에는 Java 개발환경을 준비합니다.
+이번에는 Java 개발환경을 준비한다.
 
-이번 설치 환경은 다음과 같습니다.
+이번 설치 환경은 다음과 같다.
 
 ```text
 운영체제 : Windows
@@ -24,7 +24,7 @@ tags:
 버전     : JDK 21 LTS
 ```
 
-설치는 크게 네 단계로 진행했습니다.
+설치는 크게 네 단계로 진행했다.
 
 ```text
 1. 설치 파일 내려받기
@@ -37,9 +37,9 @@ tags:
 
 ## 1단계. Temurin 21 설치 파일 내려받기
 
-[Eclipse Adoptium의 Temurin 다운로드 페이지](https://adoptium.net/temurin/releases/?version=21)로 이동합니다.
+[Eclipse Adoptium의 Temurin 다운로드 페이지](https://adoptium.net/temurin/releases/?version=21)로 이동한다.
 
-다운로드할 때는 다음 항목을 확인했습니다.
+다운로드할 때는 다음 항목을 확인했다.
 
 ```text
 Operating System : Windows
@@ -48,13 +48,13 @@ Package Type     : JDK
 Version          : 21 LTS
 ```
 
-그리고 `.msi` 형식의 설치 파일을 내려받았습니다.
+그리고 `.msi` 형식의 설치 파일을 내려받았다.
 
-Adoptium은 현재도 Windows용 Temurin 21 MSI 설치 파일을 제공하고 있습니다.
+Adoptium은 현재도 Windows용 Temurin 21 MSI 설치 파일을 제공하고 있다.
 
-여기서 중요한 것은 최신 LTS를 무조건 내려받지 않는 것입니다.
+여기서 중요한 것은 최신 LTS를 무조건 내려받지 않는 것이다.
 
-현재 다운로드 페이지에는 JDK 25도 있기 때문에 이번 수업에서는 반드시 버전을 확인하고 21 LTS를 선택해야 합니다.
+현재 다운로드 페이지에는 JDK 25도 있기 때문에 이번 수업에서는 반드시 버전을 확인하고 21 LTS를 선택해야 한다.
 
 ### x64는 무엇일까
 
@@ -67,26 +67,26 @@ Adoptium은 현재도 Windows용 Temurin 21 MSI 설치 파일을 제공하고 �
 → 시스템 종류
 ```
 
-에서 확인할 수 있습니다.
+에서 확인할 수 있다.
 
-대부분의 일반적인 Windows PC는 x64 환경입니다.
+대부분의 일반적인 Windows PC는 x64 환경이다.
 
 ---
 
 ## 2단계. 설치 옵션 설정하기
 
-다운로드한 `.msi` 파일을 실행합니다.
+다운로드한 `.msi` 파일을 실행한다.
 
-라이선스에 동의하고 설치를 진행하다 보면 Custom Setup 화면이 나옵니다.
+라이선스에 동의하고 설치를 진행하다 보면 Custom Setup 화면이 나온다.
 
-여기서 중요한 항목은 다음 두 가지입니다.
+여기서 중요한 항목은 다음 두 가지다.
 
 ```text
 Add to PATH
 Set or override JAVA_HOME variable
 ```
 
-[Temurin의 Windows MSI 설치 프로그램](https://adoptium.net/installation/windows/)은 기본적으로 JDK를 `C:\Program Files\Eclipse Adoptium\...` 아래에 설치하며, PATH 추가 기능을 제공합니다. JAVA_HOME 업데이트는 설치 과정에서 추가로 선택할 수 있는 기능입니다.
+[Temurin의 Windows MSI 설치 프로그램](https://adoptium.net/installation/windows/)은 기본적으로 JDK를 `C:\Program Files\Eclipse Adoptium\...` 아래에 설치하며, PATH 추가 기능을 제공한다. JAVA_HOME 업데이트는 설치 과정에서 추가로 선택할 수 있는 기능이다.
 
 수업에서는
 
@@ -98,7 +98,7 @@ Set or override JAVA_HOME variable
 → 사용
 ```
 
-으로 설정했습니다.
+으로 설정했다.
 
 `Set or override JAVA_HOME variable` 항목에 빨간 X가 표시되어 있다면 해당 항목을 눌러
 
@@ -106,7 +106,7 @@ Set or override JAVA_HOME variable
 Will be installed on local hard drive
 ```
 
-를 선택합니다.
+를 선택한다.
 
 설정이 끝나면
 
@@ -116,17 +116,17 @@ Next
 → Finish
 ```
 
-순서로 설치를 완료합니다.
+순서로 설치를 완료한다.
 
 ---
 
 ## 3단계. PowerShell을 새로 열기
 
-JDK를 설치하기 전에 PowerShell이나 터미널을 열어 둔 상태였다면 설치 후에는 새 창을 열어야 합니다.
+JDK를 설치하기 전에 PowerShell이나 터미널을 열어 둔 상태였다면 설치 후에는 새 창을 열어야 한다.
 
-왜냐하면 기존 PowerShell 창은 창이 열릴 당시의 환경 변수 정보를 가지고 있기 때문입니다.
+왜냐하면 기존 PowerShell 창은 창이 열릴 당시의 환경 변수 정보를 가지고 있기 때문이다.
 
-JDK 설치 과정에서 PATH가 변경되었더라도 기존 터미널에는 바로 반영되지 않을 수 있습니다.
+JDK 설치 과정에서 PATH가 변경되었더라도 기존 터미널에는 바로 반영되지 않을 수 있다.
 
 따라서
 
@@ -135,15 +135,15 @@ JDK 설치 과정에서 PATH가 변경되었더라도 기존 터미널에는 바
 → 새로운 PowerShell 실행
 ```
 
-을 합니다.
+을 한다.
 
-이후 새 PowerShell에서는 변경된 PATH를 사용할 수 있습니다.
+이후 새 PowerShell에서는 변경된 PATH를 사용할 수 있다.
 
 ---
 
 ## 4단계. 설치 확인하기
 
-설치가 끝났다면 세 가지를 확인합니다.
+설치가 끝났다면 세 가지를 확인한다.
 
 ### Java 실행 버전 확인
 
@@ -151,7 +151,7 @@ JDK 설치 과정에서 PATH가 변경되었더라도 기존 터미널에는 바
 java -version
 ```
 
-실행 결과에서 `21`이 보이는지 확인합니다.
+실행 결과에서 `21`이 보이는지 확인한다.
 
 예를 들어
 
@@ -159,9 +159,9 @@ java -version
 openjdk version "21..."
 ```
 
-처럼 출력되면 됩니다.
+처럼 출력되면 된다.
 
-`java` 명령은 Java 프로그램을 실행할 때 사용하는 명령입니다.
+`java` 명령은 Java 프로그램을 실행할 때 사용하는 명령이다.
 
 ### Java 컴파일러 버전 확인
 
@@ -169,23 +169,23 @@ openjdk version "21..."
 javac -version
 ```
 
-역시 결과에서 `21`이 보이는지 확인합니다.
+역시 결과에서 `21`이 보이는지 확인한다.
 
 ```text
 javac 21...
 ```
 
-와 같이 나타난다면 Java 컴파일러도 정상적으로 설치된 것입니다.
+와 같이 나타난다면 Java 컴파일러도 정상적으로 설치된 것이다.
 
 ### JAVA_HOME 확인
 
-PowerShell에서는 다음 명령으로 확인할 수 있습니다.
+PowerShell에서는 다음 명령으로 확인할 수 있다.
 
 ```powershell
 echo $env:JAVA_HOME
 ```
 
-JDK 설치 폴더가 나타나는지 확인합니다.
+JDK 설치 폴더가 나타나는지 확인한다.
 
 예를 들어
 
@@ -193,14 +193,14 @@ JDK 설치 폴더가 나타나는지 확인합니다.
 C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
-과 같은 형태입니다.
+과 같은 형태다.
 
-세 가지가 모두 정상이라면 JDK 21 설치가 완료된 것입니다.
+세 가지가 모두 정상이라면 JDK 21 설치가 완료된 것이다.
 
 ---
 
 ## 마무리
 
-이번 글에서는 Eclipse Temurin JDK 21을 설치하고, 설치 옵션(`Add to PATH`, `Set or override JAVA_HOME variable`)으로 PATH와 JAVA_HOME을 설정한 뒤 새 PowerShell에서 설치를 확인했습니다.
+이번 글에서는 Eclipse Temurin JDK 21을 설치하고, 설치 옵션(`Add to PATH`, `Set or override JAVA_HOME variable`)으로 PATH와 JAVA_HOME을 설정한 뒤 새 PowerShell에서 설치를 확인했다.
 
-JDK/JRE/JVM과 PATH, JAVA_HOME의 원리는 [다음 글]({% post_url 2026-09-28-jdk-jre-jvm-path-java-home %})에서 따로 정리했습니다.
+JDK/JRE/JVM과 PATH, JAVA_HOME의 원리는 [다음 글]({% post_url 2026-09-28-jdk-jre-jvm-path-java-home %})에서 따로 정리했다.
