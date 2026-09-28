@@ -1629,7 +1629,7 @@ CATALINA_HOME
 
 ```text
 JAVA_HOME
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 ```text
@@ -1715,14 +1715,14 @@ Tomcat 11은 Java 17 이상을 요구하며 JDK를 사용할 수도 있다.
 
 ---
 
-## 55. 앞에서 만든 JAVA_HOME
+## 55. 앞선 글에서 설정된 JAVA_HOME
 
 현재 환경은 예를 들어 다음과 같다.
 
 ```text
 JAVA_HOME
 
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 그리고
@@ -1730,10 +1730,10 @@ C:\Program Files\Java\jdk-21
 ```text
 PATH
 
-%JAVA_HOME%\bin
+C:\Program Files\Eclipse Adoptium\jdk-21...\bin
 ```
 
-을 설정했다.
+이 JDK 설치 옵션(`Add to PATH`, `Set or override JAVA_HOME variable`)으로 설정되었다.
 
 Tomcat Startup Script도 `JAVA_HOME` 또는 `JRE_HOME`을 사용해 Java 위치를 찾을 수 있다.
 
@@ -1784,7 +1784,7 @@ echo %JAVA_HOME%
 예:
 
 ```text
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 정상적으로 나오면 된다.
@@ -2452,7 +2452,7 @@ JAVA_HOME에 bin을 넣었나?
 ```text
 JAVA_HOME
 
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 이다.
@@ -2460,7 +2460,7 @@ C:\Program Files\Java\jdk-21
 다음은 잘못된 형태다.
 
 ```text
-C:\Program Files\Java\jdk-21\bin
+C:\Program Files\Eclipse Adoptium\jdk-21...\bin
 ```
 
 JAVA_HOME은 JDK Root다.
@@ -3462,7 +3462,7 @@ JDK 21
 ```text
 JDK 21
 
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 
         ↓
 
@@ -4206,6 +4206,9 @@ Dev Setup
    ↓
 
 05 JDK 21 설치와 Java 환경변수 설정
+   ↓
+
+05-1 JDK·JRE·JVM과 PATH·JAVA_HOME 이해
    ↓
 
 06 IntelliJ IDEA 설치하고 JDK 연결

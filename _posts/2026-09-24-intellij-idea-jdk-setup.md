@@ -11,37 +11,23 @@ tags:
   - ide
 ---
 
-앞선 글에서는 JDK 21을 설치하고 Java 개발환경을 직접 구성했다.
+앞선 글에서는 Eclipse Temurin JDK 21을 설치했다.
 
-터미널에서 다음 명령어도 실행해봤다.
+설치 옵션(`Add to PATH`, `Set or override JAVA_HOME variable`)으로 PATH와 JAVA_HOME을 설정하고, 새 PowerShell에서 다음 명령어로 설치를 확인했다.
 
-```bash
+```powershell
 java -version
 ```
 
-```bash
+```powershell
 javac -version
 ```
 
-그리고 직접 Java 파일을 만들었다.
-
-```text
-Hello.java
+```powershell
+echo $env:JAVA_HOME
 ```
 
-컴파일했다.
-
-```bash
-javac Hello.java
-```
-
-실행했다.
-
-```bash
-java Hello
-```
-
-이 과정을 통해 Java 프로그램이 대략 다음 순서로 동작한다는 것도 확인했다.
+그리고 Java 프로그램이 대략 다음 순서로 동작한다는 것도 정리했다.
 
 ```text
 Hello.java
@@ -156,7 +142,7 @@ IntelliJ가 내부에서 무엇을 하는지 이해
 VS Code와 IntelliJ 차이 이해
 ```
 
-이번 글까지 끝나면 매번 직접
+이번 글까지 끝나면 터미널에서
 
 ```bash
 javac Hello.java
@@ -196,8 +182,6 @@ IDE는
 ## 2. 메모장으로도 Java를 개발할 수 있을까?
 
 가능하다.
-
-앞선 글에서도 사실 특별한 IDE 없이 Java 프로그램을 실행했다.
 
 예를 들어 메모장으로
 
@@ -495,7 +479,7 @@ Dev Setup 순서를 다시 보면
 앞선 글에서
 
 ```text
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 같은 위치에 JDK를 설치했고,
@@ -602,7 +586,7 @@ echo $JAVA_HOME
 예를 들어
 
 ```text
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 같은 JDK 경로가 나오면 된다.
@@ -807,10 +791,10 @@ IntelliJ PATH
 
 ## 27. JDK PATH와 IntelliJ PATH 차이
 
-앞선 글에서 설정한
+앞선 글에서 설치 옵션(`Add to PATH`)으로 등록된
 
 ```text
-%JAVA_HOME%\bin
+C:\Program Files\Eclipse Adoptium\jdk-21...\bin
 ```
 
 은 Java 실행을 위한 PATH다.
@@ -1277,12 +1261,12 @@ Add JDK from Disk
 
 ## 51. 어떤 폴더를 선택해야 할까?
 
-앞선 글에서 JAVA_HOME으로 설정했던 경로를 생각하면 된다.
+앞선 글에서 설치 옵션으로 JAVA_HOME에 설정된 경로를 생각하면 된다.
 
 예를 들어
 
 ```text
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 이다.
@@ -1298,7 +1282,7 @@ C:\Program Files\Java\jdk-21
 다음 폴더를 선택한다.
 
 ```text
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 O
@@ -1306,7 +1290,7 @@ O
 다음 폴더를 선택하지 않는다.
 
 ```text
-C:\Program Files\Java\jdk-21\bin
+C:\Program Files\Eclipse Adoptium\jdk-21...\bin
 ```
 
 X
@@ -1332,7 +1316,7 @@ IntelliJ에서 JDK 위치를 지정한다는 것은
 ```text
 JDK Home
 
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 이다.
@@ -1351,7 +1335,7 @@ Download JDK
 
 버전과 배포판을 선택하면 IntelliJ가 JDK를 다운로드하고 등록해준다.
 
-하지만 이번 시리즈에서는 JDK 설치와 환경변수까지 직접 이해하기 위해 앞선 05편에서 수동 설치했다.
+하지만 이번 시리즈에서는 앞선 05편에서 Eclipse Temurin JDK 21 설치 파일(`.msi`)로 JDK를 설치했다.
 
 ---
 
@@ -1650,7 +1634,7 @@ public class Main {
 
 ## 68. 파일 이름과 Class 이름
 
-앞선 Java 글에서 배웠던 규칙을 다시 보자.
+Java의 파일 이름과 Class 이름 규칙을 보자.
 
 파일:
 
@@ -1683,8 +1667,6 @@ public class Main {
     }
 }
 ```
-
-앞선 글에서 직접 작성했던 형태와 동일하다.
 
 ---
 
@@ -1826,7 +1808,7 @@ Run 버튼을 눌렀다고 Java가 마법처럼 실행되는 것은 아니다.
 
 기본 개념은 앞선 글과 같다.
 
-우리가 직접 했던 작업은
+터미널에서 직접 실행한다면 작업은
 
 ```text
 Main.java
@@ -1844,7 +1826,7 @@ Main.class
 java Main
 ```
 
-이었다.
+이다.
 
 IntelliJ에서는 이 과정을 IDE가 관리해준다.
 
@@ -2130,7 +2112,7 @@ Add JDK from Disk
 그리고 앞서 설치한
 
 ```text
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 을 지정한다.
@@ -2385,13 +2367,13 @@ System.out.println("Hello");
 
 ## 99. IntelliJ가 컴파일 전에 오류를 알려주는 이유
 
-터미널에서 직접 Java를 작성했을 때는
+터미널에서 직접 Java를 컴파일한다면
 
 ```bash
 javac Hello.java
 ```
 
-를 실행한 뒤 오류 메시지를 확인했다.
+를 실행한 뒤에야 오류 메시지를 확인할 수 있다.
 
 IntelliJ는 Editor에서 코드를 작성하는 동안 미리 문제를 분석해 보여준다.
 
@@ -2910,7 +2892,7 @@ Add JDK from Disk
 JDK Home:
 
 ```text
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 을 지정한다.
@@ -3103,7 +3085,7 @@ IntelliJ 자체 Build System을 사용하면 컴파일 결과가 별도의 출�
 
 Project Structure에는 [Compiler Output 경로 설정](https://www.jetbrains.com/help/idea/project-settings-and-structure.html)도 존재하며 IntelliJ는 컴파일 결과를 출력 디렉터리에 저장한다.
 
-즉 앞선 글에서 우리가 직접 만든
+즉 `javac`로 컴파일하면 만들어지는
 
 ```text
 Hello.class
@@ -3115,7 +3097,7 @@ Hello.class
 
 ## 131. 내가 직접 `Hello.class`를 찾지 않아도 되는 이유
 
-앞선 글에서는 Java 동작 원리를 공부하기 위해
+앞선 글에서는 Java 동작 원리를 공부하면서
 
 ```text
 Hello.java
@@ -3125,7 +3107,7 @@ Hello.java
 Hello.class
 ```
 
-를 직접 확인했다.
+흐름을 정리했다.
 
 IntelliJ에서는 Build와 Output을 IDE가 관리해주기 때문에 매번 `.class` 파일을 직접 확인하지 않아도 된다.
 
@@ -3169,37 +3151,7 @@ Gradle JVM 문제
 
 ---
 
-## 133. 그래서 앞선 글에서 터미널 실행을 먼저 해본 것이다
-
-순서를 다시 보면
-
-```text
-05 JDK 설치
-
-↓
-
-javac Hello.java
-
-↓
-
-java Hello
-
-↓
-
-06 IntelliJ 설치
-
-↓
-
-Run 버튼
-```
-
-이다.
-
-IntelliJ의 Run 버튼이 실제로 어떤 과정을 대신하는지 이해할 수 있도록 터미널 방식부터 먼저 해본 것이다.
-
----
-
-## 134. IntelliJ를 새 PC에 설치하면 JDK도 자동으로 따라올까?
+## 133. IntelliJ를 새 PC에 설치하면 JDK도 자동으로 따라올까?
 
 IntelliJ 자체를 실행하는 Runtime은 포함되어 있다.
 
@@ -3229,7 +3181,7 @@ Project JDK 연결
 
 ---
 
-## 135. IntelliJ의 Runtime과 내 프로젝트 JDK를 섞지 않기
+## 134. IntelliJ의 Runtime과 내 프로젝트 JDK를 섞지 않기
 
 이번 글에서 꽤 중요한 개념이다.
 
@@ -3257,7 +3209,7 @@ IntelliJ가 실행되고 있다고 해서 내 Java Project의 JDK 설정이 정�
 
 ---
 
-## 136. IntelliJ 업데이트
+## 135. IntelliJ 업데이트
 
 IntelliJ IDEA 역시 지속적으로 업데이트된다.
 
@@ -3279,7 +3231,7 @@ New Project 화면
 
 ---
 
-## 137. 화면이 다르면 무엇을 기준으로 찾을까?
+## 136. 화면이 다르면 무엇을 기준으로 찾을까?
 
 버튼의 정확한 위치를 외우기보다 기능 이름을 기억한다.
 
@@ -3315,7 +3267,7 @@ Settings
 
 ---
 
-## 138. 현재 꼭 기억할 단축키
+## 137. 현재 꼭 기억할 단축키
 
 이번 단계에서는 다음 정도만 알아도 충분하다.
 
@@ -3345,7 +3297,7 @@ Ctrl + S
 
 ---
 
-## 139. IntelliJ와 VS Code 단축키가 다르다
+## 138. IntelliJ와 VS Code 단축키가 다르다
 
 같은 기능이라도 단축키가 다를 수 있다.
 
@@ -3355,7 +3307,7 @@ Ctrl + S
 
 ---
 
-## 140. Git 프로젝트를 IntelliJ에서 열 때
+## 139. Git 프로젝트를 IntelliJ에서 열 때
 
 앞으로 GitHub에서 Java 프로젝트를 Clone해서 IntelliJ로 열 수도 있다.
 
@@ -3385,7 +3337,7 @@ IntelliJ가 기존 `.git` 정보를 읽어 Git 기능을 제공한다.
 
 ---
 
-## 141. IntelliJ에서 Commit해도 SourceTree에 보일까?
+## 140. IntelliJ에서 Commit해도 SourceTree에 보일까?
 
 보인다.
 
@@ -3404,7 +3356,7 @@ SourceTree에서 Branch를 만들면 IntelliJ에서도 같은 Repository를 새�
 
 ---
 
-## 142. 프로젝트를 IntelliJ로 열었다고 GitHub에 올라가는 것은 아니다
+## 141. 프로젝트를 IntelliJ로 열었다고 GitHub에 올라가는 것은 아니다
 
 이것도 구분해야 한다.
 
@@ -3448,7 +3400,7 @@ GitHub
 
 ---
 
-## 143. IntelliJ 프로젝트를 닫아도 파일은 남는다
+## 142. IntelliJ 프로젝트를 닫아도 파일은 남는다
 
 IntelliJ의
 
@@ -3470,7 +3422,7 @@ C:\dev\intellij-java-test
 
 ---
 
-## 144. IntelliJ를 삭제해도 코드가 자동으로 삭제되는 것은 아니다
+## 143. IntelliJ를 삭제해도 코드가 자동으로 삭제되는 것은 아니다
 
 IDE 프로그램과 Project 파일은 별개다.
 
@@ -3488,7 +3440,7 @@ C:\dev\intellij-java-test
 
 ---
 
-## 145. 프로젝트를 삭제하려면 조심한다
+## 144. 프로젝트를 삭제하려면 조심한다
 
 Project 목록에서 제거하는 것과 Windows 파일 자체를 삭제하는 것은 의미가 다를 수 있다.
 
@@ -3506,7 +3458,7 @@ Local에만 존재하는 변경사항은 없는가?
 
 ---
 
-## 146. JDK를 바꾸고 싶다면?
+## 145. JDK를 바꾸고 싶다면?
 
 예를 들어 나중에 JDK 25를 설치했다고 해보자.
 
@@ -3522,7 +3474,7 @@ Project SDK
 
 ---
 
-## 147. 팀 프로젝트에서는 JDK를 마음대로 바꾸지 않는다
+## 146. 팀 프로젝트에서는 JDK를 마음대로 바꾸지 않는다
 
 팀 프로젝트가
 
@@ -3544,7 +3496,7 @@ JDK 25
 
 ---
 
-## 148. IntelliJ에서 JDK 21이 정상인지 최종 확인
+## 147. IntelliJ에서 JDK 21이 정상인지 최종 확인
 
 이번 글의 핵심 점검을 해보자.
 
@@ -3581,7 +3533,7 @@ JDK 21 + IntelliJ 연결 완료!
 
 ---
 
-## 149. 최종 프로젝트 구조
+## 148. 최종 프로젝트 구조
 
 이번 실습 결과를 단순화하면 다음과 비슷하다.
 
@@ -3609,7 +3561,7 @@ public class Main {
 
 ---
 
-## 150. 전체 실행 구조
+## 149. 전체 실행 구조
 
 이제 전체 흐름을 한 번에 보자.
 
@@ -3659,55 +3611,7 @@ JDK 21 + IntelliJ 연결 완료!
 
 ---
 
-## 151. 앞선 터미널 실행과 비교
-
-앞선 글:
-
-```text
-VS Code
-
-↓
-
-Hello.java
-
-↓
-
-javac Hello.java
-
-↓
-
-Hello.class
-
-↓
-
-java Hello
-```
-
-이번 글:
-
-```text
-IntelliJ
-
-↓
-
-Main.java
-
-↓
-
-Run
-
-↓
-
-Compile + Execute 자동 처리
-```
-
-즉 Java 자체의 원리가 달라진 것이 아니다.
-
-IntelliJ가 복잡한 작업을 IDE 안에서 관리해주는 것이다.
-
----
-
-## 152. VS Code와 IntelliJ 사용 방향 다시 정리
+## 150. VS Code와 IntelliJ 사용 방향 다시 정리
 
 현재 Dev Setup에서는 다음 방향으로 도구를 사용할 예정이다.
 
@@ -3739,7 +3643,7 @@ Java Backend
 
 ---
 
-## 153. 어떤 IDE가 더 좋은가?
+## 151. 어떤 IDE가 더 좋은가?
 
 단순히
 
@@ -3761,7 +3665,7 @@ IntelliJ는 Java 프로젝트를 깊게 이해하고 자동완성, Refactor, Run
 
 ---
 
-## 154. IntelliJ를 처음 사용할 때 가장 중요한 습관
+## 152. IntelliJ를 처음 사용할 때 가장 중요한 습관
 
 버튼을 외우는 것보다 다음을 확인하는 습관이 중요하다.
 
@@ -3789,7 +3693,7 @@ IntelliJ는 Java 프로젝트를 깊게 이해하고 자동완성, Refactor, Run
 
 ---
 
-## 155. 문제가 생기면 가장 먼저 볼 곳
+## 153. 문제가 생기면 가장 먼저 볼 곳
 
 Java 프로젝트가 실행되지 않는다면 다음 순서로 확인한다.
 
@@ -3815,7 +3719,7 @@ Java 프로젝트가 실행되지 않는다면 다음 순서로 확인한다.
 
 ---
 
-## 156. IntelliJ를 재설치하기 전에 설정부터 확인
+## 154. IntelliJ를 재설치하기 전에 설정부터 확인
 
 초보자일 때 오류가 발생하면
 
@@ -3845,7 +3749,7 @@ Project Path
 
 ---
 
-## 157. IntelliJ가 무겁게 느껴질 수도 있다
+## 155. IntelliJ가 무겁게 느껴질 수도 있다
 
 VS Code보다 IntelliJ가 처음 실행될 때 더 무겁게 느껴질 수 있다.
 
@@ -3857,7 +3761,7 @@ IntelliJ는 프로젝트의 코드를 분석하고 인덱싱하며 Java 관련 �
 
 ---
 
-## 158. IntelliJ를 실행할 때 JDK 21을 직접 실행하는 것은 아니다
+## 156. IntelliJ를 실행할 때 JDK 21을 직접 실행하는 것은 아니다
 
 다시 한 번 중요한 구분이다.
 
@@ -3891,7 +3795,7 @@ IDE 실행과 프로젝트 JDK 설정은 별개이기 때문이다.
 
 ---
 
-## 159. 이번 글에서 꼭 알아둘 용어
+## 157. 이번 글에서 꼭 알아둘 용어
 
 IDE:
 
@@ -3945,12 +3849,12 @@ Run Configuration:
 
 ---
 
-## 160. 이번 글에서 사용한 주요 경로
+## 158. 이번 글에서 사용한 주요 경로
 
 JDK 설치 경로 예:
 
 ```text
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 프로젝트 경로 예:
@@ -3962,20 +3866,20 @@ C:\dev\intellij-java-test
 JDK를 IntelliJ에 연결할 때 선택할 곳:
 
 ```text
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 다시 말하지만
 
 ```text
-C:\Program Files\Java\jdk-21\bin
+C:\Program Files\Eclipse Adoptium\jdk-21...\bin
 ```
 
 을 Project JDK Home으로 선택하지 않는다.
 
 ---
 
-## 161. 이번 글에서 사용한 주요 메뉴
+## 159. 이번 글에서 사용한 주요 메뉴
 
 프로젝트 생성:
 
@@ -4053,7 +3957,7 @@ Run
 
 ---
 
-## 162. 최종 점검 체크리스트
+## 160. 최종 점검 체크리스트
 
 이번 글에서 한 작업을 처음부터 끝까지 확인해보자.
 
@@ -4236,7 +4140,7 @@ Java Compile / Run
 
 구조다.
 
-또 앞선 글에서 직접 입력했던
+또 앞선 글에서 정리한
 
 ```bash
 javac Hello.java
@@ -4384,6 +4288,9 @@ Dev Setup
    ↓
 
 05 JDK 21 설치와 Java 환경변수 설정
+   ↓
+
+05-1 JDK·JRE·JVM과 PATH·JAVA_HOME 이해
    ↓
 
 06 IntelliJ IDEA 설치하고 JDK 연결  ← 현재

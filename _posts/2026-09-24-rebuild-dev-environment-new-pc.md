@@ -899,26 +899,39 @@ javac -version
 
 사용할 JDK 배포판의 JDK 21을 설치한다.
 
-예:
-
-```text
-Oracle JDK 21
-
-Eclipse Temurin 21
-
-기타 프로젝트에서 지정한 OpenJDK 21
-```
+Dev Setup 05편에서는 Eclipse Temurin 21의 Windows x64 `.msi` 설치 파일을 사용했다.
 
 수업이나 회사에서 특정 배포판을 지정했다면 그 기준을 따른다.
 
 ---
 
-## 38. JDK 설치 위치 확인
+## 38. 설치 옵션 설정
+
+설치 중 Custom Setup 화면에서 다음 두 항목을 사용으로 설정한다.
+
+```text
+Add to PATH
+Set or override JAVA_HOME variable
+```
+
+`Set or override JAVA_HOME variable` 항목에 빨간 X가 표시되어 있다면 해당 항목을 눌러
+
+```text
+Will be installed on local hard drive
+```
+
+를 선택한다.
+
+새 PC에서는 기존 PC의 JAVA_HOME 설정이 존재하지 않으므로 이 옵션을 빠뜨리지 않는다.
+
+---
+
+## 39. JDK 설치 위치 확인
 
 예를 들어
 
 ```text
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 에 설치됐다고 해보자.
@@ -949,97 +962,27 @@ javac.exe
 
 ---
 
-## 39. JAVA_HOME 다시 설정
+## 40. 터미널 다시 열기
 
-새 PC에서는 기존 PC의 JAVA_HOME 설정이 존재하지 않는다.
+JDK 설치가 끝났다면 기존 Terminal을 모두 닫는다.
 
-Windows 검색에서
-
-```text
-환경 변수
-```
-
-를 검색한다.
-
-환경 변수 설정 화면을 연다.
-
-새 환경변수를 만든다.
-
-변수 이름:
-
-```text
-JAVA_HOME
-```
-
-변수 값:
-
-```text
-C:\Program Files\Java\jdk-21
-```
-
-실제 설치 위치를 사용한다.
-
----
-
-## 40. JAVA_HOME에 bin을 넣지 않는다
-
-다시 한 번 중요하다.
-
-정상:
-
-```text
-JAVA_HOME
-
-C:\Program Files\Java\jdk-21
-```
-
-잘못된 예:
-
-```text
-JAVA_HOME
-
-C:\Program Files\Java\jdk-21\bin
-```
-
-JAVA_HOME은 **JDK Root**다.
-
----
-
-## 41. Path 설정
-
-Windows 환경변수의 `Path`에 새 항목을 추가한다.
-
-```text
-%JAVA_HOME%\bin
-```
-
-기존 Path 항목을 삭제하지 않는다.
-
-새 Java 항목만 추가한다.
-
----
-
-## 42. 터미널 다시 열기
-
-환경변수를 수정했다면 기존 Terminal을 모두 닫는다.
-
-새 Command Prompt 또는 PowerShell을 연다.
+새 PowerShell을 연다.
 
 JAVA_HOME 확인:
 
-```cmd
-echo %JAVA_HOME%
+```powershell
+echo $env:JAVA_HOME
 ```
 
 결과 예:
 
 ```text
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 ---
 
-## 43. Java 버전 확인
+## 41. Java 버전 확인
 
 ```bash
 java -version
@@ -1057,7 +1000,7 @@ javac -version
 
 ---
 
-## 44. 실제 Java 실행 테스트
+## 42. 실제 Java 실행 테스트
 
 연습용 폴더를 만든다.
 
@@ -1097,14 +1040,14 @@ Java setup complete!
 
 ---
 
-## 45. JDK 최종 체크
+## 43. JDK 최종 체크
 
 ```text
 □ JDK 21 설치
 
-□ JAVA_HOME 설정
+□ 설치 옵션: Set or override JAVA_HOME variable
 
-□ PATH에 %JAVA_HOME%\bin
+□ 설치 옵션: Add to PATH
 
 □ java -version
 
@@ -1121,7 +1064,7 @@ Java setup complete!
 
 ---
 
-## 46. 일곱 번째 — IntelliJ IDEA 설치
+## 44. 일곱 번째 — IntelliJ IDEA 설치
 
 JDK가 준비됐으니 IntelliJ를 설치한다.
 
@@ -1129,7 +1072,7 @@ IntelliJ는 Java 프로젝트를 작성하고 실행하기 위한 IDE로 사용�
 
 ---
 
-## 47. IntelliJ를 JDK보다 나중에 설치한 이유
+## 45. IntelliJ를 JDK보다 나중에 설치한 이유
 
 순서는 이렇게 된다.
 
@@ -1149,7 +1092,7 @@ IntelliJ 프로그램 자체는 자체 Runtime으로 실행될 수 있지만 Jav
 
 ---
 
-## 48. IntelliJ 설치
+## 46. IntelliJ 설치
 
 [공식 Installer](https://www.jetbrains.com/idea/download/)를 이용해 설치한다.
 
@@ -1169,7 +1112,7 @@ Desktop Shortcut
 
 ---
 
-## 49. IntelliJ에서 JDK 21 확인
+## 47. IntelliJ에서 JDK 21 확인
 
 새 Java 프로젝트를 만든다.
 
@@ -1191,7 +1134,7 @@ JDK
 
 ---
 
-## 50. JDK가 자동으로 안 보이면
+## 48. JDK가 자동으로 안 보이면
 
 다음 기능을 사용한다.
 
@@ -1204,20 +1147,20 @@ JDK Root를 선택한다.
 예:
 
 ```text
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 ```
 
 여기서도
 
 ```text
-...\jdk-21\bin
+...\jdk-21...\bin
 ```
 
 을 선택하는 것이 아니다.
 
 ---
 
-## 51. IntelliJ Java 실행 테스트
+## 49. IntelliJ Java 실행 테스트
 
 `Main.java`를 만든다.
 
@@ -1241,7 +1184,7 @@ IntelliJ setup complete!
 
 ---
 
-## 52. Project SDK 직접 확인
+## 50. Project SDK 직접 확인
 
 다음으로 이동한다.
 
@@ -1269,7 +1212,7 @@ SDK default
 
 ---
 
-## 53. IntelliJ 최종 체크
+## 51. IntelliJ 최종 체크
 
 ```text
 □ IntelliJ 설치
@@ -1289,7 +1232,7 @@ SDK default
 
 ---
 
-## 54. 여덟 번째 — Tomcat 설치
+## 52. 여덟 번째 — Tomcat 설치
 
 Java 기본 개발환경까지 완성됐다면 필요에 따라 Tomcat을 설치한다.
 
@@ -1297,7 +1240,7 @@ Tomcat은 Java Servlet/JSP 웹 애플리케이션을 실행하는 Container 환�
 
 ---
 
-## 55. Tomcat은 항상 필요한가?
+## 53. Tomcat은 항상 필요한가?
 
 아니다.
 
@@ -1325,7 +1268,7 @@ JSP
 
 ---
 
-## 56. 현재 Dev Setup 기준으로는 설치
+## 54. 현재 Dev Setup 기준으로는 설치
 
 이번 시리즈에서는 Tomcat 환경까지 구축했기 때문에 재설치한다고 가정한다.
 
@@ -1343,7 +1286,7 @@ Tomcat 11?
 
 ---
 
-## 57. 수업 버전이 있다면 수업 기준 우선
+## 55. 수업 버전이 있다면 수업 기준 우선
 
 예를 들어
 
@@ -1365,7 +1308,7 @@ Tomcat 10.1 / 11
 
 ---
 
-## 58. Tomcat 압축 해제
+## 56. Tomcat 압축 해제
 
 예를 들어
 
@@ -1393,7 +1336,7 @@ webapps
 
 ---
 
-## 59. CATALINA_HOME 설정
+## 57. CATALINA_HOME 설정
 
 환경변수를 만든다.
 
@@ -1419,7 +1362,7 @@ C:\dev\tools\apache-tomcat-11.x.x
 
 ---
 
-## 60. CATALINA_HOME 확인
+## 58. CATALINA_HOME 확인
 
 새 Command Prompt를 실행한다.
 
@@ -1431,7 +1374,7 @@ echo %CATALINA_HOME%
 
 ---
 
-## 61. Tomcat 버전 확인
+## 59. Tomcat 버전 확인
 
 ```cmd
 %CATALINA_HOME%\bin\version.bat
@@ -1459,7 +1402,7 @@ Java Version
 
 ---
 
-## 62. Tomcat 시작
+## 60. Tomcat 시작
 
 ```cmd
 %CATALINA_HOME%\bin\startup.bat
@@ -1471,7 +1414,7 @@ Java Version
 
 ---
 
-## 63. localhost 접속
+## 61. localhost 접속
 
 브라우저에서
 
@@ -1485,7 +1428,7 @@ Tomcat 기본 화면이 나타나면 된다.
 
 ---
 
-## 64. Tomcat 종료
+## 62. Tomcat 종료
 
 테스트가 끝났다면
 
@@ -1507,7 +1450,7 @@ Tomcat이 종료되었다면 더 이상 정상 접속되지 않아야 한다.
 
 ---
 
-## 65. Tomcat 최종 체크
+## 63. Tomcat 최종 체크
 
 ```text
 □ 프로젝트에서 필요한 Tomcat 버전 확인
@@ -1529,7 +1472,7 @@ Tomcat이 종료되었다면 더 이상 정상 접속되지 않아야 한다.
 
 ---
 
-## 66. 여기까지 하면 기본 개발 도구 설치는 끝
+## 64. 여기까지 하면 기본 개발 도구 설치는 끝
 
 현재 새 PC에는 다음 개발환경이 준비됐다.
 
@@ -1551,7 +1494,7 @@ Tomcat
 
 ---
 
-## 67. 프로젝트를 ZIP으로 다운로드하지 않고 Clone
+## 65. 프로젝트를 ZIP으로 다운로드하지 않고 Clone
 
 계속 개발할 프로젝트라면 GitHub의
 
@@ -1585,7 +1528,7 @@ Remote 연결
 
 ---
 
-## 68. 프로젝트 폴더로 이동
+## 66. 프로젝트 폴더로 이동
 
 예를 들어 프로젝트를
 
@@ -1601,7 +1544,7 @@ cd /c/dev/projects
 
 ---
 
-## 69. Git Clone
+## 67. Git Clone
 
 GitHub에서 Repository HTTPS 주소를 복사한다.
 
@@ -1615,7 +1558,7 @@ Clone이 끝나면 프로젝트 폴더가 만들어진다.
 
 ---
 
-## 70. Clone 후 무조건 실행부터 하지 않는다
+## 68. Clone 후 무조건 실행부터 하지 않는다
 
 프로젝트마다 필요한 환경이 다르다.
 
@@ -1639,7 +1582,7 @@ build.gradle.kts
 
 ---
 
-## 71. Node.js 프로젝트라면
+## 69. Node.js 프로젝트라면
 
 `package.json`이 있다면 JavaScript/Node.js 계열 프로젝트일 가능성이 높다.
 
@@ -1655,7 +1598,7 @@ node -v
 
 ---
 
-## 72. npm 패키지 설치
+## 70. npm 패키지 설치
 
 프로젝트 폴더에서
 
@@ -1671,7 +1614,7 @@ npm install
 
 ---
 
-## 73. `node_modules`가 없어도 정상
+## 71. `node_modules`가 없어도 정상
 
 Clone 후 다음처럼 보일 수 있다.
 
@@ -1701,7 +1644,7 @@ npm install
 
 ---
 
-## 74. 환경변수 파일은 Git에서 안 내려올 수 있다
+## 72. 환경변수 파일은 Git에서 안 내려올 수 있다
 
 중요하다.
 
@@ -1719,7 +1662,7 @@ Secret 관련 설정
 
 ---
 
-## 75. `.env` 관련 자료 확인
+## 73. `.env` 관련 자료 확인
 
 Repository 안에
 
@@ -1743,7 +1686,7 @@ API_KEY=
 
 ---
 
-## 76. Secret을 GitHub에서 무작정 복사하면 안 된다
+## 74. Secret을 GitHub에서 무작정 복사하면 안 된다
 
 환경변수와 Secret은 어디에서 관리되는지 확인한다.
 
@@ -1767,7 +1710,7 @@ Naver Developers
 
 ---
 
-## 77. Java 프로젝트라면
+## 75. Java 프로젝트라면
 
 다음 파일을 볼 수 있다.
 
@@ -1793,7 +1736,7 @@ IntelliJ에서 프로젝트를 열고 올바른 JDK가 선택되어 있는지 �
 
 ---
 
-## 78. IntelliJ에서 Clone한 Java 프로젝트 열기
+## 76. IntelliJ에서 Clone한 Java 프로젝트 열기
 
 IntelliJ Welcome 화면에서
 
@@ -1813,7 +1756,7 @@ C:\dev\projects\my-java-project
 
 ---
 
-## 79. Project SDK 확인
+## 77. Project SDK 확인
 
 프로젝트를 열었으면 가장 먼저 확인한다.
 
@@ -1827,7 +1770,7 @@ File
 
 ---
 
-## 80. 프로젝트마다 JDK 버전이 다를 수 있다
+## 78. 프로젝트마다 JDK 버전이 다를 수 있다
 
 새 PC에서 JDK 21을 설치했다고 모든 Java 프로젝트가 21인 것은 아니다.
 
@@ -1845,7 +1788,7 @@ File
 
 ---
 
-## 81. 새 PC에서 특히 중요한 것 — 프로젝트별 환경
+## 79. 새 PC에서 특히 중요한 것 — 프로젝트별 환경
 
 개발환경에는 두 종류가 있다고 생각하면 이해하기 쉽다.
 
@@ -1859,7 +1802,7 @@ PC 전체 개발환경
 
 ---
 
-## 82. PC 전체 개발환경
+## 80. PC 전체 개발환경
 
 예:
 
@@ -1879,7 +1822,7 @@ Tomcat
 
 ---
 
-## 83. 프로젝트별 개발환경
+## 81. 프로젝트별 개발환경
 
 예:
 
@@ -1907,7 +1850,7 @@ Build Tool
 
 ---
 
-## 84. GitHub에 있다고 모든 것이 복구되는 것은 아니다
+## 82. GitHub에 있다고 모든 것이 복구되는 것은 아니다
 
 Git Repository에는 소스 코드가 있다.
 
@@ -1931,7 +1874,7 @@ Private Key
 
 ---
 
-## 85. 그래서 README가 중요하다
+## 83. 그래서 README가 중요하다
 
 프로젝트 README에는 최소한 다음 정보가 있으면 새 PC 구축이 매우 쉬워진다.
 
@@ -1957,13 +1900,13 @@ README가 잘 작성되어 있으면 과거의 환경을 다시 기억할 필요
 
 ---
 
-## 86. 새 PC에서는 버전부터 기록
+## 84. 새 PC에서는 버전부터 기록
 
 모든 설치가 끝났다면 현재 버전을 한 번에 기록한다.
 
 ---
 
-## 87. Git
+## 85. Git
 
 ```bash
 git --version
@@ -1971,7 +1914,7 @@ git --version
 
 ---
 
-## 88. VS Code
+## 86. VS Code
 
 ```bash
 code --version
@@ -1979,7 +1922,7 @@ code --version
 
 ---
 
-## 89. Node.js
+## 87. Node.js
 
 ```bash
 node -v
@@ -1987,7 +1930,7 @@ node -v
 
 ---
 
-## 90. npm
+## 88. npm
 
 ```bash
 npm -v
@@ -1995,7 +1938,7 @@ npm -v
 
 ---
 
-## 91. Java
+## 89. Java
 
 ```bash
 java -version
@@ -2003,7 +1946,7 @@ java -version
 
 ---
 
-## 92. Java Compiler
+## 90. Java Compiler
 
 ```bash
 javac -version
@@ -2011,7 +1954,7 @@ javac -version
 
 ---
 
-## 93. JAVA_HOME
+## 91. JAVA_HOME
 
 Command Prompt:
 
@@ -2021,7 +1964,7 @@ echo %JAVA_HOME%
 
 ---
 
-## 94. Tomcat
+## 92. Tomcat
 
 ```cmd
 %CATALINA_HOME%\bin\version.bat
@@ -2029,7 +1972,7 @@ echo %JAVA_HOME%
 
 ---
 
-## 95. CATALINA_HOME
+## 93. CATALINA_HOME
 
 ```cmd
 echo %CATALINA_HOME%
@@ -2037,7 +1980,7 @@ echo %CATALINA_HOME%
 
 ---
 
-## 96. 버전 확인 결과를 기록해두자
+## 94. 버전 확인 결과를 기록해두자
 
 예를 들어 다음처럼 기록할 수 있다.
 
@@ -2058,7 +2001,7 @@ JDK:
 21
 
 JAVA_HOME:
-C:\Program Files\Java\jdk-21
+C:\Program Files\Eclipse Adoptium\jdk-21...
 
 IntelliJ:
 설치 완료
@@ -2075,7 +2018,7 @@ Tomcat Root
 
 ---
 
-## 97. 버전을 왜 기록할까?
+## 95. 버전을 왜 기록할까?
 
 나중에 이런 상황이 생길 수 있다.
 
@@ -2112,7 +2055,7 @@ JDK 21
 
 ---
 
-## 98. PATH도 확인할 필요가 있다
+## 96. PATH도 확인할 필요가 있다
 
 프로그램을 설치했는데 버전 명령어가 실행되지 않는다면 PATH 문제일 수 있다.
 
@@ -2120,7 +2063,7 @@ Command Prompt에서 프로그램 위치를 확인할 수 있다.
 
 ---
 
-## 99. Git 위치
+## 97. Git 위치
 
 ```cmd
 where git
@@ -2128,7 +2071,7 @@ where git
 
 ---
 
-## 100. VS Code 위치
+## 98. VS Code 위치
 
 ```cmd
 where code
@@ -2136,7 +2079,7 @@ where code
 
 ---
 
-## 101. Node.js 위치
+## 99. Node.js 위치
 
 ```cmd
 where node
@@ -2144,7 +2087,7 @@ where node
 
 ---
 
-## 102. npm 위치
+## 100. npm 위치
 
 ```cmd
 where npm
@@ -2152,7 +2095,7 @@ where npm
 
 ---
 
-## 103. Java 위치
+## 101. Java 위치
 
 ```cmd
 where java
@@ -2160,7 +2103,7 @@ where java
 
 ---
 
-## 104. javac 위치
+## 102. javac 위치
 
 ```cmd
 where javac
@@ -2170,12 +2113,12 @@ where javac
 
 ---
 
-## 105. `where java`가 여러 개 나오면
+## 103. `where java`가 여러 개 나오면
 
 예:
 
 ```text
-C:\Program Files\Java\jdk-21\bin\java.exe
+C:\Program Files\Eclipse Adoptium\jdk-21...\bin\java.exe
 
 C:\어딘가\old-java\java.exe
 ```
@@ -2194,7 +2137,7 @@ java -version
 
 ---
 
-## 106. Node도 여러 버전이 있을 수 있다
+## 104. Node도 여러 버전이 있을 수 있다
 
 ```cmd
 where node
@@ -2214,7 +2157,7 @@ where node
 
 ---
 
-## 107. 최종 통합 테스트 — Git
+## 105. 최종 통합 테스트 — Git
 
 연습 Repository 또는 기존 프로젝트로 이동한다.
 
@@ -2232,7 +2175,7 @@ git remote -v
 
 ---
 
-## 108. 최종 통합 테스트 — VS Code
+## 106. 최종 통합 테스트 — VS Code
 
 프로젝트 폴더에서
 
@@ -2246,7 +2189,7 @@ VS Code가 해당 프로젝트를 정상적으로 여는지 확인한다.
 
 ---
 
-## 109. 최종 통합 테스트 — Node
+## 107. 최종 통합 테스트 — Node
 
 Node 프로젝트에서
 
@@ -2276,7 +2219,7 @@ npm run dev
 
 ---
 
-## 110. 최종 통합 테스트 — Java
+## 108. 최종 통합 테스트 — Java
 
 Java 프로젝트에서는
 
@@ -2294,7 +2237,7 @@ IntelliJ에서도 Project SDK를 확인하고 프로그램을 Run한다.
 
 ---
 
-## 111. 최종 통합 테스트 — Tomcat
+## 109. 최종 통합 테스트 — Tomcat
 
 Tomcat이 필요한 환경이라면
 
@@ -2322,7 +2265,7 @@ http://localhost:8080
 
 ---
 
-## 112. 새 PC에서 흔한 문제 — GitHub Repository는 있는데 Local에 없다
+## 110. 새 PC에서 흔한 문제 — GitHub Repository는 있는데 Local에 없다
 
 정상이다.
 
@@ -2344,7 +2287,7 @@ git clone
 
 ---
 
-## 113. 흔한 문제 — SourceTree에는 Repository가 안 보인다
+## 111. 흔한 문제 — SourceTree에는 Repository가 안 보인다
 
 새 PC니까 정상일 수 있다.
 
@@ -2354,7 +2297,7 @@ SourceTree의 Repository 목록은 기존 PC와 별개다.
 
 ---
 
-## 114. 흔한 문제 — VS Code Extension이 없다
+## 112. 흔한 문제 — VS Code Extension이 없다
 
 새 설치이므로 정상이다.
 
@@ -2364,7 +2307,7 @@ VS Code 계정 동기화를 사용하고 있었다면 Sync 상태를 확인할 �
 
 ---
 
-## 115. 흔한 문제 — `node` 명령어가 안 된다
+## 113. 흔한 문제 — `node` 명령어가 안 된다
 
 확인:
 
@@ -2386,7 +2329,7 @@ where node
 
 ---
 
-## 116. 흔한 문제 — `npm`만 안 된다
+## 114. 흔한 문제 — `npm`만 안 된다
 
 먼저
 
@@ -2406,7 +2349,7 @@ PowerShell에서는 Script 실행 정책과 관련된 메시지가 나타날 수
 
 ---
 
-## 117. 흔한 문제 — `java`는 되는데 `javac`가 안 된다
+## 115. 흔한 문제 — `java`는 되는데 `javac`가 안 된다
 
 JDK가 아니라 실행 환경만 선택되고 있거나 PATH가 잘못된 경우를 확인한다.
 
@@ -2422,7 +2365,7 @@ where javac
 
 ---
 
-## 118. 흔한 문제 — JDK 21을 설치했는데 Java 17이 나온다
+## 116. 흔한 문제 — JDK 21을 설치했는데 Java 17이 나온다
 
 ```bash
 java -version
@@ -2450,7 +2393,7 @@ Path 순서
 
 ---
 
-## 119. 흔한 문제 — IntelliJ는 켜지는데 Java 프로젝트가 안 된다
+## 117. 흔한 문제 — IntelliJ는 켜지는데 Java 프로젝트가 안 된다
 
 IntelliJ 자체 Runtime과 프로젝트 JDK는 다르다.
 
@@ -2476,7 +2419,7 @@ JDK 21 또는 프로젝트가 요구하는 JDK가 선택되어 있는지 본다.
 
 ---
 
-## 120. 흔한 문제 — Tomcat이 안 켜진다
+## 118. 흔한 문제 — Tomcat이 안 켜진다
 
 순서:
 
@@ -2508,7 +2451,7 @@ logs 확인
 
 ---
 
-## 121. 8080 Port 확인
+## 119. 8080 Port 확인
 
 ```cmd
 netstat -ano | findstr :8080
@@ -2518,7 +2461,7 @@ netstat -ano | findstr :8080
 
 ---
 
-## 122. 프로젝트가 새 PC에서 안 돌아간다면
+## 120. 프로젝트가 새 PC에서 안 돌아간다면
 
 무작정 코드를 수정하기 전에 **환경 차이부터 확인한다.**
 
@@ -2550,7 +2493,7 @@ Port
 
 ---
 
-## 123. `.gitignore` 파일 확인
+## 121. `.gitignore` 파일 확인
 
 새 PC 구축에서 `.gitignore`가 왜 중요한지도 드러난다.
 
@@ -2578,7 +2521,7 @@ Build 결과
 
 ---
 
-## 124. 프로젝트별 복구 문서를 만드는 것이 좋다
+## 122. 프로젝트별 복구 문서를 만드는 것이 좋다
 
 프로젝트마다 다음 내용을 README 또는 별도 문서로 정리하면 좋다.
 
@@ -2608,7 +2551,7 @@ Seed 명령
 
 ---
 
-## 125. 개발환경을 백업한다고 프로그램 폴더를 복사하면 될까?
+## 123. 개발환경을 백업한다고 프로그램 폴더를 복사하면 될까?
 
 일반적으로 프로그램 설치 폴더를 그대로 다른 PC로 복사하는 방식은 추천하지 않는다.
 
@@ -2630,7 +2573,7 @@ Windows Integration
 
 ---
 
-## 126. 무엇을 백업해야 할까?
+## 124. 무엇을 백업해야 할까?
 
 오히려 중요한 것은 프로그램 자체보다 다음 정보다.
 
@@ -2656,7 +2599,7 @@ SSH Key 필요 여부
 
 ---
 
-## 127. Secret은 별도 관리
+## 125. Secret은 별도 관리
 
 다음 정보는 블로그나 GitHub Public Repository에 기록하지 않는다.
 
@@ -2684,7 +2627,7 @@ DATABASE_URL 필요
 
 ---
 
-## 128. 예를 들어 이렇게 기록
+## 126. 예를 들어 이렇게 기록
 
 ```text
 DATABASE_URL
@@ -2704,7 +2647,7 @@ GOOGLE_CLIENT_SECRET
 
 ---
 
-## 129. 개발환경 복구에서 GitHub가 중요한 이유
+## 127. 개발환경 복구에서 GitHub가 중요한 이유
 
 프로젝트를 GitHub에 정상적으로 Push해두었다면 PC가 바뀌어도 Source Code는 다시 Clone할 수 있다.
 
@@ -2732,7 +2675,7 @@ GitHub는 단순한 협업 도구뿐 아니라 개발환경 이전 과정에서�
 
 ---
 
-## 130. 하지만 GitHub만 믿으면 안 되는 이유
+## 128. 하지만 GitHub만 믿으면 안 되는 이유
 
 다시 말하지만 다음은 Git에 없을 수 있다.
 
@@ -2754,7 +2697,7 @@ IDE 개인 설정
 
 ---
 
-## 131. 새 PC 개발환경 최종 구조
+## 129. 새 PC 개발환경 최종 구조
 
 모든 작업이 끝나면 대략 이런 구조가 된다.
 
@@ -2802,7 +2745,7 @@ C:\dev\projects
 
 ---
 
-## 132. 프로그램 역할 다시 정리
+## 130. 프로그램 역할 다시 정리
 
 | 프로그램 | 역할 |
 |------|------|
@@ -2818,7 +2761,7 @@ C:\dev\projects
 
 ---
 
-## 133. 설치 순서를 다시 한 번
+## 131. 설치 순서를 다시 한 번
 
 ```text
 Windows 확인
@@ -2882,7 +2825,7 @@ GitHub Clone
 
 ---
 
-## 134. 새 PC에서 최소 명령어 점검표
+## 132. 새 PC에서 최소 명령어 점검표
 
 이 부분만 따로 복사해둬도 좋다.
 
@@ -2928,7 +2871,7 @@ Tomcat:
 
 ---
 
-## 135. 조금 더 자세한 최종 점검표
+## 133. 조금 더 자세한 최종 점검표
 
 ### Git
 
@@ -2971,8 +2914,8 @@ Tomcat:
 
 ```text
 □ JDK 21 설치
-□ JAVA_HOME
-□ %JAVA_HOME%\bin
+□ JAVA_HOME (설치 옵션)
+□ PATH (설치 옵션 Add to PATH)
 □ java -version
 □ javac -version
 □ Hello.java Compile / Run
@@ -3014,7 +2957,7 @@ Tomcat:
 
 ---
 
-## 136. 모든 프로그램을 무조건 설치할 필요는 없다
+## 134. 모든 프로그램을 무조건 설치할 필요는 없다
 
 새 PC라고 해서 이번 목록을 모두 설치해야 하는 것은 아니다.
 
@@ -3056,7 +2999,7 @@ Tomcat
 
 ---
 
-## 137. 설치 프로그램 수가 많다고 좋은 환경은 아니다
+## 135. 설치 프로그램 수가 많다고 좋은 환경은 아니다
 
 개발 프로그램을 많이 설치하는 것이 목표가 아니다.
 
@@ -3078,7 +3021,7 @@ Tomcat
 
 ---
 
-## 138. 새 PC 구축을 하면서 기존 환경을 정리할 수도 있다
+## 136. 새 PC 구축을 하면서 기존 환경을 정리할 수도 있다
 
 예전 PC에서는 공부하면서 이것저것 설치하다 보니
 
@@ -3100,7 +3043,7 @@ Node 여러 버전
 
 ---
 
-## 139. 설치가 끝났으면 스크린샷보다 버전을 남기자
+## 137. 설치가 끝났으면 스크린샷보다 버전을 남기자
 
 설치 화면을 전부 캡처하는 것도 도움이 되지만 나중에는 다음 정보가 더 중요하다.
 
@@ -3122,7 +3065,7 @@ Node 여러 버전
 
 ---
 
-## 140. 새 PC 구축 기록 예시
+## 138. 새 PC 구축 기록 예시
 
 ```text
 Git
@@ -3157,7 +3100,7 @@ Tomcat
 
 ---
 
-## 141. Dev Setup 시리즈에서 배운 것을 한 번에 연결하면
+## 139. Dev Setup 시리즈에서 배운 것을 한 번에 연결하면
 
 처음에는 프로그램이 각각 별개처럼 보였다.
 
@@ -3195,7 +3138,7 @@ Java Web Application 실행
 
 ---
 
-## 142. 새 PC에서는 이 구조를 다시 만드는 것
+## 140. 새 PC에서는 이 구조를 다시 만드는 것
 
 결국 이번 작업은 프로그램을 무작정 설치하는 것이 아니다.
 
@@ -3223,7 +3166,7 @@ Java Web 실행 환경
 
 ---
 
-## 143. 개발환경 복구가 성공했다는 기준
+## 141. 개발환경 복구가 성공했다는 기준
 
 모든 프로그램 아이콘이 바탕화면에 생겼다고 끝난 것이 아니다.
 
@@ -3251,7 +3194,7 @@ GitHub Repository를 Clone할 수 있음
 
 ---
 
-## 144. 아이콘보다 명령어 확인이 중요한 이유
+## 142. 아이콘보다 명령어 확인이 중요한 이유
 
 예를 들어 Node.js 아이콘이 Windows에 있어도
 
@@ -3299,7 +3242,7 @@ http://localhost:8080
 
 ---
 
-## 145. 프로그램별 성공 기준
+## 143. 프로그램별 성공 기준
 
 Git:
 
@@ -3352,7 +3295,7 @@ localhost:8080
 
 ---
 
-## 146. 새 PC에서 프로젝트 하나까지 실행해보기
+## 144. 새 PC에서 프로젝트 하나까지 실행해보기
 
 마지막으로 실제 사용 중인 프로젝트 하나를 고른다.
 
@@ -3408,7 +3351,7 @@ Run
 
 ---
 
-## 147. 새 PC 구축에서 가장 중요한 세 가지
+## 145. 새 PC 구축에서 가장 중요한 세 가지
 
 첫 번째는 **순서**다.
 
@@ -3462,7 +3405,7 @@ API Key
 
 ---
 
-## 148. 개발환경을 다시 만들 수 있다는 것의 의미
+## 146. 개발환경을 다시 만들 수 있다는 것의 의미
 
 처음 개발환경을 구축할 때는
 
@@ -3502,7 +3445,7 @@ Repository Clone하고,
 
 ---
 
-## 149. 새 PC 개발환경 최종 전체 체크리스트
+## 147. 새 PC 개발환경 최종 전체 체크리스트
 
 마지막으로 정말 처음부터 끝까지 한 번에 확인해보자.
 
@@ -3562,8 +3505,8 @@ Repository Clone하고,
 □ 필요한 JDK Version 확인
 □ JDK 21 설치
 □ JDK Root 확인
-□ JAVA_HOME
-□ PATH에 %JAVA_HOME%\bin
+□ JAVA_HOME (설치 옵션)
+□ PATH (설치 옵션 Add to PATH)
 □ java -version
 □ javac -version
 □ Hello.java Compile
@@ -3835,6 +3778,10 @@ Dev Setup
 
 05 JDK 21
    설치와 Java 환경변수 설정
+   ↓
+
+05-1 JDK·JRE·JVM과
+   PATH·JAVA_HOME 이해
    ↓
 
 06 IntelliJ IDEA
