@@ -477,6 +477,22 @@ true
 조건이 틀리다 → false
 ```
 
+나중에 회원가입 기능을 만들 때도 `boolean`을 사용할 수 있다. 예를 들어 비밀번호가 8자 이상인지, 이메일에 `@`가 들어 있는지 확인하는 조건이다.
+
+```java
+// 예시 코드
+String password = "abcd1234";
+String email = "test@example.com";
+
+boolean isValidPassword = password.length() >= 8;
+boolean hasAt = email.contains("@");
+
+System.out.println(isValidPassword); // true
+System.out.println(hasAt);           // true
+```
+
+`length()`는 문자열의 길이를, `contains("@")`는 문자열 안에 `@`가 들어 있는지를 확인한다. 조건이 맞으면 `true`, 맞지 않으면 `false`가 저장된다.
+
 ---
 
 ## 5. 출력과 입력
@@ -589,6 +605,42 @@ String str = String.valueOf(num);
 ```
 
 즉 숫자 → 문자열, 문자열 → 숫자 모두 가능하다. 다만 일반적인 `(int)` 형변환 방식과는 다른 방법을 사용한다.
+
+`(int)`처럼 괄호로 바꾸는 형변환으로는 절대 안 되고, 다른 방법(메서드)으로는 된다. 즉 형변환으로는 문자열 → 숫자는 안 된다.
+
+```java
+String str = "123";
+
+int num1 = (int) str;              // 컴파일 오류, 형변환 불가
+int num2 = Integer.parseInt(str);  // 가능 → 123
+```
+
+- `(int)` 같은 형변환은 `int`, `double`처럼 숫자를 담는 기본 자료형끼리만 쓸 수 있다.
+- `String`은 참조 자료형이라 이 방식이 통하지 않는다.
+- `Integer.parseInt()`는 형변환이 아니다. 문자열에 적힌 글자 `"1"`, `"2"`, `"3"`을 읽어서 숫자 `123`을 새로 만드는 방식이다.
+- 그래서 `Integer.parseInt("abc")`처럼 숫자가 아닌 문자열을 넣으면, 컴파일은 되지만 실행할 때 오류(`NumberFormatException`)가 난다.
+
+### 숫자, 문자, 문자열 사이의 변환 정리
+
+숫자, 문자, 문자열 사이의 변환은 헷갈리기 쉬워서 표로 정리했다. 숫자 → 문자(`char`)는 형변환이 가능하고, 나머지는 형변환으로는 안 되지만 메서드로는 된다.
+
+| 변환 | `(타입)` 형변환 | 다른 방법 |
+|------|----------------|-----------|
+| 숫자 → 숫자 | 가능 (`(int) 99.99`) | — |
+| 숫자 → 문자 (`int` → `char`) | 가능 (`(char) 65` → `'A'`) | — |
+| 문자 → 숫자 (`char` → `int`) | 가능 (자동) | — |
+| 숫자 → 문자열 | 불가 | `String.valueOf(123)`, `123 + ""` |
+| 문자열 → 숫자 | 불가 | `Integer.parseInt("123")` |
+| 문자 → 문자열 | 불가 | `String.valueOf('a')`, `'a' + ""` |
+| 문자열 → 문자 | 불가 | `"abc".charAt(0)` → `'a'` |
+
+숫자 → 문자가 되는 이유는 앞의 `char` 설명에서 본 것처럼 `char`가 내부적으로 Unicode 숫자 값을 쓰기 때문이다. 그래서 `char`와 `int`는 서로 형변환할 수 있다.
+
+- `char` → `int`는 자동으로 바뀐다.
+- `int` → `char`는 `(char)`를 직접 써야 한다.
+- 주의할 점: `(char) 1`은 문자 `'1'`이 되지 않는다. `'1'`의 코드 값은 49이다.
+
+한 줄로 정리하면, `String`이 한쪽에라도 끼면 `(타입)` 형변환은 안 되고 메서드를 써야 한다. `boolean`은 어떤 자료형과도 형변환되지 않는다.
 
 ---
 
