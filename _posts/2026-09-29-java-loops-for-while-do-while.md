@@ -185,7 +185,7 @@ i = 5 → 성원님 5번 했습니다~
 
 > 홀수 번째에는 횟수를 말하고, 짝수 번째에는 침묵한다.
 
-이전 글에서 배운 `if`문을 `for`문 안에 넣으면 된다.
+[이전 글]({{ site.baseurl }}{% post_url 2026-09-29-java-conditionals-if-switch %})에서 배운 `if`문을 `for`문 안에 넣으면 된다.
 
 ```java
 for (int i = 1; i <= 5; i++) {
