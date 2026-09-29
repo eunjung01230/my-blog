@@ -4,6 +4,7 @@ title: "Java 메서드 — 선언, 호출, 매개변수와 반환값"
 date: 2026-09-29 15:32:00 +0900
 categories: backend
 learningOrder: 50
+mermaid: true
 tags:
   - java
   - method
@@ -466,48 +467,21 @@ public class Application02 {
 
 실제 흐름은 다음과 같다.
 
-```text
-┌─────────────────────────────┐
-│           main()            │
-│                             │
-│ "main() 시작됨..."          │
-│                             │
-│ app2.methodA() ────────────────┐
-└─────────────────────────────┘  │
-                                 │ 호출
-                                 ▼
-                    ┌────────────────────────┐
-                    │       methodA()        │
-                    │                        │
-                    │ "methodA() 호출됨..." │
-                    │                        │
-                    │ methodB() ────────────────┐
-                    └────────────────────────┘  │
-                                               │ 호출
-                                               ▼
-                                  ┌────────────────────────┐
-                                  │       methodB()        │
-                                  │                        │
-                                  │ "methodB() 호출됨..." │
-                                  └───────────┬────────────┘
-                                              │
-                                         실행 종료
-                                              │
-                                              ▼
-                    ┌────────────────────────┐
-                    │       methodA()        │
-                    │                        │
-                    │ "methodA() 종료됨..." │
-                    └───────────┬────────────┘
-                                │
-                           실행 종료
-                                │
-                                ▼
-┌─────────────────────────────┐
-│           main()            │
-│                             │
-│ "main() 종료됨..."          │
-└─────────────────────────────┘
+```mermaid
+sequenceDiagram
+    participant main as main()
+    participant A as methodA()
+    participant B as methodB()
+
+    Note over main: "main() 시작됨..." 출력
+    main->>+A: app2.methodA() 호출
+    Note over A: "methodA() 호출됨..." 출력
+    A->>+B: methodB() 호출
+    Note over B: "methodB() 호출됨..." 출력
+    B-->>-A: 실행 종료 → methodA로 복귀
+    Note over A: "methodA() 종료됨..." 출력
+    A-->>-main: 실행 종료 → main으로 복귀
+    Note over main: "main() 종료됨..." 출력
 ```
 
 결국 실행 순서는 다음과 같다.
@@ -554,7 +528,7 @@ main() 종료됨...
 
 이번 수업에서 메서드를 이해할 때 가장 중요했던 부분이다.
 
-메서드를 호출하면 프로그램이 그 메서드로 이동했다가, 작업이 끝나면 **자신을 호출한 지점으로 돌아간다.**
+메서드를 호출하면 실행 흐름이 그 메서드로 이동했다가, 작업이 끝나면 **자신을 호출한 지점으로 돌아간다.**
 
 ```text
 main
@@ -584,7 +558,7 @@ main → methodA → methodB
 
 로 이동한 뒤 끝나는 것이 아니다.
 
-돌아오는 과정까지 포함하면 다음과 같다.
+호출한 곳으로 돌아오는 과정까지 포함하면 다음과 같다.
 
 ```text
 main → methodA → methodB → methodA → main
